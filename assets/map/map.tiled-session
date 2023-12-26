@@ -1,0 +1,100 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "map.tmx",
+    "expandedProjectPaths": [
+        ".",
+        "Tilesets"
+    ],
+    "fileStates": {
+        "Texture/TX Plant.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Texture/TX Player.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Texture/TX Props.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Texture/TX Shadow Plant.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Texture/TX Struct.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Texture/TX Tileset Grass.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Texture/TX Tileset Stone Ground.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Texture/TX Tileset Wall.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Tilesets/TilesetNature.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Tilesets/TilesetWater.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "map.tmx": {
+            "scale": 0.7379464285714286,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 1246.0254083484576,
+                "y": 811.0344827586208
+            }
+        },
+        "tileset_version1.1.tsx": {
+            "scaleInDock": 1
+        }
+    },
+    "last.imagePath": "/home/mklemmingen/Game-Development/Boom-Chess!/assets/map/Texture",
+    "map.height": 28,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 32,
+    "map.tileWidth": 32,
+    "map.width": 49,
+    "openFiles": [
+        "map.tmx",
+        "Texture/TX Plant.tsx",
+        "Texture/TX Player.tsx",
+        "Texture/TX Props.tsx",
+        "Texture/TX Shadow Plant.tsx",
+        "Texture/TX Struct.tsx",
+        "Texture/TX Tileset Grass.tsx",
+        "Texture/TX Tileset Stone Ground.tsx",
+        "Texture/TX Tileset Wall.tsx"
+    ],
+    "project": "map.tiled-project",
+    "recentFiles": [
+        "Texture/TX Tileset Wall.tsx",
+        "Texture/TX Tileset Stone Ground.tsx",
+        "Texture/TX Tileset Grass.tsx",
+        "Texture/TX Struct.tsx",
+        "Texture/TX Shadow Plant.tsx",
+        "Texture/TX Props.tsx",
+        "Texture/TX Player.tsx",
+        "Texture/TX Plant.tsx",
+        "map.tmx",
+        "Tilesets/TilesetNature.tsx",
+        "Tilesets/TilesetWater.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 32,
+        "width": 32
+    }
+}
