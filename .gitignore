@@ -112,3 +112,6 @@ Thumbs.db
 /ios/xcode/native/
 /ios/IOSLauncher.app
 /ios/IOSLauncher.app.dSYM
+android/release/android-release.apk
+android/release/android-release.zip
+android/release/output-metadata.json
