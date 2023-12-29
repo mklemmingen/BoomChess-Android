@@ -1084,6 +1084,7 @@ public class BoomChess extends ApplicationAdapter {
 			}
 		});
 		table.row().padBottom(tileSize/4);
+
 		table.add(changeMapButton);
 		table.row().padBottom(tileSize/4);
 
