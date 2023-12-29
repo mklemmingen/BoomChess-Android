@@ -1,16 +1,9 @@
 package com.boomchess.game.frontend.actor;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.boomchess.game.BoomChess;
-import com.boomchess.game.backend.Board;
-import com.boomchess.game.backend.Coordinates;
-import com.boomchess.game.backend.Soldier;
-import com.boomchess.game.frontend.interfaces.makeASoundInterface;
 import com.boomchess.game.frontend.stage.MenuStage;
 
 import static com.boomchess.game.BoomChess.*;

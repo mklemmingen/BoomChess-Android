@@ -115,3 +115,4 @@ Thumbs.db
 android/release/android-release.apk
 android/release/android-release.zip
 android/release/output-metadata.json
+/android/release/android-release.aab
