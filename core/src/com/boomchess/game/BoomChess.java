@@ -61,7 +61,7 @@ public class BoomChess extends ApplicationAdapter {
 	public static float tileSize;
 	public static Skin skin;
 	public static Skin progressBarSkin;
-	public static float numberObstacle; // number of obstacles in the default game mode
+	public static int numberObstacle; // number of obstacles in the default game mode
 	public static Stage currentStage;
 
 	// for the Move Overlay ------------------------------------------------------
@@ -139,16 +139,9 @@ public class BoomChess extends ApplicationAdapter {
 
 	// universal Buttons -- here for music and sound control
 
-	public static Button playButton;
-
 	public static Button muteButton;
 
 	public static Button skipButton;
-
-	// for the volume slider
-
-	public static Slider volumeSlider;
-	public static Slider soundVolumeSlider;
 
 	// volume of Sounds
 
@@ -158,9 +151,9 @@ public class BoomChess extends ApplicationAdapter {
 
 	// for the labels
 
-	public static Label volumeLabel;
+	public static TextButton volumeLabel;
 
-	public static Label soundVolumeLabel;
+	public static TextButton soundVolumeLabel;
 
 	// audio table
 	public static Table audioTable;
@@ -302,6 +295,12 @@ public class BoomChess extends ApplicationAdapter {
 
 	// -----------------------------------------------------------------------------------------
 
+	// credits
+
+	public static Texture credits;
+	public static Texture extendedCredits;
+
+	public static float sliderSize;
 
 	@Override
 	public void create() {
@@ -558,13 +557,17 @@ public class BoomChess extends ApplicationAdapter {
 		// Scaling the font
 
 		if (tileSize > 140) {
-			font.getData().setScale(2.5f);
+			font.getData().setScale(3.5f);
+			sliderSize = 4f;
 		} else if (tileSize > 100) {
-			font.getData().setScale(1.8f);
+			font.getData().setScale(2.8f);
+			sliderSize = 2.5f;
 		} else if (tileSize > 50){
-			font.getData().setScale(1);
+			font.getData().setScale(2);
+			sliderSize = 1.5f;
 		} else {
-			font.getData().setScale(0.5f);
+			font.getData().setScale(1.5f);
+			sliderSize = 1f;
 		}
 
 		// Optionally, update the skin with the scaled font if needed
@@ -778,6 +781,10 @@ public class BoomChess extends ApplicationAdapter {
 		radioChatter.addSound("sounds/radio/speech3.mp3");
 		radioChatter.addSound("sounds/radio/speech7.mp3");
 
+		// credits
+		credits = new Texture("Misc/credits.png");
+		extendedCredits = new Texture("Misc/extendedCredits.png");
+
 
 		// load the sounds for the medieval mode
 
@@ -828,11 +835,9 @@ public class BoomChess extends ApplicationAdapter {
 
 		// ---------------------------- universal Buttons for adding to stages
 
-		playButton = new Button(skin, "music");
+		muteButton = new TextButton("Mute", skin);
 
-		muteButton = new Button(skin, "sound");
-
-		skipButton = new TextButton("skip", skin);
+		skipButton = new TextButton("Skip", skin);
 
 		// for the style out of the Commodore64 json file - REFERENCE:
 
@@ -846,62 +851,23 @@ public class BoomChess extends ApplicationAdapter {
 		//	default-vertical: { background: slider, knob: slider-knob },
 		//	default-horizontal: { background: slider, knob: slider-knob }
 
-		playButton.addListener(new ClickListener() {
-			@Override
-			public void clicked(InputEvent event, float x, float y) {
-				// this is the Button for playing and pausing the music (it switches current State)
-				// if in game state - play background_music
-				if (currentState != GameState.NOT_IN_GAME) {
-					if(background_music.isPlaying()) {
-						background_music.stop();
-						background_music.setVolume(0);
-					} else {
-						background_music.play();
-						background_music.setVolume(volume);
-					}
-				} else {
-					if(menu_music.isPlaying()) {
-						menu_music.stop();
-						menu_music.setVolume(0);
-					} else {
-						menu_music.play();
-						menu_music.setVolume(volume);
-					}
-				}
-			}
-		});
-
-		playButton.setSize(buttonWidth, buttonHeight);
-
 		muteButton.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				// if in game state - play background_music
-				if (volume == 0) {
-					volume = 0.1f;
-					soundVolume = 0.1f;
-					volumeSlider.setValue(volume);
-					soundVolumeSlider.setValue(soundVolume);
-					if (currentState != GameState.NOT_IN_GAME) {
-						background_music.setVolume(volume);
-					} else {
-						menu_music.setVolume(volume);
-					}
+				if(soundVolume == 0){
+					soundVolume = 0.5f;
+					volume = 0.5f;
+
+					background_music.setVolume(volume);
+					menu_music.setVolume(volume);
 				} else {
-					volume = 0;
 					soundVolume = 0;
-					volumeSlider.setValue(0);
-					soundVolumeSlider.setValue(0);
-					if (currentState != GameState.NOT_IN_GAME) {
-						background_music.setVolume(volume);
-					} else {
-						menu_music.setVolume(volume);
-					}
+					volume = 0;
+					background_music.setVolume(volume);
+					menu_music.setVolume(volume);
 				}
 			}
 		});
-
-		muteButton.setSize(buttonWidth, buttonHeight);
 
 		skipButton.addListener(new ChangeListener() {
 			@Override
@@ -912,29 +878,51 @@ public class BoomChess extends ApplicationAdapter {
 			}
 		});
 
-		// universal volume sliders
+		// their labels
 
-		volumeSlider = new Slider(0, 0.4f, 0.01f, false, skin);
-		volumeSlider.setValue(0.2f);
-		volumeSlider.addListener(new ChangeListener() {
+		volumeLabel = new TextButton("Music-Volume: " + volume+"%", skin);
+		volumeLabel.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
-				volume = volumeSlider.getValue();
+				if(volume == 0){
+					volume = 0.25f;
+				} else if (volume <= 0.25f){
+					volume = 0.5f;
+				} else if (volume  <= 0.5f){
+					volume = 0.75f;
+				} else if (volume <= 0.75f){
+					volume = 1f;
+				} else if (volume <= 1f){
+					volume = 0f;
+				}
+
 				if (currentState != GameState.NOT_IN_GAME) {
 					background_music.setVolume(volume);
 				} else {
 					menu_music.setVolume(volume);
 				}
+
+				volumeLabel.setText("Music-Volume: " + volume+"%");
+
 			}
 		});
 
-		soundVolumeSlider = new Slider(0, 0.4f, 0.01f, false, skin);
-		soundVolumeSlider.setValue(0.2f);
-
-		soundVolumeSlider.addListener(new ChangeListener() {
+		soundVolumeLabel = new TextButton("Sound-Volume:" + soundVolume +"%", skin);
+		soundVolumeLabel.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
-				soundVolume = soundVolumeSlider.getValue();
+				if(soundVolume == 0){
+					soundVolume = 0.25f;
+				} else if (soundVolume <= 0.25f){
+					soundVolume = 0.5f;
+				} else if (soundVolume  <= 0.5f){
+					soundVolume = 0.75f;
+				} else if (soundVolume <= 0.75f){
+					soundVolume = 1f;
+				} else if (soundVolume <= 1f){
+					soundVolume = 0f;
+				}
+
 				smallArmsSound.setVolume(soundVolume);
 				bigArmsSound.setVolume(soundVolume);
 				dogSound.setVolume(soundVolume);
@@ -950,13 +938,10 @@ public class BoomChess extends ApplicationAdapter {
 				kingSound.setVolume(soundVolume);
 				speechSounds.setVolume(soundVolume);
 				radioChatter.setVolume(soundVolume);
+
+				soundVolumeLabel.setText("Sound-Volume:" + soundVolume + "%");
 			}
 		});
-
-		// their labels
-
-		volumeLabel = new Label("Music", skin);
-		soundVolumeLabel = new Label("Sound", skin);
 
 
 		// for the dotted Line when damage occurs -----------------------------------------------
@@ -1044,7 +1029,7 @@ public class BoomChess extends ApplicationAdapter {
 				createInGameOptionStages();
 			}
 		});
-		table.add(botDifficultyText).padBottom(10).row();
+		table.add(botDifficultyText).padBottom(tileSize/4).row();
 
 		// Button to change 1.Player Colour to blue
 		TextButton changeColourButton = new TextButton("Switch 1P Skin", skin);
@@ -1057,7 +1042,7 @@ public class BoomChess extends ApplicationAdapter {
 				createInGameOptionStages();
 			}
 		});
-		table.add(changeColourButton).padBottom(10).row();
+		table.add(changeColourButton).padBottom(tileSize/4).row();
 
 		// button for turning the arm on and off
 		TextButton armButton = new TextButton("BotArm: " + showArm, skin);
@@ -1068,7 +1053,7 @@ public class BoomChess extends ApplicationAdapter {
 				createInGameOptionStages();
 			}
 		});
-		table.add(armButton).padBottom(10).row();
+		table.add(armButton).padBottom(tileSize/4).row();
 
 		// button to change the beep mode of the speech bubbles isBeepMode true or false
 		String currentBeepMode;
@@ -1086,7 +1071,7 @@ public class BoomChess extends ApplicationAdapter {
 				createInGameOptionStages();
 			}
 		});
-		table.add(beepModeButton).padBottom(10).row();
+		table.add(beepModeButton).padBottom(tileSize/4).row();
 
 		// change Map
 		TextButton changeMapButton = new TextButton("Change Map", skin);
@@ -1098,7 +1083,15 @@ public class BoomChess extends ApplicationAdapter {
 				createInGameOptionStages();
 			}
 		});
-		table.add(changeMapButton).padBottom(10).row();
+		table.row().padBottom(tileSize/4);
+		table.add(changeMapButton);
+		table.row().padBottom(tileSize/4);
+
+		table.add(volumeLabel);
+		table.row().padBottom(tileSize/4);
+
+		table.add(soundVolumeLabel);
+		table.row().padBottom(tileSize/4);
 
 		// Exit to Main Menu button to return to the main menu
 		TextButton menuButton = new TextButton("Return to Main Menu", skin);
@@ -1125,7 +1118,7 @@ public class BoomChess extends ApplicationAdapter {
 				createMainMenuStage();
 			}
 		});
-		table.add(menuButton).padBottom(10).row();
+		table.add(menuButton).padBottom(tileSize/4).row();
 
 		// button to turn off boolean showInGameOptions and to set the input processor to currentStage
 		TextButton closeButton = new TextButton("Close Options", skin);
@@ -1137,24 +1130,24 @@ public class BoomChess extends ApplicationAdapter {
 				Gdx.input.setInputProcessor(currentStage);
 			}
 		});
-		table.add(closeButton).padBottom(10).row();
+		table.add(closeButton).padBottom(tileSize/4).row();
 
 
 		// add a clipboard Image centralised on the screen
 		Image clipBoardImage = new Image(clipBoard);
-		clipBoardImage.setSize(tileSize*6, tileSize*8);
+		clipBoardImage.setSize(tileSize*10, tileSize*14);
 		// set size
 		clipBoardImage.setZIndex(1);
 		inGamOptStage.addActor(clipBoardImage);
 
 		clipBoardImage.setPosition((float) Gdx.graphics.getWidth() - clipBoardImage.getWidth(),
-				(float) Gdx.graphics.getHeight() - clipBoardImage.getHeight()-tileSize);
+				(float) Gdx.graphics.getHeight() - clipBoardImage.getHeight()+tileSize*2);
 
 		// set position to middle of the screen
 		table.setPosition((float) Gdx.graphics.getWidth() - clipBoardImage.getWidth()
-						+ clipBoardImage.getWidth()/4,
+						+ clipBoardImage.getWidth()/3,
 				(float) Gdx.graphics.getHeight() - clipBoardImage.getHeight()
-						+ clipBoardImage.getHeight()/4 - tileSize*2);
+						+ clipBoardImage.getHeight()/2);
 
 		// add the tables to their stages
 		table.setZIndex(2);
@@ -1292,25 +1285,10 @@ public class BoomChess extends ApplicationAdapter {
 
 		// Buttons
 		audioTable.row().padBottom(tileSize/4);
-		audioTable.add(playButton);
 		audioTable.add(muteButton);
 		audioTable.row().padBottom(tileSize/4);
-
-		// Volume Slider
-		// Label colour #4242E7
-		volumeLabel.setColor(Color.valueOf("#4242E7"));
-		audioTable.add(volumeLabel).size(tileSize/2, tileSize/4).padRight(tileSize/2);
-		audioTable.add(volumeSlider);
+		audioTable.add(skipButton);
 		audioTable.row().padBottom(tileSize/4);
-
-		// Sound Volume Slider
-		// Label colour #4242E7
-		soundVolumeLabel.setColor(Color.valueOf("#4242E7"));
-		audioTable.add(soundVolumeLabel).size(tileSize/2, tileSize/4).padRight(tileSize/2);
-		audioTable.add(soundVolumeSlider);
-		audioTable.row().padBottom(tileSize/4);
-
-		audioTable.add(skipButton).padTop(tileSize/8).padLeft(tileSize/4);
 
 		currentStage.addActor(audioTable);
 	}

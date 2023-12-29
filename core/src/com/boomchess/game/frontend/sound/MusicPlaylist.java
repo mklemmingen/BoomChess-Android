@@ -41,6 +41,8 @@ public class MusicPlaylist {
 
     public void play() {
 
+        songs.get(currentIndex).stop();
+
         int randomIndex;
         do {
             randomIndex = new Random().nextInt(songs.size());
@@ -92,6 +94,7 @@ public class MusicPlaylist {
         /*
         * setLooping never lets the playlist end. It loops the playlist.
          */
+
     }
 
     public boolean isPlaying() {

@@ -330,7 +330,7 @@ public class GameStage {
         backTable.row().padBottom(tileSize/4);
 
         // Exit to Main Menu button to return to the main menu
-        TextButton menuButton = new TextButton("Return to Main Menu", skin);
+        TextButton menuButton = new TextButton("Main Menu", skin);
         menuButton.align(Align.bottomRight);
         backTable.add(menuButton);
         menuButton.addListener(new ChangeListener() {

@@ -97,8 +97,8 @@ public class MenuStage extends Stage{
         });
         root.row();
 
-        TextButton playBotButton = new TextButton("Play Against Computer: " + botDifficulty, skin);
-        root.add(playBotButton).padBottom(tileSize/40);
+        TextButton playBotButton = new TextButton("Play Against Computer", skin);
+        root.add(playBotButton).padBottom(tileSize/4);
         playBotButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -133,57 +133,6 @@ public class MenuStage extends Stage{
         });
         root.row();
 
-        // button to change bot difficulty
-        // text that displays a text saying "Bot Difficulty"
-        final TextButton botDifficultyText = new TextButton("Change Bot", skin);
-        root.add(botDifficultyText).padBottom(tileSize/4);
-        botDifficultyText.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                switch (botDifficulty) {
-                    case "easy":
-                        botDifficulty = "medium";
-                        break;
-                    case "medium":
-                        botDifficulty = "hard";
-                        break;
-                    case "hard":
-                        botDifficulty = "easy";
-                        break;
-                }
-                BoomChess.createMainMenuStage();
-            }
-        });
-        root.row();
-
-        // Change Mode button to switch medieval and modern
-        String currentMode;
-        if(isMedievalMode){
-            currentMode = "Medieval";
-        }
-        else{
-            currentMode = "Modern";
-        }
-        TextButton modeButton = new TextButton("Switch Mode: " + currentMode, skin);
-        root.add(modeButton).padBottom(tileSize/4);
-        modeButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeListener.ChangeEvent event, Actor actor) {
-                if(isMedievalMode){
-                    isMedievalMode = false;
-                    isBeepMode = false;
-                    createMapStage();
-                }
-                else{
-                    isMedievalMode = true;
-                    isBeepMode = true;
-                    createMapStage();
-                }
-                BoomChess.createMainMenuStage();
-            }
-        });
-        root.row();
-
         TextButton optionsButton = new TextButton("Options", skin);
         root.add(optionsButton).padBottom(tileSize/4);
         optionsButton.addListener(new ChangeListener() {
@@ -205,7 +154,7 @@ public class MenuStage extends Stage{
         root.row();
 
         TextButton exitButton = new TextButton("Exit", skin);
-        root.add(exitButton).padBottom(tileSize/40).padRight(tileSize/4);
+        root.add(exitButton).padBottom(tileSize/4).padRight(tileSize/4);
         exitButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
