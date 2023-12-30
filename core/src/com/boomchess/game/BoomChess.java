@@ -305,6 +305,10 @@ public class BoomChess extends ApplicationAdapter {
 	// --------------------------------------------
 
 	public static Sound katIncluded;
+	public static Music tutorialSound;
+
+	public static Texture tutorialTexture;
+	public static boolean inTutorial = false;
 
 	@Override
 	public void create() {
@@ -316,6 +320,8 @@ public class BoomChess extends ApplicationAdapter {
 		loadingScreenTextures = new RandomImage();
 		loadingScreenTextures.addTexture("loadingScreen/KatLoading.png");
 		loadingSound = Gdx.audio.newSound(Gdx.files.internal("sounds/countdown.mp3"));
+		tutorialSound = Gdx.audio.newMusic(Gdx.files.internal("Misc/tutorialsound.mp3"));
+		tutorialTexture = new Texture(Gdx.files.internal("Misc/tutorial.png"));
 		loadingStage = LoadingScreenStage.initalizeUI();
 
 		// creating all stage objects
@@ -1358,6 +1364,7 @@ public class BoomChess extends ApplicationAdapter {
 		/*
 		* method for creating the stage for the main menu
 		 */
+		inTutorial = false;
 		switchToStage(MenuStage.initializeUI());
 		gameEndStage.clear();
 	}

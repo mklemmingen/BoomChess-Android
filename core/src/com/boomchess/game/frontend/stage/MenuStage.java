@@ -40,14 +40,38 @@ public class MenuStage extends Stage{
         root.add(title).top().padBottom(tileSize/4);
         root.row();
 
-        TextButton helpButton = new TextButton("Help!", skin);
-        root.add(helpButton).padBottom(tileSize/4);
-        // if help button is pressed, create a new stage for the help information
-        helpButton.addListener(new ChangeListener() {
+        TextButton TutorialButton = new TextButton("Tutorial", skin);
+        root.add(TutorialButton).padBottom(tileSize/4);
+        TutorialButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                // switch showHelp, if on, turn off, if off, turn on
-                createHelpStage();
+                /*
+                 * method for starting the tutorial
+                 */
+
+                // stop menu music and start background_music
+                menu_music.stop();
+                background_music.play();
+                background_music.setVolume(0.05f);
+
+                currentState = GameState.GREEN_TURN;
+
+                isBotMatch = true;
+
+                // create the first gameBoard
+                Board.initialiseTutorialBoard();
+
+                showArm = true;
+
+                inGame = true;
+
+                botDifficulty = "medium";
+
+                inTutorial = true;
+
+                switchToStage(GameStage.createGameStage(isBotMatch));
+
+                BoomChess.tutorialSound.play();
             }
         });
         root.row();

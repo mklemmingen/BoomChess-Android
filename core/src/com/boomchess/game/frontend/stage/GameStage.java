@@ -257,6 +257,17 @@ public class GameStage {
         gameStage.addActor(root);
 
 
+        if(inTutorial){
+            // add tutorialtexture to the upper right corner
+            Image tutorialTexture = new Image(BoomChess.tutorialTexture);
+            tutorialTexture.setSize(tileSize*6, tileSize*7);
+            tutorialTexture.setPosition(Gdx.graphics.getWidth() - tutorialTexture.getWidth(),
+                    Gdx.graphics.getHeight() - tutorialTexture.getHeight());
+            gameStage.addActor(tutorialTexture);
+        }
+
+
+
         // create another table for the option buttons
 
         Table backTable = new Table();

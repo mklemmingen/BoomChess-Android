@@ -699,6 +699,48 @@ public class Board {
     }
     */
 
+    public static void initialiseTutorialBoard(){
+        // declaring the board
+
+        board = new Soldier[9][8];
+
+        // initialize the board with the correct pieces for the 2.Challenge
+
+        //   green               red
+        //    0  1  2  3  4  5  6  7  8
+        //  0                o
+        //  1      o
+        //  2
+        //  3    g  a  i        i  g
+        //  4
+        //  5             o
+        //  6 o
+        //  7
+
+        // start of the creation of the board
+
+        // infantry
+        board[3][3] = new Infantry("green");
+        board[6][3] = new Infantry("red");
+
+        // generals
+        board[1][3] = new General("green");
+        board[7][3] = new General("red");
+
+        // artillery
+        board[2][3] = new Artillery("green");
+
+        // obstacles
+        board[2][1] = new Hill("empty");
+        board[5][0] = new Hill("empty");
+        board[4][5] = new Hill("empty");
+        board[0][6] = new Hill("empty");
+
+
+        // empty tiles ( all unused ones )
+        fillNullOfEmptyTiles();
+    }
+
     // -----------------------------------
 
     private static void fillNullOfEmptyTiles() {
