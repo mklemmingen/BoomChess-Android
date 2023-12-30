@@ -1,20 +1,19 @@
 package com.boomchess.game.frontend.actor;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.Vector2;
+import static com.boomchess.game.BoomChess.botMovingStage;
+import static com.boomchess.game.BoomChess.currentState;
+import static com.boomchess.game.BoomChess.deathExplosionStage;
+import static com.boomchess.game.BoomChess.dottedLineStage;
+import static com.boomchess.game.BoomChess.reRenderGame;
+import static com.boomchess.game.BoomChess.smallExplosionSound;
+import static com.boomchess.game.BoomChess.soundVolume;
+import static com.boomchess.game.BoomChess.speechBubbleStage;
+
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.*;
-import com.badlogic.gdx.utils.Array;
 import com.boomchess.game.BoomChess;
-import com.boomchess.game.backend.Coordinates;
-import com.boomchess.game.frontend.picture.SpeechBubbles;
 import com.boomchess.game.frontend.stage.MenuStage;
 
 import java.util.ArrayList;
-
-import static com.boomchess.game.BoomChess.*;
 
 public class AttackSequence {
 

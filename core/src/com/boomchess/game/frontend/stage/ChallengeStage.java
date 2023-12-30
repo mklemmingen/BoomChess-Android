@@ -1,5 +1,18 @@
 package com.boomchess.game.frontend.stage;
 
+import static com.boomchess.game.BoomChess.GameState;
+import static com.boomchess.game.BoomChess.background_music;
+import static com.boomchess.game.BoomChess.botDifficulty;
+import static com.boomchess.game.BoomChess.currentState;
+import static com.boomchess.game.BoomChess.inGame;
+import static com.boomchess.game.BoomChess.isBotMatch;
+import static com.boomchess.game.BoomChess.menu_music;
+import static com.boomchess.game.BoomChess.showArm;
+import static com.boomchess.game.BoomChess.skin;
+import static com.boomchess.game.BoomChess.switchToStage;
+import static com.boomchess.game.BoomChess.tileSize;
+import static com.boomchess.game.BoomChess.volume;
+
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -7,8 +20,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.boomchess.game.BoomChess;
 import com.boomchess.game.backend.Board;
-
-import static com.boomchess.game.BoomChess.*;
 
 public class ChallengeStage {
 

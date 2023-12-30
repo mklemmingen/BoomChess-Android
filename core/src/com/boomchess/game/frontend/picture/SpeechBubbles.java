@@ -1,13 +1,17 @@
 package com.boomchess.game.frontend.picture;
 
+import static com.boomchess.game.BoomChess.GameState;
+import static com.boomchess.game.BoomChess.actionSequence;
+import static com.boomchess.game.BoomChess.calculatePXbyTile;
+import static com.boomchess.game.BoomChess.currentState;
+import static com.boomchess.game.BoomChess.isBotMatch;
+import static com.boomchess.game.BoomChess.tileSize;
+
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.boomchess.game.BoomChess;
 import com.boomchess.game.backend.Coordinates;
 import com.boomchess.game.frontend.actor.Bubble;
-import com.boomchess.game.frontend.actor.DeathExplosionActor;
-
-import static com.boomchess.game.BoomChess.*;
 
 public class SpeechBubbles {
     /*

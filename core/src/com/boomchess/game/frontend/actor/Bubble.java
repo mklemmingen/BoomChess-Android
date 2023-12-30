@@ -1,12 +1,14 @@
 package com.boomchess.game.frontend.actor;
 
+import static com.boomchess.game.BoomChess.radioChatter;
+import static com.boomchess.game.BoomChess.soundVolume;
+import static com.boomchess.game.BoomChess.speechSounds;
+
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.boomchess.game.BoomChess;
 import com.boomchess.game.frontend.stage.MenuStage;
-
-import static com.boomchess.game.BoomChess.*;
 
 public class Bubble extends Actor {
     /*

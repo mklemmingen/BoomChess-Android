@@ -1,10 +1,47 @@
 package com.boomchess.game.frontend.stage;
 
+import static com.boomchess.game.BoomChess.GameState;
+import static com.boomchess.game.BoomChess.actionSequence;
+import static com.boomchess.game.BoomChess.batch;
+import static com.boomchess.game.BoomChess.botMovingStage;
+import static com.boomchess.game.BoomChess.calculateTileByPX;
+import static com.boomchess.game.BoomChess.clearAllowedTiles;
+import static com.boomchess.game.BoomChess.createInGameOptionStages;
+import static com.boomchess.game.BoomChess.createMainMenuStage;
+import static com.boomchess.game.BoomChess.crossOfDeathStage;
+import static com.boomchess.game.BoomChess.currentState;
+import static com.boomchess.game.BoomChess.deathExplosionStage;
+import static com.boomchess.game.BoomChess.dottedLineStage;
+import static com.boomchess.game.BoomChess.empty;
+import static com.boomchess.game.BoomChess.emptyX;
+import static com.boomchess.game.BoomChess.emptyY;
+import static com.boomchess.game.BoomChess.gameEndStage;
+import static com.boomchess.game.BoomChess.inGame;
+import static com.boomchess.game.BoomChess.inTutorial;
+import static com.boomchess.game.BoomChess.legitTurn;
+import static com.boomchess.game.BoomChess.progressBarSkin;
+import static com.boomchess.game.BoomChess.reRenderGame;
+import static com.boomchess.game.BoomChess.setAllowedTiles;
+import static com.boomchess.game.BoomChess.showHelp;
+import static com.boomchess.game.BoomChess.showInGameOptions;
+import static com.boomchess.game.BoomChess.skin;
+import static com.boomchess.game.BoomChess.speechBubbleStage;
+import static com.boomchess.game.BoomChess.tileSize;
+import static com.boomchess.game.BoomChess.useEmpty;
+import static com.boomchess.game.BoomChess.wrongMoveStage;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.*;
-import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
+import com.badlogic.gdx.scenes.scene2d.ui.Stack;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 import com.badlogic.gdx.utils.Align;
@@ -19,8 +56,6 @@ import com.boomchess.game.frontend.actor.WrongMoveIndicator;
 import com.boomchess.game.frontend.interfaces.takeSelfieInterface;
 
 import java.util.ArrayList;
-
-import static com.boomchess.game.BoomChess.*;
 
 public class GameStage {
 

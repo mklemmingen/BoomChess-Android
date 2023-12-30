@@ -1,14 +1,24 @@
 package com.boomchess.game.frontend.stage;
 
+import static com.boomchess.game.BoomChess.botDifficulty;
+import static com.boomchess.game.BoomChess.createMapStage;
+import static com.boomchess.game.BoomChess.createOptionsStage;
+import static com.boomchess.game.BoomChess.isBeepMode;
+import static com.boomchess.game.BoomChess.isColourChanged;
+import static com.boomchess.game.BoomChess.isMedievalMode;
+import static com.boomchess.game.BoomChess.numberObstacle;
+import static com.boomchess.game.BoomChess.showArm;
+import static com.boomchess.game.BoomChess.skin;
+import static com.boomchess.game.BoomChess.soundVolumeLabel;
+import static com.boomchess.game.BoomChess.tileSize;
+import static com.boomchess.game.BoomChess.volumeLabel;
+
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.boomchess.game.BoomChess;
-
-import static com.boomchess.game.BoomChess.*;
 
 public class OptionsStage extends Stage{
 

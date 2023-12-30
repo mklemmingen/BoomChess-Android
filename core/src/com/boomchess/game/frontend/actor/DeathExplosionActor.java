@@ -1,5 +1,7 @@
 package com.boomchess.game.frontend.actor;
 
+import static com.boomchess.game.BoomChess.tileSize;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -8,8 +10,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.boomchess.game.BoomChess;
 import com.boomchess.game.backend.Coordinates;
-
-import static com.boomchess.game.BoomChess.tileSize;
 
 /*
  * this class is the object for the dotted line that appears when a piece is selected. It acts as an Actor Object

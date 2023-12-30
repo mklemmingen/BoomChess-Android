@@ -1,7 +1,15 @@
 package com.boomchess.game.backend;
 
 import com.boomchess.game.BoomChess;
-import com.boomchess.game.backend.subsoldier.*;
+import com.boomchess.game.backend.subsoldier.Artillery;
+import com.boomchess.game.backend.subsoldier.Commando;
+import com.boomchess.game.backend.subsoldier.Empty;
+import com.boomchess.game.backend.subsoldier.General;
+import com.boomchess.game.backend.subsoldier.Helicopter;
+import com.boomchess.game.backend.subsoldier.Hill;
+import com.boomchess.game.backend.subsoldier.Infantry;
+import com.boomchess.game.backend.subsoldier.Tank;
+import com.boomchess.game.backend.subsoldier.Wardog;
 
 import java.util.ArrayList;
 

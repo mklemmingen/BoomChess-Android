@@ -1,5 +1,11 @@
 package com.boomchess.game.frontend.actor;
 
+import static com.boomchess.game.BoomChess.botMovingStage;
+import static com.boomchess.game.BoomChess.empty;
+import static com.boomchess.game.BoomChess.reRenderGame;
+import static com.boomchess.game.BoomChess.showArm;
+import static com.boomchess.game.BoomChess.tileSize;
+
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Stack;
@@ -8,8 +14,6 @@ import com.boomchess.game.backend.Board;
 import com.boomchess.game.backend.Coordinates;
 import com.boomchess.game.backend.Soldier;
 import com.boomchess.game.frontend.interfaces.takeSelfieInterface;
-
-import static com.boomchess.game.BoomChess.*;
 
 public class moveBotTile {
     /*

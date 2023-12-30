@@ -1,5 +1,8 @@
 package com.boomchess.game.frontend.actor;
 
+import static com.boomchess.game.BoomChess.reRenderGame;
+import static com.boomchess.game.BoomChess.tileSize;
+
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -11,9 +14,6 @@ import com.boomchess.game.backend.Coordinates;
 import com.boomchess.game.backend.Soldier;
 import com.boomchess.game.frontend.interfaces.makeASoundInterface;
 import com.boomchess.game.frontend.stage.MenuStage;
-
-import static com.boomchess.game.BoomChess.reRenderGame;
-import static com.boomchess.game.BoomChess.tileSize;
 
 
 /*

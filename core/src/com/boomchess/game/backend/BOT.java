@@ -4,7 +4,12 @@ import com.boomchess.game.BoomChess;
 import com.boomchess.game.backend.subsoldier.General;
 import com.boomchess.game.frontend.actor.moveBotTile;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 
 public class BOT {
     /*

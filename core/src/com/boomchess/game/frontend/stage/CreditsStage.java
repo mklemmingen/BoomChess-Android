@@ -1,14 +1,20 @@
 package com.boomchess.game.frontend.stage;
 
-import com.badlogic.gdx.Gdx;
+import static com.boomchess.game.BoomChess.createCreditsStage;
+import static com.boomchess.game.BoomChess.skin;
+import static com.boomchess.game.BoomChess.switchToStage;
+import static com.boomchess.game.BoomChess.tileSize;
+
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.ui.Container;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Stack;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Scaling;
 import com.boomchess.game.BoomChess;
-
-import static com.boomchess.game.BoomChess.*;
 
 public class CreditsStage {
 

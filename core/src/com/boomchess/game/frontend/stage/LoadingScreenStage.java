@@ -6,8 +6,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.boomchess.game.BoomChess;
 
-import static com.boomchess.game.BoomChess.loadingSound;
-
 public class LoadingScreenStage {
 
     public static Stage initalizeUI() {

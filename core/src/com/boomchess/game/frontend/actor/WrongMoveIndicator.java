@@ -1,5 +1,9 @@
 package com.boomchess.game.frontend.actor;
 
+import static com.boomchess.game.BoomChess.soundVolume;
+import static com.boomchess.game.BoomChess.tileSize;
+import static com.boomchess.game.BoomChess.wrongMoveLogo;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -7,9 +11,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.boomchess.game.BoomChess;
 import com.boomchess.game.frontend.stage.MenuStage;
-
-import static com.boomchess.game.BoomChess.*;
-import static com.boomchess.game.BoomChess.soundVolume;
 
 public class WrongMoveIndicator extends Actor {
     /*

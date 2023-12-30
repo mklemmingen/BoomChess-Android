@@ -6,7 +6,6 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -16,9 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -864,12 +861,19 @@ public class BoomChess extends ApplicationAdapter {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				if(soundVolume == 0){
+					if(inTutorial){
+						tutorialSound.setVolume(0.5f);
+					}
+
 					soundVolume = 0.5f;
 					volume = 0.5f;
 
 					background_music.setVolume(volume);
 					menu_music.setVolume(volume);
 				} else {
+					if(inTutorial){
+						tutorialSound.setVolume(0);
+					}
 					soundVolume = 0;
 					volume = 0;
 					background_music.setVolume(volume);
