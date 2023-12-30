@@ -24,6 +24,8 @@ import static com.boomchess.game.BoomChess.*;
 
 public class GameStage {
 
+    private static boolean  showHealth = false;
+
     private final Stage gameStage;
 
     public GameStage(boolean isBotMatch) {
@@ -148,18 +150,9 @@ public class GameStage {
                     // hide the health bar by default
                     healthBar.setVisible(false);
 
-                    // the tileWidget Listener checks if the mouse is over the tile and if yes, displays healthBar
-                    tileWidget.addListener(new InputListener() {
-                        @Override
-                        public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-                            healthBar.setVisible(true); // Show the health bar when the mouse enters
-                        }
-
-                        @Override
-                        public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
-                            healthBar.setVisible(false); // Hide the health bar when the mouse exits
-                        }
-                    });
+                    if(showHealth) {
+                        healthBar.setVisible(true);
+                    }
                 }
 
 
@@ -253,35 +246,6 @@ public class GameStage {
 
                         }
                     });
-                } else {
-                    // these are the drag listeners for the bot, meaning it is bot match and its greens turn
-                    tileWidget.addListener(new DragListener() {
-                        @Override
-                        public void dragStart(InputEvent event, float x, float y, int pointer) {
-                            // Code runs when dragging starts:
-                            System.out.println("Started dragging the actor!\n");
-
-                            tileWidget.toFront();
-                            // Bring the actor to the front, so it appears above other actors
-                            // as long as the mouse is pressed down, the actor is moved to the mouse position
-                            // we calculate the tiles it can move to and highlight these tiles with a slightly red hue
-                            // the calculated tiles are part of a ArrayList variable that is created at create
-                            // of the whole programm
-                            // and gets cleared once we touchDragged the actor to a new position
-                        }
-
-                        @Override
-                        public void drag(InputEvent event, float x, float y, int pointer) {
-                            // Code here will run during the dragging
-                            tileWidget.moveBy(x - tileWidget.getWidth() / 2, y - tileWidget.getHeight() / 2);
-                            reRenderGame();
-                        }
-
-                        @Override
-                        public void dragStop(InputEvent event, float x, float y, int pointer) {
-                            // drag has stopped
-                        }
-                    });
                 }
                 root.add(tileWidget).size(tileSize);
             }
@@ -311,6 +275,21 @@ public class GameStage {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 showHelp = !showHelp;
+            }
+        });
+
+        backTable.row().padBottom(tileSize/4);
+
+        // show health button
+        backTable.row().padBottom(tileSize/4);
+        TextButton healthButton = new TextButton("Health", skin);
+        healthButton.align(Align.bottomRight);
+        backTable.add(healthButton);
+        healthButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                showHealth = !showHealth;
+                reRenderGame();
             }
         });
 

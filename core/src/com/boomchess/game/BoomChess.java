@@ -302,6 +302,10 @@ public class BoomChess extends ApplicationAdapter {
 
 	public static float sliderSize;
 
+	// --------------------------------------------
+
+	public static Sound katIncluded;
+
 	@Override
 	public void create() {
 		// creation of the batch for drawing the images
@@ -310,9 +314,7 @@ public class BoomChess extends ApplicationAdapter {
 		// loading Screen is going till loading complete and main menu starts ----------------------------
 
 		loadingScreenTextures = new RandomImage();
-		loadingScreenTextures.addTexture("loadingScreen/loadingScreen.png");
-		loadingScreenTextures.addTexture("loadingScreen/loadingScreen2.png");
-		loadingScreenTextures.addTexture("loadingScreen/loadingScreen3.png");
+		loadingScreenTextures.addTexture("loadingScreen/KatLoading.png");
 		loadingSound = Gdx.audio.newSound(Gdx.files.internal("sounds/countdown.mp3"));
 		loadingStage = LoadingScreenStage.initalizeUI();
 
@@ -352,6 +354,7 @@ public class BoomChess extends ApplicationAdapter {
 		buttonHeight = tileSize/2;
 
 		boomSoftwares = Gdx.audio.newSound(Gdx.files.internal("Misc/BoomSoftwares.mp3"));
+		katIncluded = Gdx.audio.newSound(Gdx.files.internal("Misc/katIncluded.mp3"));
 
 		loadingScreenIsRunning = true;
 	}
@@ -396,7 +399,7 @@ public class BoomChess extends ApplicationAdapter {
 			// load the assets first time
 			if(!(assetsLoaded)){
 				loadAllAssets();
-				boomSoftwares.play(1);
+				katIncluded.play(volume);
 			}
 			return;
 		}
@@ -554,7 +557,7 @@ public class BoomChess extends ApplicationAdapter {
 		// Retrieving the font used in the skin
 		BitmapFont font = skin.getFont("commodore-64");
 
-		// Scaling the font
+		// Scaling the font depending on the relativresizer calculated tile size
 
 		if (tileSize > 140) {
 			font.getData().setScale(3.5f);

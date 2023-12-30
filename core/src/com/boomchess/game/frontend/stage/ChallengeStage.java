@@ -85,7 +85,7 @@ public class ChallengeStage {
         // button to start the third challenge
         TextButton challenge3Button = new TextButton("Challenge 3: Artillery Hell", skin);
         root.add(challenge3Button).padBottom(tileSize/4);
-        challenge2Button.addListener(new ChangeListener() {
+        challenge3Button.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeListener.ChangeEvent event, Actor actor) {
 
