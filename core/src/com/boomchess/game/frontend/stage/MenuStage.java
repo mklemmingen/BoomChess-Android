@@ -86,7 +86,6 @@ public class MenuStage extends Stage{
 
                 switchToStage(GameStage.createGameStage(isBotMatch));
 
-                BoomChess.tutorialSound.play();
             }
         });
         root.row();

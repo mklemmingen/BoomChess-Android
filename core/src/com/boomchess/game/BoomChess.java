@@ -46,6 +46,7 @@ import com.boomchess.game.frontend.stage.LoadingScreenStage;
 import com.boomchess.game.frontend.stage.MapStage;
 import com.boomchess.game.frontend.stage.MenuStage;
 import com.boomchess.game.frontend.stage.OptionsStage;
+import com.badlogic.gdx.graphics.Color;
 
 import java.util.ArrayList;
 
@@ -257,7 +258,6 @@ public class BoomChess extends ApplicationAdapter {
 
 	private static float loadingElapsed = 0;
 	private static boolean assetsLoaded = false;
-	private static Sound boomSoftwares;
 	public static Stage wrongMoveStage;
 	public static Texture wrongMoveLogo;
 	public static Sound brick;
@@ -302,7 +302,6 @@ public class BoomChess extends ApplicationAdapter {
 	// --------------------------------------------
 
 	public static Sound katIncluded;
-	public static Music tutorialSound;
 
 	public static Texture tutorialTexture;
 	public static boolean inTutorial = false;
@@ -317,7 +316,6 @@ public class BoomChess extends ApplicationAdapter {
 		loadingScreenTextures = new RandomImage();
 		loadingScreenTextures.addTexture("loadingScreen/KatLoading.png");
 		loadingSound = Gdx.audio.newSound(Gdx.files.internal("sounds/countdown.mp3"));
-		tutorialSound = Gdx.audio.newMusic(Gdx.files.internal("Misc/tutorialsound.mp3"));
 		tutorialTexture = new Texture(Gdx.files.internal("Misc/tutorial.png"));
 		loadingStage = LoadingScreenStage.initalizeUI();
 
@@ -356,7 +354,6 @@ public class BoomChess extends ApplicationAdapter {
 		buttonWidth = tileSize*2;
 		buttonHeight = tileSize/2;
 
-		boomSoftwares = Gdx.audio.newSound(Gdx.files.internal("Misc/BoomSoftwares.mp3"));
 		katIncluded = Gdx.audio.newSound(Gdx.files.internal("Misc/katIncluded.mp3"));
 
 		loadingScreenIsRunning = true;
@@ -861,19 +858,14 @@ public class BoomChess extends ApplicationAdapter {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				if(soundVolume == 0){
-					if(inTutorial){
-						tutorialSound.setVolume(0.5f);
-					}
 
-					soundVolume = 0.5f;
-					volume = 0.5f;
+					soundVolume = 0.25f;
+					volume = 0.25f;
 
 					background_music.setVolume(volume);
 					menu_music.setVolume(volume);
 				} else {
-					if(inTutorial){
-						tutorialSound.setVolume(0);
-					}
+
 					soundVolume = 0;
 					volume = 0;
 					background_music.setVolume(volume);
@@ -1119,6 +1111,8 @@ public class BoomChess extends ApplicationAdapter {
 				gameEndStage.clear();
 				speechBubbleStage.clear();
 				crossOfDeathStage.clear();
+
+
 
 				actionSequence = new AttackSequence();
 
@@ -1380,38 +1374,6 @@ public class BoomChess extends ApplicationAdapter {
 		switchToStage(OptionsStage.initalizeUI());
 	}
 
-	public static void createHelpStage() {
-		/*
-		* method for creating the stage for the help display
-		 */
-		Stage funcStage = new Stage();
-
-		Table funcTable = new Table();
-
-		Image helpImage = new Image(helpTexture);
-		helpImage.setSize(tileSize*12.5f, tileSize*8);
-		helpImage.setPosition(tileSize*4.1f, tileSize*1.9f);
-		funcTable.addActor(helpImage);
-
-		funcTable.row();
-
-		// button to go back to the menu
-		TextButton backButton = new TextButton("Back", skin);
-		backButton.setPosition((float) Gdx.graphics.getWidth() /2,
-				(float) Gdx.graphics.getHeight() /8);
-		backButton.addListener(new ChangeListener() {
-			@Override
-			public void changed(ChangeEvent event, Actor actor) {
-				createMainMenuStage();
-			}
-		});
-		funcTable.addActor(backButton);
-
-		funcStage.addActor(funcTable);
-
-		switchToStage(funcStage);
-	}
-
 	public static void createCreditsStage() {
 		/*
 		* method for creating the stage for the credits display
@@ -1670,7 +1632,8 @@ public class BoomChess extends ApplicationAdapter {
 		* method for finding the general of a team and returning its coordinates
 		 */
 
-		Coordinates generalCoordinates = new Coordinates();
+		new Coordinates();
+		Coordinates generalCoordinates;
 		Soldier[][] gameBoard = Board.getGameBoard();
 
 		String teamColor;
