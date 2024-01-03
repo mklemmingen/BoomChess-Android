@@ -159,7 +159,6 @@ public class Helicopter extends Soldier
             return damage - 5;
         }
 
-        System.out.println("Helicopter has been attacked for" + damage + "damage by " + soldierAttack + ".\n");
         return damage;
     }
 

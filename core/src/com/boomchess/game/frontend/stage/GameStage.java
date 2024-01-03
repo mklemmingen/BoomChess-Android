@@ -136,14 +136,12 @@ public class GameStage {
                 // useEmpty = true, the solPiece has an Image of Empty, if not continue to rest
 
                 if(useEmpty && (j == emptyY && i == emptyX)){
-                    System.out.println("Added Empty Picture to start location.\n");
                     solPiece = new Image(empty);
                 } else {
                     // load the corresponding image through the Soldier Take Selfie Method
                     if (soldier instanceof takeSelfieInterface) {
                         solPiece = new Image(((takeSelfieInterface) soldier).takeSelfie());
                     } else {
-                        System.out.println("Error: Soldier is not an instance of takeSelfieInterface!\n");
                         solPiece = new Image(empty);
                     }
                 }
@@ -153,7 +151,6 @@ public class GameStage {
                 if (!(soldier == null)) {
                     health = soldier.getHealth(); // use the 'soldier' object since it's the same as gameBoard[X][Y]
                 } else {
-                    System.out.println("Error: Soldier is null in GameStage getHealth!\n");
                     health = -1;
                 }
 
@@ -200,7 +197,6 @@ public class GameStage {
                         @Override
                         public void dragStart(InputEvent event, float x, float y, int pointer) {
                             // Code runs when dragging starts:
-                            System.out.println("Started dragging the actor!\n");
 
                             // Get the team color of the current tile
                             Soldier[][] gameBoard = Board.getGameBoard();
@@ -217,7 +213,6 @@ public class GameStage {
                                 //plays a brick sound
                                 indi.makeSound();
 
-                                System.out.println("It's not your turn!\n");
                                 BoomChess.reRenderGame();
                                 return;
                             }
@@ -250,8 +245,6 @@ public class GameStage {
                             // Convert the position to stage (screen) coordinates
                             Vector2 screenCoords = tileWidget.localToStageCoordinates(localCoords);
 
-                            System.out.println("\n Drag stopped at screen position: " + screenCoords.x + ", "
-                                    + screenCoords.y + "\n");
 
                             Coordinates currentCoord = calculateTileByPX((int) screenCoords.x, (int) screenCoords.y);
 
@@ -286,7 +279,6 @@ public class GameStage {
             }
         }
 
-        System.out.println("New Board has been rendered.\n");
         batch.end();
 
         gameStage.addActor(root);

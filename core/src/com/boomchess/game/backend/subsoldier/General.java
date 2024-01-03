@@ -75,7 +75,6 @@ public class General extends Soldier
     public int defendAndBleed(int damage, Soldier soldierAttack) {
         // The General is very resistant and only takes half damage to anything. He likes to chill in a Bunker
 
-        System.out.println("The General is in a Bunker and only takes half damage!\n");
         return damage/2;
     }
 

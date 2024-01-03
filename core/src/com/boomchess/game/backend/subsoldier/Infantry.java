@@ -56,7 +56,6 @@ public class Infantry extends Soldier
             return damage - 5;
         }
 
-        System.out.println("The Infantry has been damaged for " + damage + " points by " + soldierAttack + ".\n");
         return damage;
     }
 

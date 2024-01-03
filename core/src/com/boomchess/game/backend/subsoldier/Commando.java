@@ -261,7 +261,6 @@ public class Commando extends Soldier
         // that generate a random number between 0 and 1 that we multiply
         int factor = (int) (minValue + Math.floor((maxValue - minValue + 1) * Math.random()));
 
-        System.out.println("The " + soldierAttack + " has dealt " + damage + " damage to the Commando.\n");
         return damage / factor;
     }
 

@@ -72,7 +72,6 @@ public class AttackSequence {
 
             continueGame();
 
-            System.out.println("Action Sequence has ENDED! All actions have been completed! Cut! \n");
 
             return;
         }
@@ -156,7 +155,6 @@ public class AttackSequence {
             timePerBreak = 0.25f;
         } else {
             // simulate throwing an error for the log
-            System.out.println("attackSequence.playNext() has an unknown actor type in the attackList! \n");
         }
 
         currentIndex += 1;

@@ -128,8 +128,6 @@ public class Damage {
             if(friendCount != 0) {
                 damage = damage * friendCount;
             }
-        } else {
-            System.out.println("The attacking piece is not a calculateDamageInterface\n");
         }
 
         damagePiece(damage, positionAttX, positionAttY, positionDefX, positionDefY);
@@ -154,8 +152,6 @@ public class Damage {
             // check to make sure no negative integer is used for damage, as this would heal the piece
             if(calculatedDamage < 0){calculatedDamage = 0;}
             currentHealth = currentHealth - calculatedDamage;
-        } else {
-            System.out.println("The defending piece is not a defendAndBleedInterface\n");
         }
 
         // if the defending piece is a general, we need to check if it is dead
@@ -167,7 +163,6 @@ public class Damage {
                 // game End by Stage
                 String attackerColor = gameBoard[positionAttX][positionAttY].getTeamColor();
                 BoomChess.createGameEndStage(attackerColor);
-                System.out.println("A General has died!\n");
             }
             // if the defending piece is not a general, we can just kill it
             killPiece(positionDefX, positionDefY);
@@ -188,6 +183,5 @@ public class Damage {
         Soldier[][] gameBoard = Board.getGameBoard();
         gameBoard[positionX][positionY] = new Empty("empty");
 
-        System.out.print("Death animation has been added on the corpse\n");
     }
 }

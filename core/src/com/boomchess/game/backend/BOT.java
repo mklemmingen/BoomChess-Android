@@ -325,7 +325,6 @@ public class BOT {
         * it utilizes the update function in Board.java
          */
         Soldier[][] gameBoard = Board.getGameBoard();
-        System.out.println("\nBot Moved" + gameBoard[SX][SY].getClass().getName() + " to " + x + " " + y + "\n");
 
         // DottedLine between old coordinates and new coordinates
         BoomChess.addDottedLine(SX, SY, x, y, false);

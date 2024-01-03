@@ -1425,7 +1425,7 @@ public class BoomChess extends ApplicationAdapter {
 		* (changing InputProcessor to stop Game Progress)
 		 */
 		gameEndStage = GameEndStage.initializeUI(winnerTeamColour);
-		System.out.println("GameEndStage added \n");
+
 	}
 
 	public static void createChallengeStage() {
@@ -1639,7 +1639,6 @@ public class BoomChess extends ApplicationAdapter {
 		DeathExplosionActor deathActor = new DeathExplosionActor(x, y);
 		deathActor.setZIndex(1);
 		actionSequence.addSequence(deathActor);
-		System.out.println("Exploded someone at position "+ x + "-" + y + "\n");
 	}
 
 	public static void addHitMarker(int x, int y){
@@ -1649,7 +1648,6 @@ public class BoomChess extends ApplicationAdapter {
 		HitMarkerActor hitActor = new HitMarkerActor(x, y);
 		hitActor.setZIndex(1);
 		actionSequence.addSequence(hitActor);
-		System.out.println("Hit someone at position "+ x + "-" + y + "\n");
 	}
 
 	// ------------------- methods for setting a to be displayed as empty variable
@@ -1706,6 +1704,5 @@ public class BoomChess extends ApplicationAdapter {
 				(float) coordinates.getY() - (tileSize / 2));
 		cross.setSize(tileSize, tileSize);
 		BoomChess.crossOfDeathStage.addActor(cross);
-		System.out.println("Added Cross of Death at tile: " + x + ", " + y + "\n");
 	}
 }

@@ -178,7 +178,6 @@ public class Wardog extends Soldier
             return damage - 5;
         }
 
-        System.out.println("Wardog defendAndBleed: " + damage);
         return damage;
     }
 

@@ -90,7 +90,6 @@ public class SpeechBubbles {
         bubble.setZIndex(1);
         // add the Bubble Object to the current Action Sequence Object in BoomChess
         actionSequence.addSequence(bubble);
-        System.out.println("Added a Speech Bubble at Screen Coords: " + pxX + ", " + pxY + "\n");
     }
 
 

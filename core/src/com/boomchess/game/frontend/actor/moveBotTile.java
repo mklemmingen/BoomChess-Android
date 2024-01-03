@@ -85,9 +85,7 @@ public class moveBotTile {
         // load the corresponding image through the Soldier Take Selfie Method
         if (soldier instanceof takeSelfieInterface) {
             soldierImage = new Image(((takeSelfieInterface) soldier).takeSelfie());
-            System.out.println("Image successfully obtained from Soldier Object.\n");
         } else {
-            System.out.println("Error: Soldier is not an instance of takeSelfieInterface!\n");
             soldierImage = new Image(empty);
         }
 
@@ -137,7 +135,6 @@ public class moveBotTile {
                 int currentX = startPx.getX() + (int) ((endPx.getX() - startPx.getX()) * progress);
                 int currentY = startPx.getY() + (int) ((endPx.getY() - startPx.getY()) * progress);
 
-                System.out.println("Moving, currently: " + currentX + " " + currentY);
 
                 // call the renderAt method to render the image at the current position
                 renderAt(currentX, currentY);
