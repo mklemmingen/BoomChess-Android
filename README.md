@@ -1,2 +1,2 @@
-# BoomChess-Android
- portable android version of Boom Chess
+rewritten for android version of BoomChess (link not yet publishable). 
+PlayStore Release coming up
