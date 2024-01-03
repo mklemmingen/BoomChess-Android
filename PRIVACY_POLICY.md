@@ -24,9 +24,9 @@ Children's Information
 This Site is offered and available to users who are at least 18 years of age or older and of legal age to form a binding contract. 
 Minors under 18 and at least 13 years of age, are only permitted to use the Site through an account owned by a parent or legal guardian
 with their appropriate permission. Minors under 13 are not permitted to use the Site or the Fiverr services.
-We do not knowingly collect personal information from children under 13. Parents and guardians should at all times supervise their children's activities. If we learn we have collected or received personal information from a child under 13, we will delete that personal information. If you believe we might have any information from or about a child under 13, please contact us atMKL7543@duck.com.
-CCPA Privacy Rights (Do Not Sell My Personal Information)
+We do not knowingly collect personal information from children under 13. Parents and guardians should at all times supervise their children's activities. If we learn we have collected or received personal information from a child under 13, we will delete that personal information. If you believe we might have any information from or about a child under 13, please contact us at MKL7543@duck.com.
 
+CCPA Privacy Rights (Do Not Sell My Personal Information)
 Under the CCPA, among other rights, California consumers have the right to:
 
 Request that a business that collects a consumer's personal data disclose the categories and specific pieces of personal data that a business has collected about consumers.
