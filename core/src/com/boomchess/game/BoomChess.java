@@ -46,7 +46,6 @@ import com.boomchess.game.frontend.stage.LoadingScreenStage;
 import com.boomchess.game.frontend.stage.MapStage;
 import com.boomchess.game.frontend.stage.MenuStage;
 import com.boomchess.game.frontend.stage.OptionsStage;
-import com.badlogic.gdx.graphics.Color;
 
 import java.util.ArrayList;
 
