@@ -20,6 +20,8 @@ At the end of each chess-like turn, the current players pieces will all attack a
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+<img src="./assets/Misc/rules.png" alt="rules/help of Boom Chess">
+
 Damage is scaled by the health of the piece. The less health the piece has, the less it will deal damage.
 Its in the format of damage * standardHealth/currentHealth
 
