@@ -1,4 +1,6 @@
-Idiocracied chess, with health, guns, obstacles, boom and stuff
+Idiocracied chess, with health, guns, obstacles, boom and stuff.
+Featuring complex health, damage and movement systems to promote both pure tactical logic and the inclusion of randomness into decision making.
+Makes lots of cool boom sounds. 
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
