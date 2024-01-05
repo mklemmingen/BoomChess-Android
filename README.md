@@ -64,7 +64,7 @@ Infantry(Pawn) / health: int: 40  / damage: 01-20 / advantages: +5 to attacking 
 
 Artillery / damage 01-10 
 
- Artillery can move in any direction one tile. It can hit targets 3 tiles away
+ Artillery can move in any direction one tile. It can hit targets 2 tiles away
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
