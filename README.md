@@ -4,6 +4,9 @@ Featuring complex health, damage and movement systems to promote both pure tacti
 
 Makes lots of cool boom sounds. 
 
+
+![Gif of BoomChess Gameplay](https://github.com/mklemmingen/mklemmingen/blob/3556596be154afc9ec85af4a719772fc1042eaa4/boomchessandroid.gif?raw=true)
+
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Quick intro:
