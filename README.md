@@ -86,10 +86,8 @@ Boom-Chess
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 main-menu title:
-Victory Sound by Lesiakower
-https://pixabay.com/music/video-games-victory-screen-150573/
 
-"Boom Sound" from "https://pixabay.com/sound-effects/vine-boom-162668/" at date: 11.10.23
+Victory Sound by Lesiakower https://pixabay.com/music/video-games-victory-screen-150573/
 
 Background-Music ingame:
 
@@ -97,28 +95,11 @@ Background-Music ingame:
 
 "epic-battle" by Lesiakower https://pixabay.com/music/video-games-epic-battle-153400/
 
-r and r, outside the colloseum
-https://bit-by-bit-sound.itch.io/16-bit-starter-pack
+r and r, outside the colloseum https://bit-by-bit-sound.itch.io/16-bit-starter-pack
 
-safe zone
-https://hzsmith.itch.io/vol2
+safe zone https://hzsmith.itch.io/vol2
 
-downfall, thought soup, total dissonance, stray cat, coffee break, tonal resonance
-https://garoslaw.itch.io/monolith-ost
-
-https://pixabay.com/sound-effects/autocannon-20mm-143113/
-
-https://pixabay.com/sound-effects/sniper-rifle-129927/
-
-https://pixabay.com/sound-effects/helicopter-rotor-loop-105796/
-
-https://pixabay.com/sound-effects/cannonball-89596/
-
-https://pixabay.com/sound-effects/dog-barking-6296/
-
-https://pixabay.com/sound-effects/desert-eagle-gunshot-14622/
-
-https://pixabay.com/sound-effects/driving-tank-engine-88503/
+downfall, thought soup, total dissonance, stray cat, coffee break, tonal resonance: https://garoslaw.itch.io/monolith-ost
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -306,5 +287,19 @@ https://freesound.org/people/MiscPractice/sounds/676958/
 https://freesound.org/people/3questionmarks/sounds/612722/
 
 https://freesound.org/people/VincentM400/sounds/249618/
+
+https://pixabay.com/sound-effects/autocannon-20mm-143113/
+
+https://pixabay.com/sound-effects/sniper-rifle-129927/
+
+https://pixabay.com/sound-effects/helicopter-rotor-loop-105796/
+
+https://pixabay.com/sound-effects/cannonball-89596/
+
+https://pixabay.com/sound-effects/dog-barking-6296/
+
+https://pixabay.com/sound-effects/desert-eagle-gunshot-14622/
+
+https://pixabay.com/sound-effects/driving-tank-engine-88503/
 
 
