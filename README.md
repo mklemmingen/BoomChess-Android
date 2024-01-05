@@ -11,6 +11,7 @@ non-deterministic chess.
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Quick intro:
+
 The game will be modernized using a different approach to chess. Each piece is a new piece resembling it only slightly in the way it can move. The King will be a General. The Towers will be tanks. The Pawns Infantry. The Runners will be Dogs. The Horses will be Helicopters. The Queen will be a Commando. 
 
 The whole board will be 9x8. Each piece has a healtvalue and a damagevalue that is randomised and subject to dis- and advantages  
@@ -19,11 +20,12 @@ At the end of each chess-like turn, the current players pieces will all attack a
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-NEW: Damage is scaled by the health of the piece. The less health the piece has, the less it will deal damage.
+Damage is scaled by the health of the piece. The less health the piece has, the less it will deal damage.
 Its in the format of damage * standardHealth/currentHealth
-NEW: A Pieces Damage to an enemy is a fraction by 1/(numbers of enemies it is attacking this turn) after the individual
-damage of a single attack has been calculated
-NEW: A Piece gets a damage boost of (1+(numbers of allies close)/10) to its damage multiplicator
+
+A Pieces Damage to an enemy is a fraction by single-attack-damage/(numbers of enemies it is attacking this turn overall)
+
+A Piece gets a damage boost by damage*numbers of allies surrounding it
 
 General(King) / health: int: 50   / damage: 1-5  
 
