@@ -180,10 +180,6 @@ Creation of mixed Icons for making the Pieces more diverse in their type USING i
 
 ![Mixed Icons Creation in inkscape](https://github.com/mklemmingen/The-Boom-Chess/blob/master/readme_assets/combiningAndRefining.png?raw=true)
 
-GameBoard Debugging in IntelliJ IDE Community Edition
-
-![GameBoard Debugging in IntelliJ IDE Community Edition](https://github.com/mklemmingen/The-Boom-Chess/blob/master/readme_assets/DebugginTheGameBoard.png?raw=true)
-
 Creation of the Boom Logo pixel by pixel in LibreSprite https://github.com/LibreSprite/LibreSprite
 
 ![Creation of the Boom Logo pixel by pixel in LibreSprite https://github.com/LibreSprite/LibreSprite](https://github.com/mklemmingen/The-Boom-Chess/blob/master/readme_assets/How_to_Boom-Logo.png?raw=true)
