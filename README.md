@@ -103,19 +103,10 @@ downfall, thought soup, total dissonance, stray cat, coffee break, tonal resonan
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-gameStage-Explanation:
-
-the game Stage will be created by initializing the gameBoard. This gameBoard will hold the Soldiers.
-The gameStage will create the gameBoard by looping through it and creating the Overlay-GameBoard depending on what Soldiers are on what tile.
-Each tile has a Listener on it that activated if the Widget is dragged - during dragging, its possible moves from its current Drag-Start location get calculated and 
-overlaid above the gameBoard-Stage. It ends when a click occurs.
-
-------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-Sources for Pictures:
+Sources for Pictures
 
 the background has been created by Marty Lauterbach (mklemmingen) using LibreSprite
-All Characters have been created by Marty Lauterbach (mklemmingen) using LibreSprite
+All Characters have been created by Marty Lauterbach (mklemmingen) using LibreSprite and Dall-E3
 
 source for hitmarker
 
