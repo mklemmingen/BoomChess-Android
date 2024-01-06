@@ -305,6 +305,10 @@ public class BoomChess extends ApplicationAdapter {
 	public static Texture tutorialTexture;
 	public static boolean inTutorial = false;
 
+	// --------------------------------------------
+
+	public static int botMovingSpeed = 1;
+
 	@Override
 	public void create() {
 		// creation of the batch for drawing the images
@@ -1058,6 +1062,43 @@ public class BoomChess extends ApplicationAdapter {
 			}
 		});
 		table.add(armButton).padBottom(tileSize/4).row();
+
+		// bot moving speed
+		// button for changing the botMovingSpeed
+		// 0 is very fast
+		// 1 is fast
+		// 2 is normal
+		String currentSpeed;
+		switch (BoomChess.botMovingSpeed) {
+			case 0:
+				currentSpeed = "Very Fast";
+				break;
+			case 1:
+				currentSpeed = "Fast";
+				break;
+			default:
+				currentSpeed = "Normal";
+				break;
+		}
+		TextButton speedButton = new TextButton("Bot-Move-Speed: " + currentSpeed, skin);
+		speedButton.addListener(new ChangeListener() {
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				switch (BoomChess.botMovingSpeed) {
+					case 0:
+						BoomChess.botMovingSpeed = 1;
+						break;
+					case 1:
+						BoomChess.botMovingSpeed = 2;
+						break;
+					case 2:
+						BoomChess.botMovingSpeed = 0;
+						break;
+				}
+				BoomChess.createInGameOptionStages();
+			}
+		});
+		table.add(speedButton).padBottom(tileSize/4).row();
 
 		// button to change the beep mode of the speech bubbles isBeepMode true or false
 		String currentBeepMode;

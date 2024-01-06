@@ -54,6 +54,43 @@ public class OptionsStage extends Stage{
         });
         root.row().padBottom(tileSize/3);
 
+        // button for changing the botMovingSpeed
+        // 0 is very fast
+        // 1 is fast
+        // 2 is normal
+        String currentSpeed;
+        switch (BoomChess.botMovingSpeed) {
+            case 0:
+                currentSpeed = "Very Fast";
+                break;
+            case 1:
+                currentSpeed = "Fast";
+                break;
+            default:
+                currentSpeed = "Normal";
+                break;
+        }
+        TextButton speedButton = new TextButton("Bot Moving-Speed: " + currentSpeed, skin);
+        root.add(speedButton);
+        speedButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                switch (BoomChess.botMovingSpeed) {
+                    case 0:
+                        BoomChess.botMovingSpeed = 1;
+                        break;
+                    case 1:
+                        BoomChess.botMovingSpeed = 2;
+                        break;
+                    case 2:
+                        BoomChess.botMovingSpeed = 0;
+                        break;
+                }
+                BoomChess.createOptionsStage();
+            }
+        });
+        root.row().padBottom(tileSize/3);
+
         // Change Mode button to switch medieval and modern
         String currentGameMode;
         if(isMedievalMode){

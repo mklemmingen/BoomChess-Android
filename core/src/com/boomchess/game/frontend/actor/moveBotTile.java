@@ -76,7 +76,22 @@ public class moveBotTile {
 
         float lengthVec = vectorAB.len();
         int timefactor = (int) lengthVec / 50;
-        moveDuration = timefactor * 0.75f;
+
+        // set the move duration based on setting in BoomChess
+        switch(BoomChess.botMovingSpeed){
+            case 0:
+                moveDuration = timefactor * 0.1f;
+                break;
+            case 1:
+                moveDuration = timefactor * 0.25f;
+                break;
+            case 2:
+                moveDuration = timefactor * 0.5f;
+                break;
+            default:
+                moveDuration = timefactor * 0.75f;
+                break;
+        }
 
 
         Soldier[][] gameBoard = Board.getGameBoard();
