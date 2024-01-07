@@ -227,6 +227,8 @@ public class GameStage {
 
                 attackRadiusContainer.setVisible(false);
 
+                attackRadiusContainer.toFront();
+
                 // add a damageInterval if showPossibleDamage is true
                 if(BoomChess.showIntervals){
                     // takeSelfieInterface with showInterval method
@@ -241,21 +243,14 @@ public class GameStage {
                         // Set the size of the damageInterval relative to the tileSize
                         damageInterval.setSize(tileSize/4, tileSize/8);
 
-                        /*
-                        if(Objects.equals(soldier.getTeamColor(), "red")){
-                            intervalContainer.align(Align.bottomRight);
-                        } else {
-                            intervalContainer.align(Align.bottomLeft);
-                        }
-                         */
+                        intervalContainer.add(damageInterval);
 
                         // Add the intervalContainer to the tileWidget Stack
                         // This ensures that damageInterval maintains its size and position
                         // within intervalContainer
                         tileWidget.add(intervalContainer);
 
-                        intervalContainer.setSize(tileWidget.getWidth()/2,
-                                tileWidget.getHeight()/4);
+                        intervalContainer.setSize(tileWidget.getWidth(), tileWidget.getHeight());
                     }
                 }
 

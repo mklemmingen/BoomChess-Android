@@ -62,7 +62,7 @@ public class DamageNumber extends Actor {
             table.add(digit);
             table.row();
 
-        } else {
+        } else if (damage > 99) {
             // put the int into two digits
             int firstDigit = damage / 10;
             int secondDigit = damage % 10;
@@ -74,6 +74,22 @@ public class DamageNumber extends Actor {
             Image digitSecond = new Image(getTexture(secondDigit));
             digitSecond.setSize(tileSize/2, tileSize/2);
             table.add(digitSecond);
+            table.row();
+        } else {
+            // damage is three digits
+            int firstDigit = damage / 100;
+            int secondDigit = (damage % 100) / 10;
+            int thirdDigit = damage % 10;
+
+            Image digitFirst = new Image(getTexture(firstDigit));
+            digitFirst.setSize(tileSize/2, tileSize/2);
+            table.add(digitFirst);
+            Image digitSecond = new Image(getTexture(secondDigit));
+            digitSecond.setSize(tileSize/2, tileSize/2);
+            table.add(digitSecond);
+            Image digitThird = new Image(getTexture(thirdDigit));
+            digitThird.setSize(tileSize/2, tileSize/2);
+            table.add(digitThird);
             table.row();
         }
 

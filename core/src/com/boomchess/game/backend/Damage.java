@@ -154,11 +154,11 @@ public class Damage {
             currentHealth = currentHealth - calculatedDamage;
         }
 
-        // add damageNumber actor
-        BoomChess.addDamageNumber(positionDefX, positionDefY, damage);
-
         // if the defending piece is a general, we need to check if it is dead
         // if it is dead, we need to end the game
+
+        // add damageNumber actor if piece hasnt died
+        BoomChess.addDamageNumber(positionDefX, positionDefY, damage);
 
         if (currentHealth <= 0) {
             if (gameBoard[positionDefX][positionDefY] instanceof General) {

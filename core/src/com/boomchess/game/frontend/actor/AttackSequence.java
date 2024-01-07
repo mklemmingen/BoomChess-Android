@@ -50,6 +50,12 @@ public class AttackSequence {
             return;
         }
 
+        // clear all stages where actors are added afterwards
+        deathExplosionStage.clear();
+        dottedLineStage.clear();
+        botMovingStage.clear();
+        speechBubbleStage.clear();
+
         currentIndex = 0;
         damageSequenceRunning = true;
         lengthOfAttackList = attackList.size();
@@ -127,18 +133,18 @@ public class AttackSequence {
             // if it is a HitMarkerActor, add it to the GameStage
             smallExplosionSound.play(soundVolume);
             deathExplosionStage.addActor(actorBuddy);
-            timePerBreak = 0.5f;
+            timePerBreak = 1f;
         } else if (actorBuddy instanceof DamageNumber) {
             // if it is a DamageNumber, add it to the GameStage
             damageNumberStage.addActor(actorBuddy);
-            timePerBreak = 0.1f;
+            timePerBreak = 1f;
         } else if (actorBuddy instanceof DeathExplosionActor) {
             // if it is a DeathExplosionActor, add it to the deathExplosionStage
             BoomChess.bigExplosionSound.play(BoomChess.soundVolume);
             deathExplosionStage.addActor(actorBuddy);
             // calls upon a function that adds a red-cross above the dead piece till gameStage is reloaded
             BoomChess.addCrossOfDeath(((DeathExplosionActor) actorBuddy).X, ((DeathExplosionActor) actorBuddy).Y);
-            timePerBreak = 3f;
+            timePerBreak = 2.5f;
 
             // since we add a speech bubble in damage directly after creating the deathExplosion, we can instantly add
             // the speech bubble to the stage
@@ -153,12 +159,12 @@ public class AttackSequence {
             // if it is a DottedLineActor, add it to the GameStage
             ((DottedLineActor) actorBuddy).makeSound();
             dottedLineStage.addActor(actorBuddy);
-            timePerBreak = 0.2f;
+            timePerBreak = 0.5f;
         } else if (actorBuddy instanceof Bubble) {
             // if it is a Bubble, add it to the speechBubbleStage
             ((Bubble) actorBuddy).makeSound(); // plays radio chatter
             speechBubbleStage.addActor(actorBuddy);
-            timePerBreak = 0.25f;
+            timePerBreak = 1f;
         } else {
             timePerBreak = 0;
             Gdx.app.log("AttackSequence", "Error: Actor not recognized");
