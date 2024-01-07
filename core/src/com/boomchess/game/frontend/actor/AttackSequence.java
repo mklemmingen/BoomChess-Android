@@ -2,6 +2,7 @@ package com.boomchess.game.frontend.actor;
 
 import static com.boomchess.game.BoomChess.botMovingStage;
 import static com.boomchess.game.BoomChess.currentState;
+import static com.boomchess.game.BoomChess.damageNumberStage;
 import static com.boomchess.game.BoomChess.deathExplosionStage;
 import static com.boomchess.game.BoomChess.dottedLineStage;
 import static com.boomchess.game.BoomChess.reRenderGame;
@@ -91,11 +92,11 @@ public class AttackSequence {
         attackList.add(actor);
     }
 
-    private void actActor(){
+    private void actActor() {
         // if statement of instance of either HitMarkerActor or DeathExplosionActor or DottedLineActor
 
         // this ensures that if the player has gone back to the menu, the sequence will not continue
-        if (BoomChess.currentStage instanceof MenuStage){
+        if (BoomChess.currentStage instanceof MenuStage) {
             // clear all the actors in the attackList
             attackList = new ArrayList<Actor>();
             // clear all the stages
@@ -110,7 +111,7 @@ public class AttackSequence {
             return;
         }
 
-        if (currentIndex >= lengthOfAttackList){
+        if (currentIndex >= lengthOfAttackList) {
             // if the current index is greater than the length of the attack list,
             // then we are at the end of the sequence
 
@@ -125,7 +126,11 @@ public class AttackSequence {
             // if it is a HitMarkerActor, add it to the GameStage
             smallExplosionSound.play(soundVolume);
             deathExplosionStage.addActor(actorBuddy);
-            timePerBreak = 1f;
+            timePerBreak = 0.5f;
+        } else if (actorBuddy instanceof DamageNumber) {
+            // if it is a DamageNumber, add it to the GameStage
+            damageNumberStage.addActor(actorBuddy);
+            timePerBreak = 0.5f;
         } else if (actorBuddy instanceof DeathExplosionActor) {
             // if it is a DeathExplosionActor, add it to the deathExplosionStage
             BoomChess.bigExplosionSound.play(BoomChess.soundVolume);

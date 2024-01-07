@@ -6,10 +6,11 @@ import com.boomchess.game.backend.Soldier;
 import com.boomchess.game.backend.interfaces.calculateDamageInterface;
 import com.boomchess.game.backend.interfaces.defendAndBleedInterface;
 import com.boomchess.game.frontend.interfaces.makeASoundInterface;
+import com.boomchess.game.frontend.interfaces.takeIntervalSelfie;
 import com.boomchess.game.frontend.interfaces.takeSelfieInterface;
 
 public class General extends Soldier
-        implements takeSelfieInterface, calculateDamageInterface, defendAndBleedInterface, makeASoundInterface {
+        implements takeSelfieInterface, calculateDamageInterface, defendAndBleedInterface, makeASoundInterface, takeIntervalSelfie {
     /*
      * General.java is the object for the chess piece General in the game Boom Chess.
      * It holds the specific movement patterns for this piece, mathMove,
@@ -84,5 +85,9 @@ public class General extends Soldier
         } else {
             BoomChess.smallArmsSound.play(BoomChess.soundVolume);
         }
+    }
+
+    public Texture showInterval() {
+        return BoomChess.fiveTen;
     }
 }

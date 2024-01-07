@@ -59,6 +59,7 @@ import com.boomchess.game.backend.subsoldier.Empty;
 import com.boomchess.game.backend.subsoldier.Hill;
 import com.boomchess.game.frontend.actor.AttackSequence;
 import com.boomchess.game.frontend.actor.DamageNumber;
+import com.boomchess.game.frontend.actor.SpecialDamageIndicator;
 import com.boomchess.game.frontend.actor.WrongMoveIndicator;
 import com.boomchess.game.frontend.interfaces.takeSelfieInterface;
 
@@ -373,14 +374,14 @@ public class GameStage {
                                                         if (boniSoldier != null &&
                                                                 boniGI.isInstance(currentSoldier)) {
                                                             damageNumberStage.addActor(
-                                                                    new DamageNumber(boniValue, i, j, true));
+                                                                    new SpecialDamageIndicator(boniValue, i, j, true));
                                                             Gdx.app.log("Runnable", "Added Boni");
                                                         }
 
                                                         if (malusSoldier != null &&
                                                                 malusGI.isInstance(currentSoldier)) {
                                                             damageNumberStage.addActor(
-                                                                    new DamageNumber(malusValue, i, j, false));
+                                                                    new SpecialDamageIndicator(malusValue, i, j, false));
                                                             Gdx.app.log("Runnable", "Added Malus");
                                                         }
                                                     }

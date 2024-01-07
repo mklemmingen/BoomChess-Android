@@ -8,12 +8,13 @@ import com.boomchess.game.backend.Soldier;
 import com.boomchess.game.backend.interfaces.calculateDamageInterface;
 import com.boomchess.game.backend.interfaces.defendAndBleedInterface;
 import com.boomchess.game.frontend.interfaces.makeASoundInterface;
+import com.boomchess.game.frontend.interfaces.takeIntervalSelfie;
 import com.boomchess.game.frontend.interfaces.takeSelfieInterface;
 
 import java.util.ArrayList;
 
 public class Tank extends Soldier
-        implements takeSelfieInterface, calculateDamageInterface, defendAndBleedInterface, makeASoundInterface {
+        implements takeSelfieInterface, calculateDamageInterface, defendAndBleedInterface, makeASoundInterface, takeIntervalSelfie {
     /*
      * Tank.java is the object for the chess piece General in the game Boom Chess.
      * It holds the specific movement patterns for this piece, mathMove,
@@ -177,5 +178,9 @@ public class Tank extends Soldier
         } else {
             BoomChess.tankSound.play(BoomChess.soundVolume);
         }
+    }
+
+    public Texture showInterval() {
+        return BoomChess.tenTwenty;
     }
 }

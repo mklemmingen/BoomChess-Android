@@ -35,6 +35,7 @@ import com.boomchess.game.backend.subsoldier.Infantry;
 import com.boomchess.game.backend.subsoldier.Tank;
 import com.boomchess.game.backend.subsoldier.Wardog;
 import com.boomchess.game.frontend.actor.AttackSequence;
+import com.boomchess.game.frontend.actor.DamageNumber;
 import com.boomchess.game.frontend.actor.DeathExplosionActor;
 import com.boomchess.game.frontend.actor.DottedLineActor;
 import com.boomchess.game.frontend.actor.HitMarkerActor;
@@ -323,7 +324,7 @@ public class BoomChess extends ApplicationAdapter {
 
 	// --------------------------------------------
 
-	public static boolean showPossibleDamage = false;
+	public static boolean showPossibleDamage = true;
 
 	public static Stage damageNumberStage;
 
@@ -332,6 +333,31 @@ public class BoomChess extends ApplicationAdapter {
 	public static Texture minusFive;
 	public static Texture minusTen;
 
+	// -------------------------------------------
+
+	// textures for damage intervals
+
+	public static Texture tenTwenty;
+	public static Texture oneFive;
+	public static Texture oneTwenty;
+	public static Texture fiveThirty;
+	public static Texture fiveTen;
+	public static Texture fiveTwenty;
+
+	// -------------------------------------------
+
+	// numbers
+
+	public static Texture zero;
+	public static Texture one;
+	public static Texture two;
+	public static Texture three;
+	public static Texture four;
+	public static Texture five;
+	public static Texture six;
+	public static Texture seven;
+	public static Texture eight;
+	public static Texture nine;
 
 	@Override
 	public void create() {
@@ -471,7 +497,7 @@ public class BoomChess extends ApplicationAdapter {
 		botMovingStage.draw();
 
 		// stage for the damage numbers and its Runnables
-		damageNumberStage.act();
+		damageNumberStage.act(Gdx.graphics.getDeltaTime());
 		damageNumberStage.draw();
 
 		// stage for the speech bubbles
@@ -614,6 +640,28 @@ public class BoomChess extends ApplicationAdapter {
 		greenMove = new Image(new Texture(Gdx.files.internal("moveLogos/green_Move.png")));
 		redMove = new Image(new Texture(Gdx.files.internal("moveLogos/red_Move.png")));
 		blueMove = new Image(new Texture(Gdx.files.internal("moveLogos/blue_Move.png")));
+
+		// for the intervals
+
+		tenTwenty = new Texture(Gdx.files.internal("Misc/tenTwenty.png"));
+		oneFive = new Texture(Gdx.files.internal("Misc/oneFive.png"));
+		oneTwenty = new Texture(Gdx.files.internal("Misc/oneTwenty.png"));
+		fiveThirty = new Texture(Gdx.files.internal("Misc/fiveThirty.png"));
+		fiveTen = new Texture(Gdx.files.internal("Misc/fiveTen.png"));
+		fiveTwenty = new Texture(Gdx.files.internal("Misc/fiveTwenty.png"));
+
+		// for the damage numbers
+
+		zero = new Texture(Gdx.files.internal("Misc/zero.png"));
+		one = new Texture(Gdx.files.internal("Misc/one.png"));
+		two = new Texture(Gdx.files.internal("Misc/two.png"));
+		three = new Texture(Gdx.files.internal("Misc/three.png"));
+		four = new Texture(Gdx.files.internal("Misc/four.png"));
+		five = new Texture(Gdx.files.internal("Misc/five.png"));
+		six = new Texture(Gdx.files.internal("Misc/six.png"));
+		seven = new Texture(Gdx.files.internal("Misc/seven.png"));
+		eight = new Texture(Gdx.files.internal("Misc/eight.png"));
+		nine = new Texture(Gdx.files.internal("Misc/nine.png"));
 
 		// damage numbers
 
@@ -1727,6 +1775,15 @@ public class BoomChess extends ApplicationAdapter {
 		DeathExplosionActor deathActor = new DeathExplosionActor(x, y);
 		deathActor.setZIndex(1);
 		actionSequence.addSequence(deathActor);
+	}
+
+	public static void addDamageNumber(int x, int y, int damage) {
+		/*
+		 * adds the DeathAnimation to the deathExplosionStage, adds this action to log
+		 */
+		DamageNumber damageNumbActor = new DamageNumber(x, y, damage);
+		damageNumbActor.setZIndex(1);
+		actionSequence.addSequence(damageNumbActor);
 	}
 
 	public static void addHitMarker(int x, int y){
