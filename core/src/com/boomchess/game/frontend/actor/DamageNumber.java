@@ -62,7 +62,7 @@ public class DamageNumber extends Actor {
             table.add(digit);
             table.row();
 
-        } else if (damage > 99) {
+        } else if (damage <= 99) {
             // put the int into two digits
             int firstDigit = damage / 10;
             int secondDigit = damage % 10;
