@@ -32,7 +32,7 @@ public class Infantry extends Soldier
         // deals 01-20 damage
         // advantages +5 to attacking helicopters
 
-        int minValue = 1;
+        int minValue = 5;
         int maxValue = 20;
 
         // we achieve this randomisation using random.Math`s floor and random methods
@@ -54,7 +54,7 @@ public class Infantry extends Soldier
     public int defendAndBleed(int damage, Soldier soldierAttack) {
         // calculate resistance to attack based on attackingSoldier
         if (soldierAttack instanceof Helicopter){
-            return damage - 5;
+            return damage - 2;
         }
 
         return damage;
@@ -98,6 +98,6 @@ public class Infantry extends Soldier
     }
 
     public Texture showInterval() {
-        return BoomChess.oneTwenty;
+        return BoomChess.fiveTwenty;
     }
 }

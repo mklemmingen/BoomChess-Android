@@ -138,7 +138,7 @@ public class Tank extends Soldier
     public int defendAndBleed(int damage, Soldier soldierAttack) {
         // calculate resistance to attack based on attackingSoldier
         if (soldierAttack instanceof Wardog){
-            return damage - 5;
+            return damage - 2;
         }
         return damage;
     }

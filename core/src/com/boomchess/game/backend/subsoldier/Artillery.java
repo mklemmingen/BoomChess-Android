@@ -30,11 +30,11 @@ public class Artillery extends Soldier
 
     public int calculateDamage(Soldier soldierDefend) {
 
-        // deals 1-5 damage
+        // deals 5-10 damage
         // advantages: deals +5 to infantry
 
-        int minValue = 1;
-        int maxValue = 5;
+        int minValue = 5;
+        int maxValue = 10;
 
         // we achieve this randomisation using random.Math`s floor and random methods
         // that generate a random number between 0 and 1 that we multiply
@@ -97,6 +97,6 @@ public class Artillery extends Soldier
     }
 
     public Texture showInterval() {
-        return BoomChess.oneFive;
+        return BoomChess.fiveTen;
     }
 }

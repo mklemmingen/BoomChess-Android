@@ -87,9 +87,13 @@ public class Damage {
         // avoids runtime type checks and casts, ensure each soldier object has this method first
         if (soldierAttack instanceof calculateDamageInterface) {
             damage = ((calculateDamageInterface) soldierAttack).calculateDamage(soldierDefend);
-            // damage is reduced depending on the health of the attacking piece
-            damage = damage * (((calculateDamageInterface) soldierAttack).getStandardHealth() /
-                    soldierAttack.getHealth());
+
+             // if the currentHealth / standardHealth is lower than 0.5, we 0.75 the damage
+             if( ( (double) soldierAttack.getHealth() /
+                     ((calculateDamageInterface) soldierAttack).getStandardHealth()) < 0.5 ){
+                 damage = (int) (damage * 0.75);
+             }
+
             //damage is reduced by the amount of enemies surrounding the attacking piece
             // for this, we check the surroundings, count enemy figurines and reduce damage by / that amount
             int enemyCount = 0;
@@ -105,9 +109,13 @@ public class Damage {
             for (int i = startX; i <= endX; i++) {
                 for (int j = startY; j <= endY; j++) {
                     if (i == positionAttX && j == positionAttY) continue; // Skip on checking the original piece
+
                     if (!(gameBoard[i][j] instanceof Empty)) {
+
                         if (!(gameBoard[i][j] instanceof Hill)) {
+
                             String hurtColor = gameBoard[i][j].getTeamColor();
+
                             if (!hurtColor.equals(soldierAttack.getTeamColor())) {
                                 enemyCount++;
                             } else {
@@ -118,16 +126,19 @@ public class Damage {
                 }
             }
 
-            // lower the damage by the amount of enemies surrounding the attacking piece
-            if (enemyCount == 0) {
-                enemyCount = 1;
-            } // impossible theoretically, but might occur
-            damage = damage / enemyCount ;
+            // Adjust damage based on the number of surrounding enemies and friends
+            double enemyModifier = 1 - (0.05 * enemyCount);
+            double friendModifier = 1 + (0.1 * friendCount);
 
-            // increase the damage by the amount of friends surrounding the attacking piece
-            if(friendCount != 0) {
-                damage = damage * friendCount;
+            // Apply modifiers to the damage
+            damage *= enemyModifier;
+            damage *= friendModifier;
+
+            // Ensure damage is not negative
+            if (damage < 0) {
+                damage = 0;
             }
+
         }
 
         damagePiece(damage, positionAttX, positionAttY, positionDefX, positionDefY);
@@ -154,11 +165,11 @@ public class Damage {
             currentHealth = currentHealth - calculatedDamage;
         }
 
+        // add damageNumber actor if piece hasn't died
+        BoomChess.addDamageNumber(positionDefX, positionDefY, damage);
+
         // if the defending piece is a general, we need to check if it is dead
         // if it is dead, we need to end the game
-
-        // add damageNumber actor if piece hasnt died
-        BoomChess.addDamageNumber(positionDefX, positionDefY, damage);
 
         if (currentHealth <= 0) {
             if (gameBoard[positionDefX][positionDefY] instanceof General) {
