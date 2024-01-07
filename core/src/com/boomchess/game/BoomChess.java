@@ -1078,7 +1078,7 @@ public class BoomChess extends ApplicationAdapter {
 				createInGameOptionStages();
 			}
 		});
-		table.add(botDifficultyText).padBottom(tileSize/4).row();
+		table.add(botDifficultyText).padBottom(tileSize/8).row();
 
 		// Button to change 1.Player Colour to blue
 		TextButton changeColourButton = new TextButton("Switch 1P Skin", skin);
@@ -1091,7 +1091,7 @@ public class BoomChess extends ApplicationAdapter {
 				createInGameOptionStages();
 			}
 		});
-		table.add(changeColourButton).padBottom(tileSize/4).row();
+		table.add(changeColourButton).padBottom(tileSize/8).row();
 
 		// button for turning the arm on and off
 		TextButton armButton = new TextButton("BotArm: " + showArm, skin);
@@ -1102,7 +1102,7 @@ public class BoomChess extends ApplicationAdapter {
 				createInGameOptionStages();
 			}
 		});
-		table.add(armButton).padBottom(tileSize/4).row();
+		table.add(armButton).padBottom(tileSize/8).row();
 
 		// bot moving speed
 		// button for changing the botMovingSpeed
@@ -1139,7 +1139,7 @@ public class BoomChess extends ApplicationAdapter {
 				BoomChess.createInGameOptionStages();
 			}
 		});
-		table.add(speedButton).padBottom(tileSize/4).row();
+		table.add(speedButton).padBottom(tileSize/8).row();
 
 		// attack circle show
 		// button for turning the attack circles on and off
@@ -1151,10 +1151,10 @@ public class BoomChess extends ApplicationAdapter {
 				createInGameOptionStages();
 			}
 		});
-		table.add(attackCircleButton).padBottom(tileSize/4).row();
+		table.add(attackCircleButton).padBottom(tileSize/8).row();
 
 		// button for the show damage specials
-		TextButton showDamageButton = new TextButton("Show Special-Damage: "
+		TextButton showDamageButton = new TextButton("Show Special-DMG: "
 				+ showPossibleDamage, skin);
 		showDamageButton.addListener(new ChangeListener() {
 			@Override
@@ -1163,7 +1163,7 @@ public class BoomChess extends ApplicationAdapter {
 				createInGameOptionStages();
 			}
 		});
-		table.add(showDamageButton).padBottom(tileSize/4).row();
+		table.add(showDamageButton).padBottom(tileSize/8).row();
 
 
 		// button to change the beep mode of the speech bubbles isBeepMode true or false
@@ -1182,7 +1182,7 @@ public class BoomChess extends ApplicationAdapter {
 				createInGameOptionStages();
 			}
 		});
-		table.add(beepModeButton).padBottom(tileSize/4).row();
+		table.add(beepModeButton).padBottom(tileSize/8).row();
 
 		// change Map
 		TextButton changeMapButton = new TextButton("Change Map", skin);
@@ -1194,16 +1194,16 @@ public class BoomChess extends ApplicationAdapter {
 				createInGameOptionStages();
 			}
 		});
-		table.row().padBottom(tileSize/4);
+		table.row().padBottom(tileSize/8);
 
 		table.add(changeMapButton);
-		table.row().padBottom(tileSize/4);
+		table.row().padBottom(tileSize/8);
 
 		table.add(volumeLabel);
-		table.row().padBottom(tileSize/4);
+		table.row().padBottom(tileSize/8);
 
 		table.add(soundVolumeLabel);
-		table.row().padBottom(tileSize/4);
+		table.row().padBottom(tileSize/8);
 
 		// Exit to Main Menu button to return to the main menu
 		TextButton menuButton = new TextButton("Return to Main Menu", skin);
@@ -1232,7 +1232,7 @@ public class BoomChess extends ApplicationAdapter {
 				createMainMenuStage();
 			}
 		});
-		table.add(menuButton).padBottom(tileSize/4).row();
+		table.add(menuButton).padBottom(tileSize/8).row();
 
 		// button to turn off boolean showInGameOptions and to set the input processor to currentStage
 		TextButton closeButton = new TextButton("Close Options", skin);
@@ -1244,7 +1244,7 @@ public class BoomChess extends ApplicationAdapter {
 				Gdx.input.setInputProcessor(currentStage);
 			}
 		});
-		table.add(closeButton).padBottom(tileSize/4).row();
+		table.add(closeButton).padBottom(tileSize/8).row();
 
 
 		// add a clipboard Image centralised on the screen
