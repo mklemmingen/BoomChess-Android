@@ -61,9 +61,11 @@ import com.boomchess.game.frontend.actor.AttackSequence;
 import com.boomchess.game.frontend.actor.DamageNumber;
 import com.boomchess.game.frontend.actor.SpecialDamageIndicator;
 import com.boomchess.game.frontend.actor.WrongMoveIndicator;
+import com.boomchess.game.frontend.interfaces.takeIntervalSelfie;
 import com.boomchess.game.frontend.interfaces.takeSelfieInterface;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class GameStage {
 
@@ -224,6 +226,38 @@ public class GameStage {
                         coord.getY()-attackRadiusContainer.getHeight()/2);
 
                 attackRadiusContainer.setVisible(false);
+
+                // add a damageInterval if showPossibleDamage is true
+                if(BoomChess.showIntervals){
+                    // takeSelfieInterface with showInterval method
+                    if(soldier instanceof takeIntervalSelfie){
+                        // Create an intermediary container (Table or Stack) for layout purposes
+                        Table intervalContainer = new Table();
+
+                        // Create the damageInterval image
+                        Image damageInterval = new Image(((takeIntervalSelfie) soldier).showInterval());
+                        damageInterval.setFillParent(false);
+
+                        // Set the size of the damageInterval relative to the tileSize
+                        damageInterval.setSize(tileSize/4, tileSize/8);
+
+                        /*
+                        if(Objects.equals(soldier.getTeamColor(), "red")){
+                            intervalContainer.align(Align.bottomRight);
+                        } else {
+                            intervalContainer.align(Align.bottomLeft);
+                        }
+                         */
+
+                        // Add the intervalContainer to the tileWidget Stack
+                        // This ensures that damageInterval maintains its size and position
+                        // within intervalContainer
+                        tileWidget.add(intervalContainer);
+
+                        intervalContainer.setSize(tileWidget.getWidth()/2,
+                                tileWidget.getHeight()/4);
+                    }
+                }
 
                 // add a Listener only if (!isBotMatch) || (isBotMatch && (state == GameState.GREEN_TURN))
                 // since we do not want Red to have Drag if it's a bot-match, since that's the bot team
@@ -478,6 +512,20 @@ public class GameStage {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 showHelp = !showHelp;
+            }
+        });
+
+        backTable.row().padBottom(tileSize/4);
+
+        // show intervals button
+        TextButton intervalsButton = new TextButton("Damage", skin);
+        intervalsButton.align(Align.bottomRight);
+        backTable.add(intervalsButton);
+        intervalsButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                BoomChess.showIntervals = !BoomChess.showIntervals;
+                reRenderGame();
             }
         });
 

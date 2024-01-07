@@ -69,9 +69,12 @@ public class DeathExplosionActor extends Actor {
         // out of the Coordinate objects, get the PX
         float x1 = corpse.getX();
         float y1 = corpse.getY();
+
+        /*
         // to factor in the scaling of the explosion
-        x1 -= tileSize/4;
-        y1 -= tileSize/4;
+        x1 -= tileSize/3;
+        y1 -= tileSize/3;
+         */
 
         TextureRegion currentFrame = explosionAnimation.getKeyFrame(elapsed, false);
 

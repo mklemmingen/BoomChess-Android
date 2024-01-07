@@ -117,6 +117,8 @@ public class moveBotTile {
         // add SoldierImage to the widget and fill it
         soldierStack.add(soldierImage);
 
+        soldierStack.setVisible(false);
+
         if(showArm) {
             botArm.setScale(0.75f);
             botArm.setSize(tileSize*13, tileSize*4);
@@ -170,6 +172,7 @@ public class moveBotTile {
         currentX -= (int) (tileSize/2);
         currentY -= (int) (tileSize/2);
 
+        soldierStack.setVisible(true);
         soldierStack.setPosition(currentX, currentY);
         if(showArm) {
             botArm.setVisible(true);

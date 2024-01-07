@@ -212,7 +212,7 @@ public class BoomChess extends ApplicationAdapter {
 
 	public static Sound loadingSound;
 
-	public static String botDifficulty = "easy";
+	public static String botDifficulty = "medium";
 
 	// stage for gameEnd
 	public static Stage gameEndStage;
@@ -336,7 +336,7 @@ public class BoomChess extends ApplicationAdapter {
 	// -------------------------------------------
 
 	// textures for damage intervals
-
+	public static boolean showIntervals = false;
 	public static Texture tenTwenty;
 	public static Texture oneFive;
 	public static Texture oneTwenty;
@@ -347,7 +347,6 @@ public class BoomChess extends ApplicationAdapter {
 	// -------------------------------------------
 
 	// numbers
-
 	public static Texture zero;
 	public static Texture one;
 	public static Texture two;
@@ -1475,12 +1474,18 @@ public class BoomChess extends ApplicationAdapter {
 
 
 		boolean addActor = true;
+		boolean goIntoTeamLogos = false;
 		if(sequenceRunning){
-			// if the sequence is running, add an actor that says action is running
-			currentMover.addActor(actionOngoing);
-			currentMover.setPosition(xPosition, yPosition-tileSize/4);
-		}
-		else {
+			if(actionSequence.isListEmpty()){
+				goIntoTeamLogos = true;
+			} else {
+				// if the sequence is running and there is stuff in the sequence,
+				// add an actor that says action is running
+				currentMover.addActor(actionOngoing);
+			}
+		} else { goIntoTeamLogos = true; }
+
+		if(goIntoTeamLogos){
 			if (currentState == GameState.RED_TURN) {
 				currentMover.addActor(redMove);
 			} else if (currentState == GameState.GREEN_TURN) {
@@ -1779,7 +1784,7 @@ public class BoomChess extends ApplicationAdapter {
 
 	public static void addDamageNumber(int x, int y, int damage) {
 		/*
-		 * adds the DeathAnimation to the deathExplosionStage, adds this action to log
+		 * adds DamageNumber to actionSequence
 		 */
 		DamageNumber damageNumbActor = new DamageNumber(x, y, damage);
 		damageNumbActor.setZIndex(1);

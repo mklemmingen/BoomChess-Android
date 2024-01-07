@@ -10,6 +10,7 @@ import static com.boomchess.game.BoomChess.smallExplosionSound;
 import static com.boomchess.game.BoomChess.soundVolume;
 import static com.boomchess.game.BoomChess.speechBubbleStage;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.boomchess.game.BoomChess;
 import com.boomchess.game.frontend.stage.MenuStage;
@@ -130,7 +131,7 @@ public class AttackSequence {
         } else if (actorBuddy instanceof DamageNumber) {
             // if it is a DamageNumber, add it to the GameStage
             damageNumberStage.addActor(actorBuddy);
-            timePerBreak = 0.5f;
+            timePerBreak = 0.1f;
         } else if (actorBuddy instanceof DeathExplosionActor) {
             // if it is a DeathExplosionActor, add it to the deathExplosionStage
             BoomChess.bigExplosionSound.play(BoomChess.soundVolume);
@@ -152,14 +153,15 @@ public class AttackSequence {
             // if it is a DottedLineActor, add it to the GameStage
             ((DottedLineActor) actorBuddy).makeSound();
             dottedLineStage.addActor(actorBuddy);
-            timePerBreak = 0.6f;
+            timePerBreak = 0.2f;
         } else if (actorBuddy instanceof Bubble) {
             // if it is a Bubble, add it to the speechBubbleStage
             ((Bubble) actorBuddy).makeSound(); // plays radio chatter
             speechBubbleStage.addActor(actorBuddy);
             timePerBreak = 0.25f;
         } else {
-            // simulate throwing an error for the log
+            timePerBreak = 0;
+            Gdx.app.log("AttackSequence", "Error: Actor not recognized");
         }
 
         currentIndex += 1;
@@ -180,5 +182,9 @@ public class AttackSequence {
         BoomChess.switchTurn(currentState);
         // render the gameBoard as a on-screen update
         reRenderGame();
+    }
+
+    public boolean isListEmpty(){
+        return attackList.isEmpty();
     }
 }
