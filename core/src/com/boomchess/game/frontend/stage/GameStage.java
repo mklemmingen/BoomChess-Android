@@ -5,11 +5,13 @@ import static com.boomchess.game.BoomChess.actionSequence;
 import static com.boomchess.game.BoomChess.batch;
 import static com.boomchess.game.BoomChess.botMovingStage;
 import static com.boomchess.game.BoomChess.calculateTileByPX;
+import static com.boomchess.game.BoomChess.calculateTileByPXNonGDX;
 import static com.boomchess.game.BoomChess.clearAllowedTiles;
 import static com.boomchess.game.BoomChess.createInGameOptionStages;
 import static com.boomchess.game.BoomChess.createMainMenuStage;
 import static com.boomchess.game.BoomChess.crossOfDeathStage;
 import static com.boomchess.game.BoomChess.currentState;
+import static com.boomchess.game.BoomChess.damageNumberStage;
 import static com.boomchess.game.BoomChess.deathExplosionStage;
 import static com.boomchess.game.BoomChess.dottedLineStage;
 import static com.boomchess.game.BoomChess.empty;
@@ -32,6 +34,7 @@ import static com.boomchess.game.BoomChess.wrongMoveStage;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.Vector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -51,7 +54,11 @@ import com.boomchess.game.BoomChess;
 import com.boomchess.game.backend.Board;
 import com.boomchess.game.backend.Coordinates;
 import com.boomchess.game.backend.Soldier;
+import com.boomchess.game.backend.subsoldier.Artillery;
+import com.boomchess.game.backend.subsoldier.Empty;
+import com.boomchess.game.backend.subsoldier.Hill;
 import com.boomchess.game.frontend.actor.AttackSequence;
+import com.boomchess.game.frontend.actor.DamageNumber;
 import com.boomchess.game.frontend.actor.WrongMoveIndicator;
 import com.boomchess.game.frontend.interfaces.takeSelfieInterface;
 
@@ -187,12 +194,42 @@ public class GameStage {
                     }
                 }
 
+                // if the current soldier is instance of artillery, add the attack radius
+                // of 5to5, if not, 3to3. safe it in a container and place its middle on
+                // on the middle of the tileWidget
+
+                // load both attack radius (3to3 and 5to5) images
+                Image attackRadius3to3 = new Image(BoomChess.threeTOthreeCircle);
+                attackRadius3to3.setSize(tileSize*3, tileSize*3);
+                Image attackRadius5to5 = new Image(BoomChess.fiveTOfiveCircle);
+                attackRadius5to5.setSize(tileSize*5, tileSize*5);
+
+                // create container for the attack radius
+                final Stack attackRadiusContainer = new Stack();
+
+                // set the middle of the attack radius container to the middle of the tileWidget
+                Coordinates coord = BoomChess.calculatePXbyTile(i, j);
+
+                if(soldier instanceof Artillery){
+                    attackRadiusContainer.add(attackRadius5to5);
+                    attackRadiusContainer.setSize(tileSize*5, tileSize*5);
+                } else {
+                    attackRadiusContainer.add(attackRadius3to3);
+                    attackRadiusContainer.setSize(tileSize*3, tileSize*3);
+                }
+
+                attackRadiusContainer.setPosition(
+                        coord.getX()-attackRadiusContainer.getWidth()/2,
+                        coord.getY()-attackRadiusContainer.getHeight()/2);
+
+                attackRadiusContainer.setVisible(false);
 
                 // add a Listener only if (!isBotMatch) || (isBotMatch && (state == GameState.GREEN_TURN))
                 // since we do not want Red to have Drag if it's a bot-match, since that's the bot team
                 if ((!isBotMatch) || (isBotMatch && (currentState == GameState.GREEN_TURN))) {
                     final int finalI = i;
                     final int finalJ = j;
+
                     tileWidget.addListener(new DragListener() {
                         @Override
                         public void dragStart(InputEvent event, float x, float y, int pointer) {
@@ -217,6 +254,11 @@ public class GameStage {
                                 return;
                             }
 
+                            if(BoomChess.showAttackCircle){
+                                // attack radius
+                                attackRadiusContainer.setVisible(true);
+                            }
+
                             tileWidget.toFront(); // Bring the actor to the front, so it appears above other actors
                             // as long as the mouse is pressed down, the actor is moved to the mouse position
                             // we calculate the tiles it can move to and highlight these tiles with a slightly red hue
@@ -231,13 +273,131 @@ public class GameStage {
                         }
 
                         @Override
-                        public void drag(InputEvent event, float x, float y, int pointer) {
+                        public void drag(InputEvent event, final float x, final float y, int pointer) {
+
                             // Code here will run during the dragging
                             tileWidget.moveBy(x - tileWidget.getWidth() / 2, y - tileWidget.getHeight() / 2);
+                            attackRadiusContainer.moveBy(x - tileWidget.getWidth() / 2, y - tileWidget.getHeight() / 2);
+
+                            // if the user has showPossibleDamage activated, show the possible damage
+                            // of all attackable enemies
+                            // from the current tile the drag is hovering over
+                            Gdx.app.log("DragMethod", "About to post runnable");
+                            Gdx.app.postRunnable(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    Gdx.app.log("Runnable", "Inside the runnable");
+
+                                    // for thread safety in OpenGL, which libGDX used, we
+                                    // add a runnable for stage manipulation in the ereignis-thread
+                                    // to main thread
+
+                                    // Modify your UI components here
+                                    damageNumberStage.clear();
+
+                                    if(BoomChess.showPossibleDamage) {
+
+                                        // we determine if the current tileWidget is of the soldier
+                                        // artillery or not
+
+                                        int distance = 1;
+                                        if(soldier instanceof Artillery){
+                                            distance = 2;
+                                        }
+
+                                        // go through the gameboard starting at the current tile and
+                                        // check each tile nearby if there is an enemy soldier
+
+                                        Soldier[][] gameBoard = Board.getGameBoard();
+
+                                        // current calculation position from local
+                                        // to screen coordinates
+
+                                        Vector2 screenCoords =
+                                                tileWidget.localToScreenCoordinates(new Vector2(x, y));
+                                        Coordinates currentCords =
+                                                calculateTileByPXNonGDX((int) screenCoords.x, (int) screenCoords.y);
+
+                                        int currentX = currentCords.getX();
+                                        int currentY = currentCords.getY();
+
+                                        int startX = Math.max(0, currentX - distance);
+                                        int endX = Math.min(8, currentX + distance);
+
+                                        int startY = Math.max(0, currentY - distance);
+                                        int endY = Math.min(7, currentY + distance);
+
+                                        // get the color of the soldier that is currently being dragged
+                                        String attackColor = gameBoard[finalI][finalJ].getTeamColor();
+
+                                        // get the soldier type that the currently dragged soldier
+                                        // can inflict special damage to
+
+                                        int boniValue = 0;
+                                        int malusValue = 0;
+                                        Class<? extends Soldier> boniGI = null;
+                                        Class<? extends Soldier> malusGI = null;
+
+                                        Soldier boniSoldier = BoomChess.getSpecialBoniSoldier(soldier);
+                                        if(boniSoldier != null){
+                                            boniGI = boniSoldier.getClass();
+                                            boniValue = BoomChess.getSpecialBoniValue(soldier);
+                                        }
+
+                                        Soldier malusSoldier = BoomChess.getSpecialMalusSoldier(soldier);
+                                        if(malusSoldier != null){
+                                            malusGI = malusSoldier.getClass();
+                                            malusValue = BoomChess.getSpecialMalusValue(soldier);
+                                        }
+
+
+
+                                        for (int i = startX; i <= endX; i++) {
+                                            for (int j = startY; j <= endY; j++) {
+                                                if (i == finalI && j == finalJ) continue;
+
+                                                Soldier currentSoldier = gameBoard[i][j];
+
+                                                if (currentSoldier != null &&
+                                                        !(currentSoldier instanceof Empty) &&
+                                                        !(currentSoldier instanceof Hill)) {
+
+                                                    String hurtColor = currentSoldier.getTeamColor();
+                                                    if (!hurtColor.equals(attackColor)) {
+
+                                                        Gdx.app.log("Debug", "Checking tile [" + i + "," + j + "], " +
+                                                                "Enemy Color: " + hurtColor + ", Attacker Color: " + attackColor +
+                                                                ", BoniGI: " + boniGI + ", MalusGI: " + malusGI);
+
+                                                        if (boniSoldier != null &&
+                                                                boniGI.isInstance(currentSoldier)) {
+                                                            damageNumberStage.addActor(
+                                                                    new DamageNumber(boniValue, i, j, true));
+                                                            Gdx.app.log("Runnable", "Added Boni");
+                                                        }
+
+                                                        if (malusSoldier != null &&
+                                                                malusGI.isInstance(currentSoldier)) {
+                                                            damageNumberStage.addActor(
+                                                                    new DamageNumber(malusValue, i, j, false));
+                                                            Gdx.app.log("Runnable", "Added Malus");
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            });
                         }
 
                         @Override
                         public void dragStop(InputEvent event, float x, float y, int pointer) {
+
+                            damageNumberStage.dispose();
+                            damageNumberStage = new Stage();
+
                             // Code here will run when the player lets go of the actor
 
                             // Get the position of the tileWidget relative to the parent actor (the gameBoard)
@@ -270,11 +430,15 @@ public class GameStage {
                             // and the validMoveTiles are cleared
                             clearAllowedTiles(); // for turning off the Overlay
                             Board.emptyValidMoveTiles();
+
+                            attackRadiusContainer.setVisible(false);
+
                             BoomChess.reRenderGame();
 
                         }
                     });
                 }
+                gameStage.addActor(attackRadiusContainer);
                 root.add(tileWidget).size(tileSize);
             }
         }

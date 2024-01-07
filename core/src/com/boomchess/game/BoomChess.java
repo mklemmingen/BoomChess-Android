@@ -27,7 +27,13 @@ import com.boomchess.game.backend.Board;
 import com.boomchess.game.backend.Coordinates;
 import com.boomchess.game.backend.Damage;
 import com.boomchess.game.backend.Soldier;
+import com.boomchess.game.backend.subsoldier.Artillery;
+import com.boomchess.game.backend.subsoldier.Commando;
 import com.boomchess.game.backend.subsoldier.General;
+import com.boomchess.game.backend.subsoldier.Helicopter;
+import com.boomchess.game.backend.subsoldier.Infantry;
+import com.boomchess.game.backend.subsoldier.Tank;
+import com.boomchess.game.backend.subsoldier.Wardog;
 import com.boomchess.game.frontend.actor.AttackSequence;
 import com.boomchess.game.frontend.actor.DeathExplosionActor;
 import com.boomchess.game.frontend.actor.DottedLineActor;
@@ -309,6 +315,24 @@ public class BoomChess extends ApplicationAdapter {
 
 	public static int botMovingSpeed = 1;
 
+	// --------------------------------------------
+
+	public static boolean showAttackCircle = true;
+	public static Texture threeTOthreeCircle;
+	public static Texture fiveTOfiveCircle;
+
+	// --------------------------------------------
+
+	public static boolean showPossibleDamage = false;
+
+	public static Stage damageNumberStage;
+
+	public static Texture plusFive;
+	public static Texture plusTen;
+	public static Texture minusFive;
+	public static Texture minusTen;
+
+
 	@Override
 	public void create() {
 		// creation of the batch for drawing the images
@@ -337,6 +361,7 @@ public class BoomChess extends ApplicationAdapter {
 		helpStage = new Stage(new ScreenViewport());
 		inGamOptStage = new Stage(new ScreenViewport());
 		backgroundStage = new Stage(new ScreenViewport());
+		damageNumberStage = new Stage(new ScreenViewport());
 
 		// initialises the tile size for relative positioning of stages
 		RelativeResizer.init(); // sets public tilesize variable
@@ -445,6 +470,10 @@ public class BoomChess extends ApplicationAdapter {
 		botMovingStage.act(Gdx.graphics.getDeltaTime());
 		botMovingStage.draw();
 
+		// stage for the damage numbers and its Runnables
+		damageNumberStage.act();
+		damageNumberStage.draw();
+
 		// stage for the speech bubbles
 		speechBubbleStage.act(Gdx.graphics.getDeltaTime());
 		speechBubbleStage.draw();
@@ -551,7 +580,7 @@ public class BoomChess extends ApplicationAdapter {
 		// loading all assets -----------------------------------------------------------------------------------
 
 		// for defaulting colour change
-		isColourChanged = false;
+		isColourChanged = true;
 
 		// skin of the UI --------------------
 		// skin (look) of the buttons via the prearranged json file
@@ -585,6 +614,13 @@ public class BoomChess extends ApplicationAdapter {
 		greenMove = new Image(new Texture(Gdx.files.internal("moveLogos/green_Move.png")));
 		redMove = new Image(new Texture(Gdx.files.internal("moveLogos/red_Move.png")));
 		blueMove = new Image(new Texture(Gdx.files.internal("moveLogos/blue_Move.png")));
+
+		// damage numbers
+
+		plusFive = new Texture(Gdx.files.internal("Misc/plusFive.png"));
+		plusTen = new Texture(Gdx.files.internal("Misc/plusTen.png"));
+		minusFive = new Texture(Gdx.files.internal("Misc/minusFive.png"));
+		minusTen = new Texture(Gdx.files.internal("Misc/minusTen.png"));
 
 		// set the size of all move logos
 
@@ -629,6 +665,11 @@ public class BoomChess extends ApplicationAdapter {
 
 		// help texture
 		helpTexture = new Texture(Gdx.files.internal("Misc/rules.png"));
+
+		// attack circles
+
+		threeTOthreeCircle = new Texture(Gdx.files.internal("Misc/threeTothreeCircle.png"));
+		fiveTOfiveCircle = new Texture(Gdx.files.internal("Misc/fiveTofiveCircle.png"));
 
 		// Loading Texture of the map
 
@@ -1080,7 +1121,7 @@ public class BoomChess extends ApplicationAdapter {
 				currentSpeed = "Normal";
 				break;
 		}
-		TextButton speedButton = new TextButton("Bot-Move-Speed: " + currentSpeed, skin);
+		TextButton speedButton = new TextButton("Bot-Speed: " + currentSpeed, skin);
 		speedButton.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
@@ -1099,6 +1140,31 @@ public class BoomChess extends ApplicationAdapter {
 			}
 		});
 		table.add(speedButton).padBottom(tileSize/4).row();
+
+		// attack circle show
+		// button for turning the attack circles on and off
+		TextButton attackCircleButton = new TextButton("Attack Circles: " + showAttackCircle, skin);
+		attackCircleButton.addListener(new ChangeListener() {
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				showAttackCircle = !showAttackCircle;
+				createInGameOptionStages();
+			}
+		});
+		table.add(attackCircleButton).padBottom(tileSize/4).row();
+
+		// button for the show damage specials
+		TextButton showDamageButton = new TextButton("Show Special-Damage: "
+				+ showPossibleDamage, skin);
+		showDamageButton.addListener(new ChangeListener() {
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				showPossibleDamage = !showPossibleDamage;
+				createInGameOptionStages();
+			}
+		});
+		table.add(showDamageButton).padBottom(tileSize/4).row();
+
 
 		// button to change the beep mode of the speech bubbles isBeepMode true or false
 		String currentBeepMode;
@@ -1543,6 +1609,26 @@ public class BoomChess extends ApplicationAdapter {
 		return iconTileCoordinate;
 	}
 
+	public static Coordinates calculateTileByPXNonGDX(int pxCoordinateX, int pxCoordinateY) {
+		/*
+		 * method for calculating the tile coordinates by pixel coordinates,
+		 * literally mirrored tile to the calculateTileByPX method
+		 */
+
+		// method for checking which tile a pxCoordinateX and pxCoordinateY is in, creating the coordinates object
+		// of the respective tile and returning it
+		Coordinates iconTileCoordinate = new Coordinates();
+
+		iconTileCoordinate = calculateTileByPX(pxCoordinateX, pxCoordinateY);
+
+		// Invert the tilePositionY for libGDX coordinate System compliance
+		int invertedTilePositionY = 7 - iconTileCoordinate.getY();
+
+		Coordinates returnCoords = new Coordinates();
+		returnCoords.setCoordinates(iconTileCoordinate.getX(), invertedTilePositionY);
+
+		return returnCoords;
+	}
 
 	// --------------------------------------------------------------------------------------------------------------
 	// ------------------------------------------- DAMAGE ANIMATION METHODS -----------------------------------------
@@ -1708,4 +1794,80 @@ public class BoomChess extends ApplicationAdapter {
 		cross.setSize(tileSize, tileSize);
 		BoomChess.crossOfDeathStage.addActor(cross);
 	}
+
+	// --------------------------------------------------------------------
+	// ----------------- methods for getting the special relations of a piece
+	// --------------------------------------------------------------------
+
+	public static Soldier getSpecialBoniSoldier(Soldier soldier) {
+		Soldier specialBoy;
+
+		if(soldier instanceof Tank){
+			specialBoy = new Infantry("invalid");
+		} else if(soldier instanceof Helicopter){
+			specialBoy = new Tank("invalid");
+		} else if(soldier instanceof Wardog){
+			specialBoy = new Infantry("invalid");
+		} else if(soldier instanceof Commando){
+			specialBoy = new Tank("invalid");
+		} else if(soldier instanceof Infantry){
+			specialBoy = new Helicopter("invalid");
+		} else if(soldier instanceof Artillery){
+			specialBoy = new Infantry("invalid");
+		} else {
+			specialBoy = null;
+		}
+
+		return specialBoy;
+	}
+
+	public static int getSpecialBoniValue(Soldier soldier) {
+		int specialValue;
+
+		if(soldier instanceof Tank){
+			specialValue = 5;
+		} else if(soldier instanceof Helicopter){
+			specialValue = 5;
+		} else if(soldier instanceof Wardog){
+			specialValue = 5;
+		} else if(soldier instanceof Commando){
+			specialValue = 10;
+		} else if(soldier instanceof Infantry){
+			specialValue = 5;
+		} else if(soldier instanceof Artillery){
+			specialValue = 5;
+		} else {
+			specialValue = 0;
+		}
+
+		return specialValue;
+	}
+
+	public static Soldier getSpecialMalusSoldier(Soldier soldier){
+		Soldier specialBoy = null;
+
+		if(soldier instanceof Tank){
+			specialBoy = new Wardog("invalid");
+		} else if(soldier instanceof Wardog){
+			specialBoy = new Tank("invalid");
+		}
+
+		return specialBoy;
+	}
+
+	public static int getSpecialMalusValue(Soldier soldier){
+		int specialValue;
+
+		if(soldier instanceof Tank){
+			specialValue = 5;
+		} else if(soldier instanceof Wardog){
+			specialValue = 5;
+		} else {
+			specialValue = 0;
+		}
+
+		return specialValue;
+	}
+
+
 }

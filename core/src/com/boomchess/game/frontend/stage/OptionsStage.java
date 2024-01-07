@@ -29,7 +29,7 @@ public class OptionsStage extends Stage{
         final Table root = new Table();
         root.setFillParent(true);
 
-        root.row().padBottom(tileSize/3);
+        root.row().padBottom(tileSize/4);
         // button to change bot difficulty
         // text that displays a text saying "Bot Difficulty"
         String currentDif = botDifficulty;
@@ -52,7 +52,7 @@ public class OptionsStage extends Stage{
                 BoomChess.createOptionsStage();
             }
         });
-        root.row().padBottom(tileSize/3);
+        root.row().padBottom(tileSize/4);
 
         // button for changing the botMovingSpeed
         // 0 is very fast
@@ -70,7 +70,7 @@ public class OptionsStage extends Stage{
                 currentSpeed = "Normal";
                 break;
         }
-        TextButton speedButton = new TextButton("Bot Moving-Speed: " + currentSpeed, skin);
+        TextButton speedButton = new TextButton("Bot-Move-Speed: " + currentSpeed, skin);
         root.add(speedButton);
         speedButton.addListener(new ChangeListener() {
             @Override
@@ -89,7 +89,7 @@ public class OptionsStage extends Stage{
                 BoomChess.createOptionsStage();
             }
         });
-        root.row().padBottom(tileSize/3);
+        root.row().padBottom(tileSize/4);
 
         // Change Mode button to switch medieval and modern
         String currentGameMode;
@@ -117,7 +117,21 @@ public class OptionsStage extends Stage{
                 BoomChess.createOptionsStage();
             }
         });
-        root.row().padBottom(tileSize/3);
+        root.row().padBottom(tileSize/4);
+
+        // attack circle show
+        // button for turning the attack circles on and off
+        TextButton attackCircleButton = new TextButton("Attack Circles: " +
+                BoomChess.showAttackCircle, skin);
+        attackCircleButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                BoomChess.showAttackCircle = !BoomChess.showAttackCircle;
+                createOptionsStage();
+            }
+        });
+        root.add(attackCircleButton);
+        root.row().padBottom(tileSize/4);
 
         // text that displays a text saying "Number of Obstacles"
         final TextButton numberObstaclesText = new TextButton(
@@ -165,7 +179,7 @@ public class OptionsStage extends Stage{
         });
         root.add(numberObstaclesText);
 
-         root.row().padBottom(tileSize/3);;
+         root.row().padBottom(tileSize/4);;
 
         // Change Mode button to switch blue and green
         String currentMode;
@@ -184,7 +198,7 @@ public class OptionsStage extends Stage{
                 BoomChess.createOptionsStage();
             }
         });
-        root.row().padBottom(tileSize/3);
+        root.row().padBottom(tileSize/4);
 
         // button to change the beep mode of the speech bubbles isBeepMode true or false
         String currentBeepMode;
@@ -203,7 +217,7 @@ public class OptionsStage extends Stage{
                 BoomChess.createOptionsStage();
             }
         });
-        root.row().padBottom(tileSize/3);
+        root.row().padBottom(tileSize/4);
 
         // button for turning the arm on and off
         TextButton armButton = new TextButton("BotArm: " + showArm, skin);
@@ -215,13 +229,13 @@ public class OptionsStage extends Stage{
                 createOptionsStage();
             }
         });
-        root.row().padBottom(tileSize/3);
+        root.row().padBottom(tileSize/4);
 
         root.add(volumeLabel);
-        root.row().padBottom(tileSize/3);
+        root.row().padBottom(tileSize/4);
 
         root.add(soundVolumeLabel);
-        root.row().padBottom(tileSize/3);
+        root.row().padBottom(tileSize/4);
 
         // back button to return to the main menu
         TextButton backButton = new TextButton("Back", skin);
