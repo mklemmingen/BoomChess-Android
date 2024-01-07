@@ -23,19 +23,19 @@ At the end of each chess-like turn, the current players pieces will all attack a
 <img src="./assets/Misc/rules.png" alt="rules/help of Boom Chess">
 
 Damage is scaled by the health of the piece. The less health the piece has, the less it will deal damage.
-Its in the format of damage * standardHealth/currentHealth
+Its in the format of if ( current health / standard health ) < 0.5 -> damage * 0.75
 
-A Pieces Damage to an enemy is a fraction by single-attack-damage/(numbers of enemies it is attacking this turn overall)
+A Pieces Damage to an enemy is lowered by a fraction of 0.05 per Enemy surrounding it 
 
-A Piece gets a damage boost by damage*numbers of allies surrounding it
+A Piece gets a damage boost by per number of surrounding friend 0.1
 
-General(King) / health: int: 50   / damage: 1-5  
+General(King) / health: int: 50   / damage: 5-10  
 
    The most critical piece on the board. It can move one square in any direction (horizontally, vertically, or diagonally).
    if killed team loses
    takes only half the possible damage
 
-Commando(Queen)n / health: int: 50  / damage: 1-30  / advantages: +10 to attacking tanks 
+Commando(Queen)n / health: int: 50  / damage: 10-30  / advantages: +10 to attacking tanks 
 
    The most powerful piece. It can move horizontally, vertically, diagonally, and in any direction for any number of squares.
    on a randomized 1-5 scale, he takes (<random number>/5)*100 percent less damage
@@ -58,13 +58,13 @@ Helicopter(Knight)/ health: int : 50  / damage: 10-20 / advantages: +5 to attack
    High movement. doesn't care about obstacles.
    high effectiveness against armour. 
 
-Infantry(Pawn) / health: int: 40  / damage: 01-20 / advantages: +5 to attacking helicopters / disadvantages: -5 to tank
+Infantry(Pawn) / health: int: 40  / damage: 5-20 / advantages: +5 to attacking helicopters / disadvantages: -5 to tank
 
    Pawns move forward one square but capture diagonally. On their first move, they have the option to move forward two squares. When a pawn reaches the opponent's back rank, it can be promoted to any other piece (typically a queen).
    the simple pawn
    Has a bonus on attacking helicopters. an easy target for war dogs.
 
-Artillery / damage 01-10 
+Artillery / damage 5-10 
 
  Artillery can move in any direction one tile. It can hit targets 2 tiles away
 
