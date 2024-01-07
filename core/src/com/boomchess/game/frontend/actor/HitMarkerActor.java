@@ -67,8 +67,8 @@ public class HitMarkerActor extends Actor {
         float x1 = defender.getX();
         float y1 = defender.getY();
         // to factor in the scaling of the explosion
-        x1 += tileSize/4;
-        y1 += tileSize/4;
+        x1 += tileSize/3;
+        y1 += tileSize/3;
 
         TextureRegion currentFrame = explosionAnimation.getKeyFrame(elapsed, false);
 

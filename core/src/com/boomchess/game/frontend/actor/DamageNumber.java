@@ -48,7 +48,7 @@ public class DamageNumber extends Actor {
     private Table createNumberTable(int damage) {
         Table table = new Table();
 
-        table.setPosition(X, Y);
+        table.setPosition(X-tileSize/2, Y+tileSize/4);
         table.setSize(tileSize, tileSize/2);
 
         // table.setOrigin(tileSize/2, tileSize/4);

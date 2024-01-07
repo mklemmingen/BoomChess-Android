@@ -79,7 +79,8 @@ public class DeathExplosionActor extends Actor {
         float scaledWidth = currentFrame.getRegionWidth() * SCALE_FACTOR;
         float scaledHeight = currentFrame.getRegionHeight() * SCALE_FACTOR;
 
-        batch.draw(currentFrame, x1, y1, scaledWidth, scaledHeight); // Draw the current frame at the specified position
+        batch.draw(currentFrame, x1, y1, scaledWidth, scaledHeight);
+        // Draw the current frame at the specified position
 
     }
 }
