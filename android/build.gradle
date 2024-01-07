@@ -23,8 +23,8 @@ android {
         applicationId "com.boomchess.game"
         minSdkVersion 14
         targetSdkVersion 34
-        versionCode 5
-        versionName "5.0 LotsOfInfos"
+        versionCode 6
+        versionName "6.0 LotsOfInfos"
     }
     buildTypes {
         release {
