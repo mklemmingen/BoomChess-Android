@@ -7,7 +7,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -1991,8 +1990,7 @@ public class BoomChess extends ApplicationAdapter {
 	public static void addCrossOfDeath(int x, int y) {
 		Image cross = new Image(BoomChess.crossOfDeathTexture);
 		Coordinates coordinates = BoomChess.calculatePXbyTile(x, y);
-        cross.setPosition((float) coordinates.getX() - (tileSize / 2),
-				(float) coordinates.getY() - (tileSize / 2));
+        cross.setPosition((float) coordinates.getX() - (tileSize / 2), (float) coordinates.getY() - (tileSize / 2));
 		cross.setSize(tileSize, tileSize);
 		BoomChess.crossOfDeathStage.addActor(cross);
 	}
