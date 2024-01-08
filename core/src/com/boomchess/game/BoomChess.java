@@ -358,6 +358,58 @@ public class BoomChess extends ApplicationAdapter {
 	public static Texture eight;
 	public static Texture nine;
 
+	// --------------------------------------------------------------------------------------------------
+
+	// for the possible colors of textures
+
+	public static Texture redOne;
+	public static Texture greenOne;
+	public static Texture yellowOne;
+	public static Texture orangeOne;
+	public static Texture redTwo;
+	public static Texture greenTwo;
+	public static Texture yellowTwo;
+	public static Texture orangeTwo;
+	public static Texture redThree;
+	public static Texture greenThree;
+	public static Texture yellowThree;
+	public static Texture orangeThree;
+	public static Texture redFour;
+	public static Texture greenFour;
+	public static Texture yellowFour;
+	public static Texture orangeFour;
+	public static Texture redFive;
+	public static Texture greenFive;
+	public static Texture yellowFive;
+	public static Texture orangeFive;
+	public static Texture redSix;
+	public static Texture greenSix;
+	public static Texture yellowSix;
+	public static Texture orangeSix;
+	public static Texture redSeven;
+	public static Texture greenSeven;
+	public static Texture yellowSeven;
+	public static Texture orangeSeven;
+	public static Texture redEight;
+	public static Texture greenEight;
+	public static Texture yellowEight;
+	public static Texture orangeEight;
+	public static Texture redNine;
+	public static Texture greenNine;
+	public static Texture yellowNine;
+	public static Texture orangeNine;
+	public static Texture redZero;
+	public static Texture greenZero;
+	public static Texture yellowZero;
+	public static Texture orangeZero;
+
+	// ----------------------------
+
+	// black circle
+
+	public static Texture blackCircle;
+
+
 	@Override
 	public void create() {
 		// creation of the batch for drawing the images
@@ -718,6 +770,59 @@ public class BoomChess extends ApplicationAdapter {
 		threeTOthreeCircle = new Texture(Gdx.files.internal("Misc/threeTothreeCircle.png"));
 		fiveTOfiveCircle = new Texture(Gdx.files.internal("Misc/fiveTofiveCircle.png"));
 
+		// loading coloured numbers
+		redOne = new Texture(Gdx.files.internal("numbers/redOne.png"));
+		greenOne = new Texture(Gdx.files.internal("numbers/greenOne.png"));
+		yellowOne = new Texture(Gdx.files.internal("numbers/yellowOne.png"));
+		orangeOne = new Texture(Gdx.files.internal("numbers/orangeOne.png"));
+
+		redTwo = new Texture(Gdx.files.internal("numbers/redTwo.png"));
+		greenTwo = new Texture(Gdx.files.internal("numbers/greenTwo.png"));
+		yellowTwo = new Texture(Gdx.files.internal("numbers/yellowTwo.png"));
+		orangeTwo = new Texture(Gdx.files.internal("numbers/orangeTwo.png"));
+
+		redThree = new Texture(Gdx.files.internal("numbers/redThree.png"));
+		greenThree = new Texture(Gdx.files.internal("numbers/greenThree.png"));
+		yellowThree = new Texture(Gdx.files.internal("numbers/yellowThree.png"));
+		orangeThree = new Texture(Gdx.files.internal("numbers/orangeThree.png"));
+
+		redFour = new Texture(Gdx.files.internal("numbers/redFour.png"));
+		greenFour = new Texture(Gdx.files.internal("numbers/greenFour.png"));
+		yellowFour = new Texture(Gdx.files.internal("numbers/yellowFour.png"));
+		orangeFour = new Texture(Gdx.files.internal("numbers/orangeFour.png"));
+
+		redFive = new Texture(Gdx.files.internal("numbers/redFive.png"));
+		greenFive = new Texture(Gdx.files.internal("numbers/greenFive.png"));
+		yellowFive = new Texture(Gdx.files.internal("numbers/yellowFive.png"));
+		orangeFive = new Texture(Gdx.files.internal("numbers/orangeFive.png"));
+
+		redSix = new Texture(Gdx.files.internal("numbers/redSix.png"));
+		greenSix = new Texture(Gdx.files.internal("numbers/greenSix.png"));
+		yellowSix = new Texture(Gdx.files.internal("numbers/yellowSix.png"));
+		orangeSix = new Texture(Gdx.files.internal("numbers/orangeSix.png"));
+
+		redSeven = new Texture(Gdx.files.internal("numbers/redSeven.png"));
+		greenSeven = new Texture(Gdx.files.internal("numbers/greenSeven.png"));
+		yellowSeven = new Texture(Gdx.files.internal("numbers/yellowSeven.png"));
+		orangeSeven = new Texture(Gdx.files.internal("numbers/orangeSeven.png"));
+
+		redEight = new Texture(Gdx.files.internal("numbers/redEight.png"));
+		greenEight = new Texture(Gdx.files.internal("numbers/greenEight.png"));
+		yellowEight = new Texture(Gdx.files.internal("numbers/yellowEight.png"));
+		orangeEight = new Texture(Gdx.files.internal("numbers/orangeEight.png"));
+
+		redNine = new Texture(Gdx.files.internal("numbers/redNine.png"));
+		greenNine = new Texture(Gdx.files.internal("numbers/greenNine.png"));
+		yellowNine = new Texture(Gdx.files.internal("numbers/yellowNine.png"));
+		orangeNine = new Texture(Gdx.files.internal("numbers/orangeNine.png"));
+
+		redZero = new Texture(Gdx.files.internal("numbers/redZero.png"));
+		greenZero = new Texture(Gdx.files.internal("numbers/greenZero.png"));
+		yellowZero = new Texture(Gdx.files.internal("numbers/yellowZero.png"));
+		orangeZero = new Texture(Gdx.files.internal("numbers/orangeZero.png"));
+
+		Gdx.app.log("BoomChess", "Loading Assets: HealthNumber assets finished");
+
 		// Loading Texture of the map
 
 		medievalMaps = new RandomImage();
@@ -737,6 +842,11 @@ public class BoomChess extends ApplicationAdapter {
 		modernMaps.addTexture("map/map3/map4.png"); // cool black and white map
 		modernMaps.addTexture("map/map3/map5.png"); // cool black and white map
 		modernMaps.addTexture("map/map3/map6.png"); // cool black and white map
+
+		Gdx.app.log("BoomChess", "Loading Assets: HealthNumber assets");
+		// black circle
+
+		blackCircle = new Texture(Gdx.files.internal("Misc/blackCircle.png"));
 
 		// texture for the action Running logo
 		actionOngoing = new Image(new Texture(Gdx.files.internal("Misc/actionOngoing.png")));
@@ -1420,6 +1530,57 @@ public class BoomChess extends ApplicationAdapter {
 		 background_music.dispose();
 		 menu_music.dispose();
 		 creditsMusic.dispose();
+
+		// dispose of all numbers
+		redOne.dispose();
+		greenOne.dispose();
+		yellowOne.dispose();
+		orangeOne.dispose();
+
+		redTwo.dispose();
+		greenTwo.dispose();
+		yellowTwo.dispose();
+		orangeTwo.dispose();
+
+		redThree.dispose();
+		greenThree.dispose();
+		yellowThree.dispose();
+		orangeThree.dispose();
+
+		redFour.dispose();
+		greenFour.dispose();
+		yellowFour.dispose();
+		orangeFour.dispose();
+
+		redFive.dispose();
+		greenFive.dispose();
+		yellowFive.dispose();
+		orangeFive.dispose();
+
+		redSix.dispose();
+		greenSix.dispose();
+		yellowSix.dispose();
+		orangeSix.dispose();
+
+		redSeven.dispose();
+		greenSeven.dispose();
+		yellowSeven.dispose();
+		orangeSeven.dispose();
+
+		redEight.dispose();
+		greenEight.dispose();
+		yellowEight.dispose();
+		orangeEight.dispose();
+
+		redNine.dispose();
+		greenNine.dispose();
+		yellowNine.dispose();
+		orangeNine.dispose();
+
+		redZero.dispose();
+		greenZero.dispose();
+		yellowZero.dispose();
+		orangeZero.dispose();
 	}
 
 	public static void switchToStage(Stage newStage) {
@@ -1930,6 +2091,4 @@ public class BoomChess extends ApplicationAdapter {
 
 		return specialValue;
 	}
-
-
 }

@@ -14,7 +14,7 @@ public abstract class Soldier {
 
     protected String teamColor;
     protected int health;
-    public static int standardHealth;
+    private int standardHealth;
 
     public Soldier(String teamColor, int health) {
         this.teamColor = teamColor;
@@ -78,5 +78,9 @@ public abstract class Soldier {
             }
         }
         return possibleMoves;
+    }
+
+    public int getStandardHealth(){
+        return standardHealth;
     }
 }

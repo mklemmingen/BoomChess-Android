@@ -40,6 +40,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.ui.Container;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Stack;
@@ -59,6 +60,7 @@ import com.boomchess.game.backend.subsoldier.Empty;
 import com.boomchess.game.backend.subsoldier.Hill;
 import com.boomchess.game.frontend.actor.AttackSequence;
 import com.boomchess.game.frontend.actor.DamageNumber;
+import com.boomchess.game.frontend.actor.HealthNumber;
 import com.boomchess.game.frontend.actor.SpecialDamageIndicator;
 import com.boomchess.game.frontend.actor.WrongMoveIndicator;
 import com.boomchess.game.frontend.interfaces.takeIntervalSelfie;
@@ -181,19 +183,14 @@ public class GameStage {
                 if (!(health == -1)) {
                     // tileWidget is only move able if a Piece is on it, meaning it has health
                     tileWidget.setTouchable(Touchable.enabled);
-                    // draw the health bar
-                    final ProgressBar healthBar = new ProgressBar(0f, 60f, 1f, false,
-                            progressBarSkin);
-                    healthBar.setSize(tileSize/3200, tileSize/800);
-
-                    healthBar.setValue(health);
-                    tileWidget.add(healthBar);
-
-                    // hide the health bar by default
-                    healthBar.setVisible(false);
-
+                    // draw the health number if showHealth is true
                     if(showHealth) {
-                        healthBar.setVisible(true);
+                        Image blackCircle = new Image(BoomChess.blackCircle);
+                        blackCircle.setSize(tileSize, tileSize);
+                        tileWidget.add(blackCircle);
+                        Container<Table> healthContainer =
+                                HealthNumber.giveContainer(soldier.getStandardHealth(), health);
+                        tileWidget.add(healthContainer);
                     }
                 }
 
