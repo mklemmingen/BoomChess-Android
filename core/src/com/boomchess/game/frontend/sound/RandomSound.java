@@ -8,9 +8,8 @@ import java.util.List;
 import java.util.Random;
 
 public class RandomSound {
-    private List<Sound> sounds;
+    private final List<Sound> sounds;
     private final Random random;
-    private float volume;
 
     public RandomSound() {
         sounds = new ArrayList<>();
@@ -36,6 +35,5 @@ public class RandomSound {
     }
 
     public void setVolume(float soundVolume) {
-        volume = soundVolume;
     }
 }

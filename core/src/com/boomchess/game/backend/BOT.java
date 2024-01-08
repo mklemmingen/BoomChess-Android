@@ -324,7 +324,6 @@ public class BOT {
         * this method moves a soldier to a specific position
         * it utilizes the update function in Board.java
          */
-        Soldier[][] gameBoard = Board.getGameBoard();
 
         // DottedLine between old coordinates and new coordinates
         BoomChess.addDottedLine(SX, SY, x, y, false);

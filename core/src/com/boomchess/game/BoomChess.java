@@ -303,8 +303,6 @@ public class BoomChess extends ApplicationAdapter {
 	public static Texture credits;
 	public static Texture extendedCredits;
 
-	public static float sliderSize;
-
 	// --------------------------------------------
 
 	public static Sound katIncluded;
@@ -415,7 +413,15 @@ public class BoomChess extends ApplicationAdapter {
 		// creation of the batch for drawing the images
 		batch = new SpriteBatch();
 
-		// loading Screen is going till loading complete and main menu starts ----------------------------
+		// loading Screen is going till loading complete and main menu starts -------------
+
+		// skin of the UI --------------------
+		// skin (look) of the buttons via the prearranged json file
+		skin = new Skin(Gdx.files.internal("menu.commodore64/uiskin.json"));
+
+		// initialises the tile size for relative positioning of stages
+		RelativeResizer.init();
+		// sets public tilesize variable and skin bitmap size  for button scale
 
 		loadingScreenTextures = new RandomImage();
 		loadingScreenTextures.addTexture("loadingScreen/KatLoading.png");
@@ -439,9 +445,6 @@ public class BoomChess extends ApplicationAdapter {
 		inGamOptStage = new Stage(new ScreenViewport());
 		backgroundStage = new Stage(new ScreenViewport());
 		damageNumberStage = new Stage(new ScreenViewport());
-
-		// initialises the tile size for relative positioning of stages
-		RelativeResizer.init(); // sets public tilesize variable
 
 		// resize all stages for the beginning
 		resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -488,6 +491,10 @@ public class BoomChess extends ApplicationAdapter {
 		 */
 
 		Gdx.gl.glClearColor(1, 1, 1, 1);
+
+		// checks if the screen has been resized and if it has, it changes tileSize for relative
+		// stage creation
+		RelativeResizer.ensure();
 
 		if (loadingScreenIsRunning){
 			loadingStage.act();
@@ -654,39 +661,11 @@ public class BoomChess extends ApplicationAdapter {
 		/*
 		This method gets called during the main loading Stage runs
 		 */
-		// loading all assets -----------------------------------------------------------------------------------
 
 		// for defaulting colour change
 		isColourChanged = true;
 
-		// skin of the UI --------------------
-		// skin (look) of the buttons via the prearranged json file
-		skin = new Skin(Gdx.files.internal("menu.commodore64/uiskin.json"));
-
-		// Retrieving the font used in the skin
-		BitmapFont font = skin.getFont("commodore-64");
-
-		// Scaling the font depending on the relativresizer calculated tile size
-
-		if (tileSize > 140) {
-			font.getData().setScale(3.5f);
-			sliderSize = 4f;
-		} else if (tileSize > 100) {
-			font.getData().setScale(2.8f);
-			sliderSize = 2.5f;
-		} else if (tileSize > 50){
-			font.getData().setScale(2);
-			sliderSize = 1.5f;
-		} else {
-			font.getData().setScale(1.5f);
-			sliderSize = 1f;
-		}
-
-		// Optionally, update the skin with the scaled font if needed
-		skin.add("commodore-64", font, BitmapFont.class);
-
-
-		// assets
+		// assets ------------------------------------------------------------------------
 
 		greenMove = new Image(new Texture(Gdx.files.internal("moveLogos/green_Move.png")));
 		redMove = new Image(new Texture(Gdx.files.internal("moveLogos/red_Move.png")));
@@ -1063,15 +1042,13 @@ public class BoomChess extends ApplicationAdapter {
 					soundVolume = 0.25f;
 					volume = 0.25f;
 
-					background_music.setVolume(volume);
-					menu_music.setVolume(volume);
 				} else {
 
 					soundVolume = 0;
 					volume = 0;
-					background_music.setVolume(volume);
-					menu_music.setVolume(volume);
 				}
+				background_music.setVolume(volume);
+				menu_music.setVolume(volume);
 			}
 		});
 
@@ -1630,7 +1607,8 @@ public class BoomChess extends ApplicationAdapter {
 
 		// Position at upper left corner
 		float xPosition = tileSize / 3; // Left edge of the screen
-		float yPosition = Gdx.graphics.getHeight() - height;// Subtract height of the mover, positioning it at the top
+		float yPosition = Gdx.graphics.getHeight() - height;
+		// Subtract height of the mover, positioning it at the top
 		currentMover.setPosition(xPosition, yPosition);
 
 
@@ -1831,7 +1809,8 @@ public class BoomChess extends ApplicationAdapter {
 
 		// method for checking which tile a pxCoordinateX and pxCoordinateY is in, creating the coordinates object
 		// of the respective tile and returning it
-		Coordinates iconTileCoordinate = new Coordinates();
+		new Coordinates();
+		Coordinates iconTileCoordinate;
 
 		iconTileCoordinate = calculateTileByPX(pxCoordinateX, pxCoordinateY);
 

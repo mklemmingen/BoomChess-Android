@@ -9,8 +9,8 @@ import java.util.Random;
 
 public class RandomImage {
 
-    private List<Texture> textures;
-    private Random random;
+    private final List<Texture> textures;
+    private final Random random;
 
     public RandomImage() {
         textures = new ArrayList<>();

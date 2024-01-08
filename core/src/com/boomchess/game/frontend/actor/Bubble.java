@@ -16,14 +16,14 @@ public class Bubble extends Actor {
      */
 
     // px coords
-    private float X;
-    private float Y;
+    private final float X;
+    private final float Y;
     // elapsed time since addition to stage
     private float elapsed = 0;
     // this is the maximum duration that the bubble will be on the screen
     private static final float MAX_DURATION = 2f;
     // this is the stack of the bubble
-    private Stack stack;
+    private final Stack stack;
 
     public Bubble(Stack stack, float X, float Y){
         /*

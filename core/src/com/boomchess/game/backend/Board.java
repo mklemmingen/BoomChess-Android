@@ -678,32 +678,6 @@ public class Board {
         fillNullOfEmptyTiles();
     }
 
-    /*
-    public static void initialiseChallengeTen(){
-
-    }
-
-    public static void initialiseChallengeEleven(){
-
-    }
-
-    public static void initialiseChallengeTwelve(){
-
-    }
-
-    public static void initialiseChallengeThirteen(){
-
-    }
-
-    public static void initialiseChallengeFourteen(){
-
-    }
-
-    public static void initialiseChallengeFifteen(){
-
-    }
-    */
-
     public static void initialiseTutorialBoard(){
         // declaring the board
 

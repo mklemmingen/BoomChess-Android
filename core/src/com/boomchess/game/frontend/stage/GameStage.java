@@ -21,7 +21,6 @@ import static com.boomchess.game.BoomChess.gameEndStage;
 import static com.boomchess.game.BoomChess.inGame;
 import static com.boomchess.game.BoomChess.inTutorial;
 import static com.boomchess.game.BoomChess.legitTurn;
-import static com.boomchess.game.BoomChess.progressBarSkin;
 import static com.boomchess.game.BoomChess.reRenderGame;
 import static com.boomchess.game.BoomChess.setAllowedTiles;
 import static com.boomchess.game.BoomChess.showHelp;
@@ -34,7 +33,6 @@ import static com.boomchess.game.BoomChess.wrongMoveStage;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.math.Vector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -42,7 +40,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Container;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -59,7 +56,6 @@ import com.boomchess.game.backend.subsoldier.Artillery;
 import com.boomchess.game.backend.subsoldier.Empty;
 import com.boomchess.game.backend.subsoldier.Hill;
 import com.boomchess.game.frontend.actor.AttackSequence;
-import com.boomchess.game.frontend.actor.DamageNumber;
 import com.boomchess.game.frontend.actor.HealthNumber;
 import com.boomchess.game.frontend.actor.SpecialDamageIndicator;
 import com.boomchess.game.frontend.actor.WrongMoveIndicator;
@@ -67,7 +63,6 @@ import com.boomchess.game.frontend.interfaces.takeIntervalSelfie;
 import com.boomchess.game.frontend.interfaces.takeSelfieInterface;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class GameStage {
 
@@ -296,6 +291,7 @@ public class GameStage {
                             // switch statement for deciding which
                             // Chess Pieces Class mathMove is used to assign the ArrayList validMoveTiles
 
+                            assert soldier != null;
                             setAllowedTiles(soldier.mathMove(finalI, finalJ));
                         }
 

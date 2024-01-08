@@ -21,18 +21,17 @@ public class DamageNumber extends Actor {
      */
 
     // px coords
-    private float X;
-    private float Y;
+    private final float X;
+    private final float Y;
     // elapsed time since addition to stage
     private float elapsed = 0;
 
     private float stepElapsed = 0;
-    private float maxStepSize = 0.5f;
 
     // this is the maximum duration that the bubble will be on the screen
     private static final float MAX_DURATION = 4f;
     // this is the stack of the bubble
-    private Table table;
+    private final Table table;
 
     public DamageNumber(int X, int Y, int damage){
         /*
@@ -126,6 +125,7 @@ public class DamageNumber extends Actor {
         super.act(delta);
         elapsed += delta;
         stepElapsed += delta;
+        float maxStepSize = 0.5f;
         if (stepElapsed > maxStepSize) {
             // change y position and alpha value
             table.moveBy(0, 4);

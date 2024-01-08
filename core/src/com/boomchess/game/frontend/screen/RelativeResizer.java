@@ -1,7 +1,10 @@
 package com.boomchess.game.frontend.screen;
 
+import static com.boomchess.game.BoomChess.skin;
+import static com.boomchess.game.BoomChess.tileSize;
+
 import com.badlogic.gdx.Gdx;
-import com.boomchess.game.BoomChess;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 public class RelativeResizer {
     /*
@@ -23,11 +26,13 @@ public class RelativeResizer {
          */
         RelativeResizer.width = Gdx.graphics.getWidth();
         RelativeResizer.height = Gdx.graphics.getHeight();
-        BoomChess.tileSize = (float) width / 20;
+        tileSize = (float) width / 20;
+
+        changeSkinBitmaps();
     }
 
     // this function should be run each frame
-    public static boolean ensure(){
+    public static void ensure(){
         /*
         this function should be run each frame. It checks if the screen has been resized and if it has, it changes
         certain game specific variables to make sure that the game still looks good
@@ -38,10 +43,34 @@ public class RelativeResizer {
             height = Gdx.graphics.getHeight();
 
             // the tile size is changed to make sure that the game still looks good
-            BoomChess.tileSize = (float) width / 20;
-            return true;
-        } else {
-            return false; // since no resizing has happened
+            tileSize = (float) width / 20;
+
+            changeSkinBitmaps();
+
         }
+    }
+
+    private static void changeSkinBitmaps() {
+        /*
+        this function changes the bitmaps of the skin to make sure that the game still looks good
+         */
+
+        // Retrieving the font used in the skin
+        BitmapFont font = skin.getFont("commodore-64");
+
+        // Scaling the font depending on the relativresizer calculated tile size
+
+        if (tileSize > 140) {
+            font.getData().setScale(3.5f);
+        } else if (tileSize > 100) {
+            font.getData().setScale(2.8f);
+        } else if (tileSize > 50){
+            font.getData().setScale(2);
+        } else {
+            font.getData().setScale(1.5f);
+        }
+
+        // Optionally, update the skin with the scaled font if needed
+        skin.add("commodore-64", font, BitmapFont.class);
     }
 }

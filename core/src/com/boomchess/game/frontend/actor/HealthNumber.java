@@ -1,21 +1,13 @@
 package com.boomchess.game.frontend.actor;
 
-import static com.boomchess.game.BoomChess.calculatePXbyTile;
 import static com.boomchess.game.BoomChess.tileSize;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Container;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.boomchess.game.BoomChess;
-import com.boomchess.game.backend.Coordinates;
 
 public class HealthNumber {
     /*
@@ -40,7 +32,6 @@ public class HealthNumber {
         // colour selector based on ratio of standardHealth to currentHealth
         float ratio = (float) currentHealth / standardHealth;
 
-        Color healthColor;
         Image digitFirst;
         Image digitSecond;
         switch(ratio < 0.25 ? 0 : ratio < 0.5 ? 1 : ratio < 0.75 ? 2 : 3){

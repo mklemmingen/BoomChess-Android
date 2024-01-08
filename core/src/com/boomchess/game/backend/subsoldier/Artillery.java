@@ -19,8 +19,6 @@ public class Artillery extends Soldier
      * As its speciality, it deals damage to 3 tiles surrounding him
      */
 
-    private static int standardHealth = 40;
-
     public Artillery(String teamColor) {
         /*
          * Constructor for the Artillery object, takes positional arguments and team color
@@ -49,7 +47,7 @@ public class Artillery extends Soldier
     }
 
     public int getStandardHealth(){
-        return standardHealth;
+        return 40;
     }
 
     public int defendAndBleed(int damage, Soldier soldierAttack) {

@@ -18,8 +18,8 @@ public class WrongMoveIndicator extends Actor {
     moving a piece when it is not yet his turn
      */
     // px coords
-    private float X;
-    private float Y;
+    private final float X;
+    private final float Y;
     // elapsed time since addition to stage
     private float elapsed = 0;
     // this is the maximum duration that the bubble will be on the screen

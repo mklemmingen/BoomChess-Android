@@ -35,8 +35,6 @@ public class moveBotTile {
     public static boolean isMoving;
     public boolean movingFinished;
 
-    private static Image soldierImage;
-
     private static Image botArm;
     private static Stack soldierStack;
 
@@ -98,6 +96,7 @@ public class moveBotTile {
 
         Soldier soldier = gameBoard[startX][startY];
         // load the corresponding image through the Soldier Take Selfie Method
+        Image soldierImage;
         if (soldier instanceof takeSelfieInterface) {
             soldierImage = new Image(((takeSelfieInterface) soldier).takeSelfie());
         } else {
