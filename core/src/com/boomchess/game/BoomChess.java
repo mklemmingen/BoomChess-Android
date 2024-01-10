@@ -202,7 +202,7 @@ public class BoomChess extends ApplicationAdapter {
 	public static RandomImage obstacleTextures;
 
 	// for the credits
-	public MusicPlaylist creditsMusic;
+	public static MusicPlaylist creditsMusic;
 
 	// for the boolean value if the game is in medieval mode
 
@@ -416,6 +416,7 @@ public class BoomChess extends ApplicationAdapter {
 	public static Label musicLabel;
 	public static float musicLabelScale;
 
+	// -----------------------------
 
 	@Override
 	public void create() {
@@ -1028,25 +1029,39 @@ public class BoomChess extends ApplicationAdapter {
 		background_music.addSong("music/Breakdown.mp3",
 				"Breakdown", "Wambutz");
 		background_music.addSong("music/A Little R & R.mp3",
-				"A Little R & R", "");
+				"A Little R & R", "Bert Cole\nbitbybitsound.com");
 		background_music.addSong("music/24 Stray cat.mp3",
-				"Stray cat", "");
+				"Stray cat", "Garo");
 		background_music.addSong("music/05 Thought Soup.mp3",
-				"Thought Soup", "");
+				"Thought Soup", "Garo");
 		background_music.addSong("music/06 Tonal Dissonance.mp3",
-				"Tonal Dissonance", "");
+				"Tonal Dissonance", "Garo");
 		background_music.addSong("music/27 Coffee Break.mp3",
-				"Coffee Break", "");
+				"Coffee Break", "Garo");
 		background_music.addSong("music/36 Tonal Resonance.mp3",
-				"Tonal Resonance", "");
+				"Tonal Resonance", "Garo");
 		background_music.addSong("music/epic-battle.mp3",
-				"Epic Battle", "");
+				"Epic Battle", "Bert Cole\nbitbybitsound.com");
+		/*
+		// TODO not vibing
 		background_music.addSong("music/Outside the Colosseum.mp3",
-				"Outside the\n Colosseum", "");
+				"Outside the\n Colosseum", "Bert Cole\nbitbybitsound.com");
+		 */
 		background_music.addSong("music/Song Idee Chess.mp3",
 				"Song Idee Chess", "Wambutz");
 		background_music.addSong("music/Song 2.mp3", "Song 2",
 				"Wambutz");
+		/*
+		// TODO too loud
+		background_music.addSong("music/Boss Battle.mp3", "Boss Battle",
+				"nostalgiac");
+
+		 */
+		background_music.addSong("music/TypeCastTheme.wav", "TYPE:CAST",
+				"Not Jam");
+		background_music.addSong("music/SeeingDouble.wav", "Seeing Double",
+				"Not Jam");
+
 
 		wrongMoveLogo = new Texture("Misc/WrongMove.png");
 
@@ -1054,7 +1069,21 @@ public class BoomChess extends ApplicationAdapter {
 
 		menu_music = new MusicPlaylist();
 		menu_music.addSong("music/(LOOP-READY) Track 1 - Safe Zone No Intro.mp3",
-				"Safe Zone", "");
+				"Safe Zone", "HZSMITH");
+		menu_music.addSong("music/KleptoLindaCavernsB.wav",
+				"CavernsB", "not jam");
+		menu_music.addSong("music/03 Warm Breeze.mp3",
+				"Warm Breeze", "rachel wang");
+		menu_music.addSong("music/Start.mp3", "Start", "Smody");
+
+		creditsMusic = new MusicPlaylist();
+		creditsMusic.addSong("music/credits/Hadokowa - Loading.. - 03 囡囡 (NanNan).mp3",
+				"NanNan", "Hadokowa");
+
+		// TODO elaborate on this Song cause wow
+		// creditsMusic.addSong("music/credits/Hadokowa - Loading.. - 04 買狗養狗 (Get a Dog,\n Pet a Dog).mp3",
+		//		"Get a Dog, Pet a Dog", "Hadokowa");
+
 
 		Gdx.app.log("BoomChess", "Loading Assets: Music finished");
 
@@ -1099,6 +1128,12 @@ public class BoomChess extends ApplicationAdapter {
 			public void changed(ChangeEvent event, Actor actor) {
 				if (currentState != GameState.NOT_IN_GAME) {
 					background_music.nextSong();
+				} else {
+					if(menu_music.isPlaying()) {
+						menu_music.nextSong();
+					} else {
+						creditsMusic.nextSong();
+					}
 				}
 			}
 		});
@@ -1703,14 +1738,21 @@ public class BoomChess extends ApplicationAdapter {
 		 */
 
 		//stop background music
-		background_music.stop();
+		if(background_music.isPlaying()) {
+			background_music.stop();
+		}
+		if(creditsMusic.isPlaying()) {
+			creditsMusic.stop();
+		}
 
 		inTutorial = false;
 		switchToStage(MenuStage.initializeUI());
 		gameEndStage.clear();
 
-		// start menu music
-		menu_music.play();
+		if(!(menu_music.isPlaying())) {
+			// start menu music
+			menu_music.play();
+		}
 	}
 
 	public static void createOptionsStage() {
@@ -1724,6 +1766,12 @@ public class BoomChess extends ApplicationAdapter {
 		/*
 		* method for creating the stage for the credits display
 		 */
+		// stop menu music
+		menu_music.stop();
+		// start credits music
+		if(!(creditsMusic.isPlaying())) {
+			creditsMusic.play();
+		}
 		switchToStage(CreditsStage.initializeUI());
 	}
 
