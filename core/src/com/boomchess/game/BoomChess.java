@@ -1046,9 +1046,9 @@ public class BoomChess extends ApplicationAdapter {
 		// TODO not vibing
 		background_music.addSong("music/Outside the Colosseum.mp3",
 				"Outside the\n Colosseum", "Bert Cole\nbitbybitsound.com");
-		 */
 		background_music.addSong("music/Song Idee Chess.mp3",
 				"Song Idee Chess", "Wambutz");
+		 */
 		background_music.addSong("music/Song 2.mp3", "Song 2",
 				"Wambutz");
 		/*
