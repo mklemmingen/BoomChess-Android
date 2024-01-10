@@ -139,7 +139,7 @@ public class OptionsStage extends Stage{
         numberObstaclesText.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                switch ((int) numberObstacle) {
+                switch (numberObstacle) {
                     case 0:
                         numberObstacle = 1;
                         break;
@@ -179,7 +179,7 @@ public class OptionsStage extends Stage{
         });
         root.add(numberObstaclesText);
 
-         root.row().padBottom(tileSize/4);;
+         root.row().padBottom(tileSize/4);
 
         // Change Mode button to switch blue and green
         String currentMode;

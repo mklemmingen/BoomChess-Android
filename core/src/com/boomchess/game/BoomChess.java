@@ -4,8 +4,8 @@ import static com.boomchess.game.frontend.stage.GameStage.createGameStage;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -138,7 +139,7 @@ public class BoomChess extends ApplicationAdapter {
 
 	// music
 	public static MusicPlaylist background_music;
-	public static Music menu_music;
+	public static MusicPlaylist menu_music;
 
 	// universal Buttons -- here for music and sound control
 
@@ -357,7 +358,8 @@ public class BoomChess extends ApplicationAdapter {
 
 	// --------------------------------------------------------------------------------------------------
 
-	// for the possible colors of textures
+	// for the possible colors of textures, loaded so we don't have to change each pixel of the
+	// standard numbers, this way costs less processing power
 
 	public static Texture redOne;
 	public static Texture greenOne;
@@ -402,9 +404,17 @@ public class BoomChess extends ApplicationAdapter {
 
 	// ----------------------------
 
-	// black circle
+	// black circle behind the health number
 
 	public static Texture blackCircle;
+
+	// -----------------------------
+
+	// stage for the current song name that is playing
+
+	public static Stage songNameStage;
+	public static Label musicLabel;
+	public static float musicLabelScale;
 
 
 	@Override
@@ -444,6 +454,7 @@ public class BoomChess extends ApplicationAdapter {
 		inGamOptStage = new Stage(new ScreenViewport());
 		backgroundStage = new Stage(new ScreenViewport());
 		damageNumberStage = new Stage(new ScreenViewport());
+		songNameStage = new Stage(new ScreenViewport());
 
 		// resize all stages for the beginning
 		resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -506,6 +517,7 @@ public class BoomChess extends ApplicationAdapter {
 				// ensures game starts in menu
 				createMainMenuStage();
 				loadingStage.clear();
+				Gdx.app.log("LoadingScreen", "LoadingScreen finished");
 			}
 			// load the assets first time
 			if(!(assetsLoaded)){
@@ -592,6 +604,10 @@ public class BoomChess extends ApplicationAdapter {
 			inGamOptStage.draw();
 		}
 
+		// for the song name stage
+		songNameStage.act();
+		songNameStage.draw();
+
 		if (actionSequence.getDamageSequenceRunning()){
 			// update the method playNext
 			sequenceRunning = true;
@@ -663,6 +679,15 @@ public class BoomChess extends ApplicationAdapter {
 
 		// for defaulting colour change
 		isColourChanged = true;
+
+		// music label
+		// load empty musicLabel and put its position to the lower left of the screen
+		musicLabel = new Label("", skin);
+		musicLabel.setPosition(tileSize, tileSize*1.25f);
+		musicLabel.setColor(Color.BLUE);
+		// scale down by 0.75 to 0.25 of current size
+		musicLabel.setFontScale(musicLabelScale);
+		songNameStage.addActor(musicLabel);
 
 		// assets ------------------------------------------------------------------------
 
@@ -994,26 +1019,42 @@ public class BoomChess extends ApplicationAdapter {
 		queenSound.addSound("sounds/sword/sword7.mp3");
 		kingSound = queenSound;
 
+		Gdx.app.log("BoomChess", "Loading Assets: Sounds finished");
+
 		// load the background music into MusicPlaylist object --------------------------------------
 		background_music = new MusicPlaylist();
-		background_music.addSong("music/Breakdown.mp3"); // song added by Artist Wumbatz
-		background_music.addSong("music/A Little R & R.mp3");
-		background_music.addSong("music/24 Stray cat.mp3");
-		background_music.addSong("music/05 Thought Soup.mp3");
-		background_music.addSong("music/06 Tonal Dissonance.mp3");
-		background_music.addSong("music/27 Coffee Break.mp3");
-		background_music.addSong("music/36 Tonal Resonance.mp3");
-		background_music.addSong("music/epic-battle.mp3");
-		background_music.addSong("music/Outside the Colosseum.mp3");
-		background_music.addSong("music/Song Idee Chess.mp3"); // song added by Artist Wumbatz
-		background_music.addSong("music/Song 2.mp3"); // song added by Artist Wumbatz
+		background_music.addSong("music/Breakdown.mp3",
+				"Breakdown", "Wambutz");
+		background_music.addSong("music/A Little R & R.mp3",
+				"A Little R & R", "");
+		background_music.addSong("music/24 Stray cat.mp3",
+				"Stray cat", "");
+		background_music.addSong("music/05 Thought Soup.mp3",
+				"Thought Soup", "");
+		background_music.addSong("music/06 Tonal Dissonance.mp3",
+				"Tonal Dissonance", "");
+		background_music.addSong("music/27 Coffee Break.mp3",
+				"Coffee Break", "");
+		background_music.addSong("music/36 Tonal Resonance.mp3",
+				"Tonal Resonance", "");
+		background_music.addSong("music/epic-battle.mp3",
+				"Epic Battle", "");
+		background_music.addSong("music/Outside the Colosseum.mp3",
+				"Outside the Colosseum", "");
+		background_music.addSong("music/Song Idee Chess.mp3",
+				"Song Idee Chess", "Wambutz");
+		background_music.addSong("music/Song 2.mp3", "Song 2",
+				"Wambutz");
 
 		wrongMoveLogo = new Texture("Misc/WrongMove.png");
 
 		// load the menu music
 
-		menu_music = Gdx.audio.newMusic(Gdx.files.internal
-				("music/(LOOP-READY) Track 1 - Safe Zone No Intro.mp3"));
+		menu_music = new MusicPlaylist();
+		menu_music.addSong("music/(LOOP-READY) Track 1 - Safe Zone No Intro.mp3",
+				"Safe Zone", "");
+
+		Gdx.app.log("BoomChess", "Loading Assets: Music finished");
 
 		// ---------------------------- universal Buttons for adding to stages
 
@@ -1151,8 +1192,6 @@ public class BoomChess extends ApplicationAdapter {
 		// set number obstacle for initialization to 3
 		numberObstacle = 3;
 
-		loadingSound.stop();
-
 		// intialise the possibleMoveOverlay
 		possibleMoveOverlay = new Stage();
 
@@ -1178,6 +1217,7 @@ public class BoomChess extends ApplicationAdapter {
 		clipBoard = new Texture(Gdx.files.internal("Misc/clipboard.png"));
 		createInGameOptionStages();
 
+		Gdx.app.log("BoomChess", "Loading Assets: Finished");
 		// leaves the loading screen
 		assetsLoaded = true;
 	}
@@ -1990,7 +2030,7 @@ public class BoomChess extends ApplicationAdapter {
 	public static void addCrossOfDeath(int x, int y) {
 		Image cross = new Image(BoomChess.crossOfDeathTexture);
 		Coordinates coordinates = BoomChess.calculatePXbyTile(x, y);
-        cross.setPosition((float) coordinates.getX() - (tileSize / 2), (float) coordinates.getY() - (tileSize / 2));
+		cross.setPosition((float) coordinates.getX() - (tileSize / 2), (float) coordinates.getY() - (tileSize / 2));
 		cross.setSize(tileSize, tileSize);
 		BoomChess.crossOfDeathStage.addActor(cross);
 	}

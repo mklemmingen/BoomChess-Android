@@ -5,6 +5,7 @@ import static com.boomchess.game.BoomChess.tileSize;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.boomchess.game.BoomChess;
 
 public class RelativeResizer {
     /*
@@ -62,12 +63,16 @@ public class RelativeResizer {
 
         if (tileSize > 140) {
             font.getData().setScale(3.5f);
+            BoomChess.musicLabelScale = 1.3f;
         } else if (tileSize > 100) {
             font.getData().setScale(2.8f);
+            BoomChess.musicLabelScale = 1.05f;
         } else if (tileSize > 50){
             font.getData().setScale(2);
+            BoomChess.musicLabelScale = 0.9f;
         } else {
             font.getData().setScale(1.5f);
+            BoomChess.musicLabelScale = 0.6f;
         }
 
         // Optionally, update the skin with the scaled font if needed
