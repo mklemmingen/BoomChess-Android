@@ -38,13 +38,6 @@ public class MenuStage extends Stage{
         Stage menuStage = new Stage();
         Gdx.input.setInputProcessor(menuStage);
 
-        // start menu music
-        // BoomChess.loadingSound.stop();
-        background_music.stop();
-        menu_music.setLooping(true);
-        menu_music.play();
-        menu_music.setVolume(volume);
-
         // Begin of Main Menu Layout - Root Table arranges content automatically and adaptively as ui-structure
         final Table root = new Table();
         root.setFillParent(true);
@@ -204,6 +197,7 @@ public class MenuStage extends Stage{
         });
         root.row();
 
+       Gdx.app.log("MenuStage", "MenuStage initialized");
        return menuStage;
     }
 

@@ -544,6 +544,7 @@ public class BoomChess extends ApplicationAdapter {
 		}
 
 		// for the stages, displays only stage assigned as currentStage, see method switchToStage
+		Gdx.app.log("CurrentStage", "CurrentStage is " + currentStage.toString());
 		currentStage.act();
 		currentStage.draw();
 
@@ -596,6 +597,7 @@ public class BoomChess extends ApplicationAdapter {
 			Gdx.input.setInputProcessor(currentStage);
 			helpStage.act();
 			helpStage.draw();
+			Gdx.app.log("Help", "Help is shown");
 		}
 
 		if(showInGameOptions){
@@ -1040,7 +1042,7 @@ public class BoomChess extends ApplicationAdapter {
 		background_music.addSong("music/epic-battle.mp3",
 				"Epic Battle", "");
 		background_music.addSong("music/Outside the Colosseum.mp3",
-				"Outside the Colosseum", "");
+				"Outside the\n Colosseum", "");
 		background_music.addSong("music/Song Idee Chess.mp3",
 				"Song Idee Chess", "Wambutz");
 		background_music.addSong("music/Song 2.mp3", "Song 2",
@@ -1699,9 +1701,16 @@ public class BoomChess extends ApplicationAdapter {
 		/*
 		* method for creating the stage for the main menu
 		 */
+
+		//stop background music
+		background_music.stop();
+
 		inTutorial = false;
 		switchToStage(MenuStage.initializeUI());
 		gameEndStage.clear();
+
+		// start menu music
+		menu_music.play();
 	}
 
 	public static void createOptionsStage() {

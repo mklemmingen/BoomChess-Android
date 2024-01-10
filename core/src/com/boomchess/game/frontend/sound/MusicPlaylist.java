@@ -44,9 +44,16 @@ public class MusicPlaylist {
         songs.get(currentIndex).getSong().stop();
 
         int randomIndex;
-        do {
-            randomIndex = new Random().nextInt(songs.size());
-        } while (randomIndex == currentIndex);
+        if(songs.size() == 1){
+            // if there is only one song in the playlist, then it is played,
+            // prevents endless loop
+            randomIndex = 0;
+        }
+        else {
+            do {
+                randomIndex = new Random().nextInt(songs.size());
+            } while (randomIndex == currentIndex);
+        }
 
         currentIndex = randomIndex;
         Music playSong = songs.get(currentIndex).getSong();
