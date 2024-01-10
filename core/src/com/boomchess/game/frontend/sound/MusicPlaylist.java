@@ -16,7 +16,7 @@ public class MusicPlaylist {
      */
     private final List<Song> songs;
     private int currentIndex = 0; // Initialize to -1 to indicate no song has been played yet
-    private final LinkedList<Integer> lastIndex = new LinkedList<Integer>();
+    private final LinkedList<Integer> lastIndex = new LinkedList<>();
     private boolean hasStartedOnce = false;
 
     public MusicPlaylist() {
