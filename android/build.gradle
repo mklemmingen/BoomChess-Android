@@ -23,8 +23,8 @@ android {
         applicationId "com.boomchess.game"
         minSdkVersion 14
         targetSdkVersion 34
-        versionCode 8
-        versionName "8.0 new Health Numbers"
+        versionCode 9
+        versionName "9.0 big Music Update"
     }
     buildTypes {
         release {
