@@ -5,6 +5,7 @@ import com.badlogic.gdx.audio.Music;
 import com.boomchess.game.BoomChess;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -15,6 +16,8 @@ public class MusicPlaylist {
      */
     private final List<Song> songs;
     private int currentIndex = 0; // Initialize to -1 to indicate no song has been played yet
+    private final LinkedList<Integer> lastIndex = new LinkedList<Integer>();
+    private boolean hasStartedOnce = false;
 
     public MusicPlaylist() {
         /*
@@ -50,10 +53,39 @@ public class MusicPlaylist {
             randomIndex = 0;
         }
         else {
-            do {
+            if(!hasStartedOnce){
+                // if the playlist has not been played before, then the currentIndex is set to
+                // a random index with 0 being included in the range of random numbers
                 randomIndex = new Random().nextInt(songs.size());
-            } while (randomIndex == currentIndex);
+            } else {
+
+                if(songs.size() >= 2) {
+                    // add currentIndex to the first spot of the linked-list and cut the linkedlist to
+                    // the size of ArrayList.size/2
+                    lastIndex.addFirst(currentIndex);
+                    if (lastIndex.size() > songs.size() / 2) {
+                        lastIndex.removeLast();
+                    }
+                }
+
+                // create a list of all index int that are not in the linked-list
+                List<Integer> notInList = new ArrayList<>();
+                for (int i = 0; i < songs.size(); i++) {
+                    if (!lastIndex.contains(i)) {
+                        notInList.add(i);
+                    }
+                }
+
+                // if the playlist has been played before, then the currentIndex
+                // has been set to all numbers not currently currentIndex or in the Linked-List
+                // through the use of the notInList ArrayList
+
+                // choose a random index from the notInList ArrayList
+                randomIndex = notInList.get(new Random().nextInt(notInList.size()));
+            }
         }
+
+        hasStartedOnce = true;
 
         currentIndex = randomIndex;
         Music playSong = songs.get(currentIndex).getSong();
@@ -69,8 +101,8 @@ public class MusicPlaylist {
          * adds the song name to the music label
          */
 
-        BoomChess.musicLabel.setText(songs.get(currentIndex).getSongName() + "\n" +
-                songs.get(currentIndex).getArtistName());
+        BoomChess.musicLabel.setText(songs.get(currentIndex).getSongName() + "\n" + "by " + "'" +
+                songs.get(currentIndex).getArtistName() + "'");
     }
 
 
