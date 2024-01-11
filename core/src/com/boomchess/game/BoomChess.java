@@ -1057,22 +1057,18 @@ public class BoomChess extends ApplicationAdapter {
 
 		// load the background music into MusicPlaylist object --------------------------------------
 		background_music = new MusicPlaylist();
-		background_music.addSong("music/Breakdown.mp3",
-				"Breakdown", "Wambutz");
 		background_music.addSong("music/A Little R & R.mp3",
 				"A Little R & R", "Bert Cole");
+		/* TODO not vibing with it anywhere
 		background_music.addSong("music/24 Stray cat.mp3",
 				"Stray cat", "Garo");
-		background_music.addSong("music/05 Thought Soup.mp3",
-				"Thought Soup", "Garo");
+		 */
+		/* TODO not rocking enough
 		background_music.addSong("music/06 Tonal Dissonance.mp3",
 				"Tonal Dissonance", "Garo");
-		background_music.addSong("music/27 Coffee Break.mp3",
-				"Coffee Break", "Garo");
+		 */
 		background_music.addSong("music/36 Tonal Resonance.mp3",
 				"Tonal Resonance", "Garo");
-		background_music.addSong("music/epic-battle.mp3",
-				"Epic Battle", "Bert Cole");
 		/*
 		// TODO not vibing
 		background_music.addSong("music/Outside the Colosseum.mp3",
@@ -1087,30 +1083,37 @@ public class BoomChess extends ApplicationAdapter {
 				"nostalgiac");
 
 		 */
+		/* TODO eh
 		background_music.addSong("music/TypeCastTheme.wav", "TYPE:CAST",
 				"Not Jam");
+		 */
 		background_music.addSong("music/SeeingDouble.wav", "Seeing Double",
 				"Not Jam");
 		background_music.addSong("music/First.wav", "First",
 				"Steek Stook");
-		background_music.addSong("SnesPenultimateLevel.wav", "SnesPenultimateLevel",
+		background_music.addSong("music/SnesPenultimateLevel.wav", "SnesPenultimateLevel",
 				"Steek Stook");
-
-
-		wrongMoveLogo = new Texture("Misc/WrongMove.png");
+		background_music.addSong("music/03 - Beginnings.mp3",
+				"Beginnings", "Oak Thielbar");
+		background_music.addSong("music/KleptoLindaCavernsB.wav",
+				"CavernsB", "not jam");
 
 		// load the menu music
 
 		menu_music = new MusicPlaylist();
 		menu_music.addSong("music/(LOOP-READY) Track 1 - Safe Zone No Intro.mp3",
 				"Safe Zone", "HZSMITH");
-		menu_music.addSong("music/KleptoLindaCavernsB.wav",
-				"CavernsB", "not jam");
 		menu_music.addSong("music/03 Warm Breeze.mp3",
 				"Warm Breeze", "rachel wang");
 		menu_music.addSong("music/Start.mp3", "Start", "Smody");
-		menu_music.addSong("03 - Beginnings.mp3",
-				"Beginnings", "Oak Thielbar");
+		menu_music.addSong("music/27 Coffee Break.mp3",
+				"Coffee Break", "Garo");
+		menu_music.addSong("music/Breakdown.mp3",
+				"Breakdown", "Wambutz");
+		menu_music.addSong("music/05 Thought Soup.mp3",
+				"Thought Soup", "Garo");
+		menu_music.addSong("music/epic-battle.mp3",
+				"Epic Battle", "Bert Cole");
 
 		creditsMusic = new MusicPlaylist();
 		/* TODO vibes
@@ -1124,6 +1127,7 @@ public class BoomChess extends ApplicationAdapter {
 		// creditsMusic.addSong("music/credits/Hadokowa - Loading.. - 04 買狗養狗 (Get a Dog,\n Pet a Dog).mp3",
 		//		"Get a Dog, Pet a Dog", "Hadokowa");
 
+		wrongMoveLogo = new Texture("Misc/WrongMove.png");
 
 		Gdx.app.log("BoomChess", "Loading Assets: Music finished");
 
@@ -1527,6 +1531,16 @@ public class BoomChess extends ApplicationAdapter {
 			}
 		});
 		table.row().padBottom(tileSize/8);
+
+		// button for changing if animations are used
+		TextButton animationButton = new TextButton("Animations: " + isAnimated, skin);
+		animationButton.addListener(new ChangeListener() {
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				isAnimated = !isAnimated;
+				createInGameOptionStages();
+			}
+		});
 
 		table.add(changeMapButton);
 		table.row().padBottom(tileSize/8);

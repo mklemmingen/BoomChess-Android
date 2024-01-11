@@ -81,16 +81,16 @@ public class RelativeResizer {
         } else {
             if (tileSize > 140) {
                 font.getData().setScale(3.5f);
-                BoomChess.musicLabelScale = 1.3f;
+                BoomChess.musicLabelScale = 1.1f;
             } else if (tileSize > 100) {
                 font.getData().setScale(2.8f);
-                BoomChess.musicLabelScale = 1.05f;
+                BoomChess.musicLabelScale = 0.8f;
             } else if (tileSize > 50) {
                 font.getData().setScale(2);
-                BoomChess.musicLabelScale = 0.75f;
+                BoomChess.musicLabelScale = 0.6f;
             } else {
                 font.getData().setScale(1.5f);
-                BoomChess.musicLabelScale = 0.5f;
+                BoomChess.musicLabelScale = 0.4f;
             }
         }
 
