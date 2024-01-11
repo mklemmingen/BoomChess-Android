@@ -8,9 +8,8 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.boomchess.game.BoomChess;
 import com.boomchess.game.backend.Soldier;
-import com.boomchess.game.frontend.interfaces.givePieceType;
 
-import java.util.Objects;
+import java.util.LinkedList;
 
 public class soldierAnimation extends Actor implements Cloneable{
     /*
@@ -20,7 +19,6 @@ public class soldierAnimation extends Actor implements Cloneable{
      */
 
     private boolean animationPlaying;
-    private final Animation<TextureRegion> animation;
     private final Image standardNoAnimation;
     // time measurement for animation and no animation
     private float elapsedTimeAnim = 0f;
@@ -30,6 +28,9 @@ public class soldierAnimation extends Actor implements Cloneable{
     private float randomNoAnimationTime = (float) (Math.random() * 6 + 3);
     private final int frameCount = 8;
     private final float frameDuration = 0.143f; // equals 7 fps
+
+    private int currentIndex;
+    private final LinkedList<Animation<TextureRegion>> animationLinkedList = new LinkedList<>();
 
     public soldierAnimation(Soldier soldier) {
         /*
@@ -71,8 +72,39 @@ public class soldierAnimation extends Actor implements Cloneable{
             }
         }
 
-        // Create the animation object
-        animation = new Animation<TextureRegion>(frameDuration, frames);
+        // Create the animation object and put it into linkedList
+        Animation<TextureRegion> animation = new Animation<>(frameDuration, frames);
+        animationLinkedList.add(animation);
+
+        // checks if there are any more spritesheets that are named the same but with an additioal
+        // number at the end:
+        // if yes, it adds it to the animation linked list:
+        int i = 1;
+        while (Gdx.files.internal("spritesheets/" + teamColour + "_" + pieceType + i + ".png")
+                .exists()) {
+
+            spriteSheet = new Texture(Gdx.files.internal("spritesheets/" + teamColour +
+                    "_" + pieceType + i + ".png"));
+
+            // Split the spriteSheet into frames
+            tmp = TextureRegion.split(spriteSheet, frameWidth, frameHeight);
+
+            // Put the frames into a 1D array
+            frames = new TextureRegion[frameCount];
+            index = 0;
+            for (int j = 0; j < frameRows; j++) {
+                for (int k = 0; k < frameCols; k++) {
+                    // size all frames to tileSize*tileSize
+                    frames[index++] = tmp[j][k];
+                }
+            }
+
+            // Create the animation object
+            Animation<TextureRegion> animation2 =
+                    new Animation<>(frameDuration, frames);
+            animationLinkedList.add(animation2);
+            i++;
+        }
 
         // Creates a standard image that is shown when the animation is not playing
         standardNoAnimation = new Image(frames[0]);
@@ -80,6 +112,9 @@ public class soldierAnimation extends Actor implements Cloneable{
 
         // 50 50 chance for animationPlaying set to true at the beginning of the creation
         animationPlaying = Math.random() < 0.5;
+
+        // randomize currentIndex inbetween 0 and animationLinkedList.size()
+        currentIndex = (int) (Math.random() * animationLinkedList.size());
     }
 
     public TextureRegion getFrame() {
@@ -87,6 +122,8 @@ public class soldierAnimation extends Actor implements Cloneable{
         getFrame returns the current frame of the animation.
         The current frame is calculated from the elapsedTime.
          */
+        // return the current index linkedList animation keyframe
+        Animation<TextureRegion> animation = animationLinkedList.get(currentIndex);
         return animation.getKeyFrame(elapsedTimeAnim, true);
     }
 
@@ -94,7 +131,11 @@ public class soldierAnimation extends Actor implements Cloneable{
         /*
         dispose disposes of the animation object.
          */
-        animation.getKeyFrames()[0].getTexture().dispose();
+        // for all animations in the linkedList
+        for (Animation<TextureRegion> animation : animationLinkedList) {
+            // dispose of the texture of the first frame
+            animation.getKeyFrames()[0].getTexture().dispose();
+        }
     }
 
     // draw and act methods of Actor
@@ -139,6 +180,9 @@ public class soldierAnimation extends Actor implements Cloneable{
             if(elapsedTimeAnim >= frameDuration * frameCount){
                 animationPlaying = false;
                 elapsedTimeAnim = 0f;
+
+                // randomize current index for next animation
+                currentIndex = (int) (Math.random() * animationLinkedList.size());
             }
         } else {
             timeWithoutAnim += Gdx.graphics.getDeltaTime();
@@ -168,6 +212,9 @@ public class soldierAnimation extends Actor implements Cloneable{
             int random = (int) (Math.random() * 6 + 1);
             if(random == 1 ){
                 cloned.animationPlaying = true;
+
+                // randomize currentindex inbetween 0 and animationLinkedList.size()
+                cloned.currentIndex = (int) (Math.random() * animationLinkedList.size());
             } else {
 
                 cloned.animationPlaying = false;
