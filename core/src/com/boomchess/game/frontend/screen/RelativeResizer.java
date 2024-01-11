@@ -1,9 +1,12 @@
 package com.boomchess.game.frontend.screen;
 
+import static com.boomchess.game.BoomChess.loadingScreenTextures;
+import static com.boomchess.game.BoomChess.publisher;
 import static com.boomchess.game.BoomChess.skin;
 import static com.boomchess.game.BoomChess.tileSize;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.boomchess.game.BoomChess;
 
@@ -61,19 +64,47 @@ public class RelativeResizer {
 
         // Scaling the font depending on the relativresizer calculated tile size
 
-        if (tileSize > 140) {
-            font.getData().setScale(3.5f);
-            BoomChess.musicLabelScale = 1.3f;
-        } else if (tileSize > 100) {
-            font.getData().setScale(2.8f);
-            BoomChess.musicLabelScale = 1.05f;
-        } else if (tileSize > 50){
-            font.getData().setScale(2);
-            BoomChess.musicLabelScale = 0.9f;
+        if(!publisher) {
+            if (tileSize > 140) {
+                font.getData().setScale(2f);
+                BoomChess.musicLabelScale = 1.2f;
+            } else if (tileSize > 100) {
+                font.getData().setScale(1.5f);
+                BoomChess.musicLabelScale = 1f;
+            } else if (tileSize > 50) {
+                font.getData().setScale(1.25f);
+                BoomChess.musicLabelScale = 0.9f;
+            } else {
+                font.getData().setScale(1f);
+                BoomChess.musicLabelScale = 1f;
+            }
         } else {
-            font.getData().setScale(1.5f);
-            BoomChess.musicLabelScale = 0.6f;
+            if (tileSize > 140) {
+                font.getData().setScale(3.5f);
+                BoomChess.musicLabelScale = 1.3f;
+            } else if (tileSize > 100) {
+                font.getData().setScale(2.8f);
+                BoomChess.musicLabelScale = 1.05f;
+            } else if (tileSize > 50) {
+                font.getData().setScale(2);
+                BoomChess.musicLabelScale = 0.75f;
+            } else {
+                font.getData().setScale(1.5f);
+                BoomChess.musicLabelScale = 0.5f;
+            }
         }
+
+        Texture loading;
+
+        if(publisher){
+            loading = new Texture("loadingScreen/KatLoading.png");
+            BoomChess.katIncluded = Gdx.audio.newSound(Gdx.files.internal("Misc/katIncluded.mp3"));
+        } else {
+            loading = new Texture("loadingScreen/BoomSoftware.png");
+            BoomChess.katIncluded = Gdx.audio.newSound(Gdx.files.internal("Misc/BoomSoftwares.mp3"));
+        }
+
+        loadingScreenTextures.addRawTexture(loading);
 
         // Optionally, update the skin with the scaled font if needed
         skin.add("commodore-64", font, BitmapFont.class);

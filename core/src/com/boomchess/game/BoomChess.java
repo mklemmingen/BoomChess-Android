@@ -449,6 +449,10 @@ public class BoomChess extends ApplicationAdapter {
 	public static soldierAnimation blueTankAnimation;
 	public static soldierAnimation blueArtilleryAnimation;
 
+	// ------------------------------------------------------
+
+	public static boolean publisher = true;
+
 	@Override
 	public void create() {
 		// creation of the batch for drawing the images
@@ -460,12 +464,12 @@ public class BoomChess extends ApplicationAdapter {
 		// skin (look) of the buttons via the prearranged json file
 		skin = new Skin(Gdx.files.internal("menu.commodore64/uiskin.json"));
 
+		loadingScreenTextures = new RandomImage();
+
 		// initialises the tile size for relative positioning of stages
 		RelativeResizer.init();
 		// sets public tilesize variable and skin bitmap size  for button scale
 
-		loadingScreenTextures = new RandomImage();
-		loadingScreenTextures.addTexture("loadingScreen/KatLoading.png");
 		loadingSound = Gdx.audio.newSound(Gdx.files.internal("sounds/countdown.mp3"));
 		tutorialTexture = new Texture(Gdx.files.internal("Misc/tutorial.png"));
 		loadingStage = LoadingScreenStage.initalizeUI();
@@ -504,8 +508,6 @@ public class BoomChess extends ApplicationAdapter {
 		buttonWidth = tileSize * 2;
 		buttonHeight = tileSize / 2;
 
-		katIncluded = Gdx.audio.newSound(Gdx.files.internal("Misc/katIncluded.mp3"));
-
 		loadingScreenIsRunning = true;
 	}
 
@@ -540,8 +542,8 @@ public class BoomChess extends ApplicationAdapter {
 		if (loadingScreenIsRunning){
 			loadingStage.act();
 			loadingStage.draw();
-			// run loading screen for 3 seconds atleast
-			if(loadingElapsed < 8){
+			// run loading screen for 4 seconds atleast
+			if(loadingElapsed < 4){
 				loadingElapsed += Gdx.graphics.getDeltaTime();
 			} else {
 				loadingScreenIsRunning = false;
@@ -575,7 +577,6 @@ public class BoomChess extends ApplicationAdapter {
 		}
 
 		// for the stages, displays only stage assigned as currentStage, see method switchToStage
-		Gdx.app.log("CurrentStage", "CurrentStage is " + currentStage.toString());
 		currentStage.act(Gdx.graphics.getDeltaTime());
 		currentStage.draw();
 
@@ -1304,8 +1305,10 @@ public class BoomChess extends ApplicationAdapter {
 		allSoldiers[5] = new Tank("red");
 		allSoldiers[6] = new Artillery("red");
 		allSoldiers[7] = new Infantry("green");
+
 		allSoldiers[8] = new Commando("green");
 		allSoldiers[9] = new General("green");
+
 		allSoldiers[10] = new Wardog("green");
 		allSoldiers[11] = new Helicopter("green");
 		allSoldiers[12] = new Tank("green");
@@ -1350,10 +1353,12 @@ public class BoomChess extends ApplicationAdapter {
 		isColourChanged = true;
 		blueInfantryAnimation = new soldierAnimation(allSoldiers[7]);
 		blueInfantryAnimation.setSize(tileSize, tileSize);
-		blueGeneralAnimation = new soldierAnimation(allSoldiers[8]);
+
+		blueGeneralAnimation = new soldierAnimation(allSoldiers[9]);
 		blueGeneralAnimation.setSize(tileSize, tileSize);
-		blueCommandoAnimation = new soldierAnimation(allSoldiers[9]);
+		blueCommandoAnimation = new soldierAnimation(allSoldiers[8]);
 		blueCommandoAnimation.setSize(tileSize, tileSize);
+
 		blueWardogAnimation = new soldierAnimation(allSoldiers[10]);
 		blueWardogAnimation.setSize(tileSize, tileSize);
 		blueHelicopterAnimation = new soldierAnimation(allSoldiers[11]);

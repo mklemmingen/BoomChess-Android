@@ -144,8 +144,8 @@ public class soldierAnimation extends Actor implements Cloneable{
             timeWithoutAnim += Gdx.graphics.getDeltaTime();
             if(timeWithoutAnim >= randomNoAnimationTime){
                 // new randomNoAnimationTime
-                // random number between 5 and 12
-                randomNoAnimationTime = (float) (Math.random() * 7 + 5);
+                // random number between 2 and 14
+                randomNoAnimationTime = (float) (Math.random() * 12 + 2);
 
                 animationPlaying = true;
                 timeWithoutAnim = 0f;
@@ -171,8 +171,8 @@ public class soldierAnimation extends Actor implements Cloneable{
             } else {
 
                 cloned.animationPlaying = false;
-                //randomizing the timeWithoutAnim between 6 and 14
-                cloned.randomNoAnimationTime = (float) (Math.random() * 8 + 6);
+                //randomizing the timeWithoutAnim between 2 and 14
+                cloned.randomNoAnimationTime = (float) (Math.random() * 12 + 2);
             }
 
             return cloned;

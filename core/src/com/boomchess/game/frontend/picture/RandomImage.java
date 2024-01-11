@@ -26,6 +26,10 @@ public class RandomImage {
         }
     }
 
+    public void addRawTexture(Texture texture) {
+        textures.add(texture);
+    }
+
     public Texture getRandomTexture() {
         if (textures.isEmpty()) {
             throw new IllegalStateException("No textures available. " +

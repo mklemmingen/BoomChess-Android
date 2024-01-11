@@ -264,6 +264,27 @@ public class GameStage {
                                         allActiveSoldierAnimations.add(redWardogAnimation);
                                     }
                                     break;
+                                case "commando":
+                                    if (soldier.getTeamColor().equals("green")) {
+                                        if (isColourChanged) {
+                                            soldierAnimation blueCommandoAnimation =
+                                                    BoomChess.blueCommandoAnimation.clone();
+                                            solPiece.add(blueCommandoAnimation);
+                                            allActiveSoldierAnimations.add(blueCommandoAnimation);
+                                        } else {
+                                            soldierAnimation greenCommandoAnimation =
+                                                    BoomChess.greenCommandoAnimation.clone();
+                                            solPiece.add(greenCommandoAnimation);
+                                            allActiveSoldierAnimations.add(greenCommandoAnimation);
+                                        }
+                                    } else {
+                                        soldierAnimation redCommandoAnimation =
+                                                BoomChess.redCommandoAnimation.clone();
+                                        solPiece.add(redCommandoAnimation);
+                                        allActiveSoldierAnimations.add(redCommandoAnimation);
+                                    }
+                                    break;
+
                             }
                         }
                     }
