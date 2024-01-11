@@ -1091,6 +1091,10 @@ public class BoomChess extends ApplicationAdapter {
 				"Not Jam");
 		background_music.addSong("music/SeeingDouble.wav", "Seeing Double",
 				"Not Jam");
+		background_music.addSong("music/First.wav", "First",
+				"Steek Stook");
+		background_music.addSong("SnesPenultimateLevel.wav", "SnesPenultimateLevel",
+				"Steek Stook");
 
 
 		wrongMoveLogo = new Texture("Misc/WrongMove.png");
@@ -1105,10 +1109,16 @@ public class BoomChess extends ApplicationAdapter {
 		menu_music.addSong("music/03 Warm Breeze.mp3",
 				"Warm Breeze", "rachel wang");
 		menu_music.addSong("music/Start.mp3", "Start", "Smody");
+		menu_music.addSong("03 - Beginnings.mp3",
+				"Beginnings", "Oak Thielbar");
 
 		creditsMusic = new MusicPlaylist();
+		/* TODO vibes
 		creditsMusic.addSong("music/credits/Hadokowa - Loading.. - 03 囡囡 (NanNan).mp3",
 				"NanNan", "Hadokowa");
+		 */
+		creditsMusic.addSong("music/credits/TouhouEuropeanQuartet.wav",
+				"TouhouEuropeanQuartet", "Steek Stook");
 
 		// TODO elaborate on this Song cause wow
 		// creditsMusic.addSong("music/credits/Hadokowa - Loading.. - 04 買狗養狗 (Get a Dog,\n Pet a Dog).mp3",
