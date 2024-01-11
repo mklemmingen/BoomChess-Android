@@ -1059,34 +1059,31 @@ public class BoomChess extends ApplicationAdapter {
 		background_music = new MusicPlaylist();
 		background_music.addSong("music/A Little R & R.mp3",
 				"A Little R & R", "Bert Cole");
-		/* TODO not vibing with it anywhere
+
+		/*
+	       TODO not vibing with it anywhere
 		background_music.addSong("music/24 Stray cat.mp3",
 				"Stray cat", "Garo");
-		 */
-		/* TODO not rocking enough
+		   TODO not rocking enough
 		background_music.addSong("music/06 Tonal Dissonance.mp3",
 				"Tonal Dissonance", "Garo");
-		 */
 		background_music.addSong("music/36 Tonal Resonance.mp3",
 				"Tonal Resonance", "Garo");
-		/*
-		// TODO not vibing
+		   TODO not vibing
 		background_music.addSong("music/Outside the Colosseum.mp3",
 				"Outside the\n Colosseum", "Bert Cole\nbitbybitsound.com");
 		background_music.addSong("music/Song Idee Chess.mp3",
 				"Song Idee Chess", "Wambutz");
 		background_music.addSong("music/Song 2.mp3", "Song 2",
 				"Wambutz");
-		/*
-		// TODO too loud
+		   TODO too loud
 		background_music.addSong("music/Boss Battle.mp3", "Boss Battle",
 				"nostalgiac");
-
-		 */
-		/* TODO eh
+		   TODO eh
 		background_music.addSong("music/TypeCastTheme.wav", "TYPE:CAST",
 				"Not Jam");
 		 */
+
 		background_music.addSong("music/SeeingDouble.wav", "Seeing Double",
 				"Not Jam");
 		background_music.addSong("music/First.wav", "First",
