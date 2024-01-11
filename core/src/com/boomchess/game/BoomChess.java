@@ -1117,7 +1117,7 @@ public class BoomChess extends ApplicationAdapter {
 		creditsMusic.addSong("music/credits/Hadokowa - Loading.. - 03 囡囡 (NanNan).mp3",
 				"NanNan", "Hadokowa");
 		 */
-		creditsMusic.addSong("music/credits/TouhouEuropeanQuartet.wav",
+		creditsMusic.addSong("music/TouhouEuropeanQuartet.wav",
 				"TouhouEuropeanQuartet", "Steek Stook");
 
 		// TODO elaborate on this Song cause wow
