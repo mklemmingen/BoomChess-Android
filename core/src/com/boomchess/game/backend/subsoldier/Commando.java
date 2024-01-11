@@ -28,7 +28,7 @@ public class Commando extends Soldier
         /*
          * Constructor for the Commando object, takes positional arguments and team color
          */
-        super(teamColor, 50);
+        super(teamColor, 50, "commando");
     }
 
     public Texture takeSelfie() {
@@ -80,6 +80,11 @@ public class Commando extends Soldier
 
     public int getStandardHealth(){
         return standardHealth;
+    }
+
+    @Override
+    public String getPieceType() {
+        return "commando";
     }
 
     @Override
@@ -276,5 +281,7 @@ public class Commando extends Soldier
     public Texture showInterval() {
         return BoomChess.fiveThirty;
     }
+
+
 }
 

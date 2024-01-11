@@ -16,7 +16,7 @@ public class Empty extends Soldier
         /*
          * Constructor for the Helicopter object, takes positional arguments and team color
          */
-        super(teamColor, -1);
+        super(teamColor, -1, "empty");
     }
     public Texture takeSelfie() {
         /*
@@ -25,6 +25,14 @@ public class Empty extends Soldier
 
         return BoomChess.empty;
 
+    }
+
+    public String getTeamColor(){
+        return "empty";
+    }
+
+    public String getPieceType(){
+        return "empty";
     }
 
 }

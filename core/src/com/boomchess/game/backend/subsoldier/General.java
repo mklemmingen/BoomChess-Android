@@ -25,7 +25,7 @@ public class General extends Soldier
         /*
          * Constructor for the General object, takes positional arguments and team color
          */
-        super(teamColor, 50);
+        super(teamColor, 50, "general");
     }
 
     public Texture takeSelfie() {
@@ -71,6 +71,11 @@ public class General extends Soldier
 
     public int getStandardHealth(){
         return standardHealth;
+    }
+
+    @Override
+    public String getPieceType() {
+        return "general";
     }
 
     public int defendAndBleed(int damage, Soldier soldierAttack) {

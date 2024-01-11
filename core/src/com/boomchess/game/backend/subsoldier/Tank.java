@@ -28,7 +28,7 @@ public class Tank extends Soldier
         /*
          * Constructor for the Tank object, takes positional arguments and team color
          */
-        super(teamColor, 50);
+        super(teamColor, 50, "tank");
     }
 
     public int calculateDamage(Soldier soldierDefend) {
@@ -55,6 +55,11 @@ public class Tank extends Soldier
 
     public int getStandardHealth(){
         return standardHealth;
+    }
+
+    @Override
+    public String getPieceType() {
+        return "tank";
     }
 
     @Override

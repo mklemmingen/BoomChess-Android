@@ -23,6 +23,7 @@ import com.boomchess.game.BoomChess;
 public class OptionsStage extends Stage{
 
     public static Stage initalizeUI() {
+
         Stage optionsStage = new Stage();
 
         // Begin of Options Menu Layout - Root Table arranges content automatically and adaptively as ui-structure

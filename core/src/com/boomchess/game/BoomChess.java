@@ -40,6 +40,7 @@ import com.boomchess.game.frontend.actor.DeathExplosionActor;
 import com.boomchess.game.frontend.actor.DottedLineActor;
 import com.boomchess.game.frontend.actor.HitMarkerActor;
 import com.boomchess.game.frontend.actor.moveBotTile;
+import com.boomchess.game.frontend.animations.soldierAnimation;
 import com.boomchess.game.frontend.picture.RandomImage;
 import com.boomchess.game.frontend.picture.SpeechBubbles;
 import com.boomchess.game.frontend.screen.RelativeResizer;
@@ -418,6 +419,36 @@ public class BoomChess extends ApplicationAdapter {
 
 	// -----------------------------
 
+	// for the animation or texture setting
+
+	public static boolean isAnimated = true;
+
+	// -----------------------------
+
+	// soldierAnimations for all pieceTypes
+
+	public static soldierAnimation redInfantryAnimation;
+	public static soldierAnimation redCommandoAnimation;
+	public static soldierAnimation redGeneralAnimation;
+	public static soldierAnimation redWardogAnimation;
+	public static soldierAnimation redHelicopterAnimation;
+	public static soldierAnimation redTankAnimation;
+	public static soldierAnimation redArtilleryAnimation;
+	public static soldierAnimation greenInfantryAnimation;
+	public static soldierAnimation greenCommandoAnimation;
+	public static soldierAnimation greenGeneralAnimation;
+	public static soldierAnimation greenWardogAnimation;
+	public static soldierAnimation greenHelicopterAnimation;
+	public static soldierAnimation greenTankAnimation;
+	public static soldierAnimation greenArtilleryAnimation;
+	public static soldierAnimation blueInfantryAnimation;
+	public static soldierAnimation blueCommandoAnimation;
+	public static soldierAnimation blueGeneralAnimation;
+	public static soldierAnimation blueWardogAnimation;
+	public static soldierAnimation blueHelicopterAnimation;
+	public static soldierAnimation blueTankAnimation;
+	public static soldierAnimation blueArtilleryAnimation;
+
 	@Override
 	public void create() {
 		// creation of the batch for drawing the images
@@ -441,7 +472,7 @@ public class BoomChess extends ApplicationAdapter {
 
 		// creating all stage objects
 		deathExplosionStage = new Stage(new ScreenViewport());
-		mapStage  = new Stage(new ScreenViewport());
+		mapStage = new Stage(new ScreenViewport());
 		dottedLineStage = new Stage(new ScreenViewport());
 		botMovingStage = new Stage(new ScreenViewport());
 		speechBubbleStage = new Stage(new ScreenViewport());
@@ -470,14 +501,13 @@ public class BoomChess extends ApplicationAdapter {
 		backgroundImage.setSize(screenWidth, screenHeigth);
 		backgroundStage.addActor(backgroundImage);
 
-		buttonWidth = tileSize*2;
-		buttonHeight = tileSize/2;
+		buttonWidth = tileSize * 2;
+		buttonHeight = tileSize / 2;
 
 		katIncluded = Gdx.audio.newSound(Gdx.files.internal("Misc/katIncluded.mp3"));
 
 		loadingScreenIsRunning = true;
 	}
-
 
 	public enum GameState {
 		// for determining the current state of the game
@@ -511,7 +541,7 @@ public class BoomChess extends ApplicationAdapter {
 			loadingStage.act();
 			loadingStage.draw();
 			// run loading screen for 3 seconds atleast
-			if(loadingElapsed < 4){
+			if(loadingElapsed < 8){
 				loadingElapsed += Gdx.graphics.getDeltaTime();
 			} else {
 				loadingScreenIsRunning = false;
@@ -546,7 +576,7 @@ public class BoomChess extends ApplicationAdapter {
 
 		// for the stages, displays only stage assigned as currentStage, see method switchToStage
 		Gdx.app.log("CurrentStage", "CurrentStage is " + currentStage.toString());
-		currentStage.act();
+		currentStage.act(Gdx.graphics.getDeltaTime());
 		currentStage.draw();
 
 		// for the crossOfDeathStage
@@ -675,7 +705,7 @@ public class BoomChess extends ApplicationAdapter {
 		}
 	}
 
-	private static void loadAllAssets() {
+	private void loadAllAssets() {
 		/*
 		This method gets called during the main loading Stage runs
 		 */
@@ -1029,7 +1059,7 @@ public class BoomChess extends ApplicationAdapter {
 		background_music.addSong("music/Breakdown.mp3",
 				"Breakdown", "Wambutz");
 		background_music.addSong("music/A Little R & R.mp3",
-				"A Little R & R", "Bert Cole\nbitbybitsound.com");
+				"A Little R & R", "Bert Cole");
 		background_music.addSong("music/24 Stray cat.mp3",
 				"Stray cat", "Garo");
 		background_music.addSong("music/05 Thought Soup.mp3",
@@ -1041,7 +1071,7 @@ public class BoomChess extends ApplicationAdapter {
 		background_music.addSong("music/36 Tonal Resonance.mp3",
 				"Tonal Resonance", "Garo");
 		background_music.addSong("music/epic-battle.mp3",
-				"Epic Battle", "Bert Cole\nbitbybitsound.com");
+				"Epic Battle", "Bert Cole");
 		/*
 		// TODO not vibing
 		background_music.addSong("music/Outside the Colosseum.mp3",
@@ -1253,9 +1283,87 @@ public class BoomChess extends ApplicationAdapter {
 		clipBoard = new Texture(Gdx.files.internal("Misc/clipboard.png"));
 		createInGameOptionStages();
 
+		// loading all animation
+		loadAllAnimation();
+
 		Gdx.app.log("BoomChess", "Loading Assets: Finished");
 		// leaves the loading screen
 		assetsLoaded = true;
+	}
+
+	private void loadAllAnimation() {
+
+		Soldier[] allSoldiers = new Soldier[14];
+
+		// load all possible soldiers into the array
+		allSoldiers[0] = new Infantry("red");
+		allSoldiers[1] = new Commando("red");
+		allSoldiers[2] = new General("red");
+		allSoldiers[3] = new Wardog("red");
+		allSoldiers[4] = new Helicopter("red");
+		allSoldiers[5] = new Tank("red");
+		allSoldiers[6] = new Artillery("red");
+		allSoldiers[7] = new Infantry("green");
+		allSoldiers[8] = new Commando("green");
+		allSoldiers[9] = new General("green");
+		allSoldiers[10] = new Wardog("green");
+		allSoldiers[11] = new Helicopter("green");
+		allSoldiers[12] = new Tank("green");
+		allSoldiers[13] = new Artillery("green");
+
+		boolean tmp = isColourChanged;
+
+		// load all soldierAnimations with the soldier objects
+		redInfantryAnimation = new soldierAnimation(allSoldiers[0]);
+		redInfantryAnimation.setSize(tileSize, tileSize);
+		redCommandoAnimation = new soldierAnimation(allSoldiers[1]);
+		redCommandoAnimation.setSize(tileSize, tileSize);
+		redGeneralAnimation = new soldierAnimation(allSoldiers[2]);
+		redGeneralAnimation.setSize(tileSize, tileSize);
+		redWardogAnimation = new soldierAnimation(allSoldiers[3]);
+		redWardogAnimation.setSize(tileSize, tileSize);
+		redHelicopterAnimation = new soldierAnimation(allSoldiers[4]);
+		redHelicopterAnimation.setSize(tileSize, tileSize);
+		redTankAnimation = new soldierAnimation(allSoldiers[5]);
+		redTankAnimation.setSize(tileSize, tileSize);
+		redArtilleryAnimation = new soldierAnimation(allSoldiers[6]);
+		redArtilleryAnimation.setSize(tileSize, tileSize);
+
+		/* // TODO comment out when green spritesheets are done
+		isColourChanged = false;
+		greenInfantryAnimation = new soldierAnimation(allSoldiers[7]);
+		greenInfantryAnimation.setSize(tileSize, tileSize);
+		greenCommandoAnimation = new soldierAnimation(allSoldiers[8]);
+		greenCommandoAnimation.setSize(tileSize, tileSize);
+		greenGeneralAnimation = new soldierAnimation(allSoldiers[9]);
+		greenGeneralAnimation.setSize(tileSize, tileSize);
+		greenWardogAnimation = new soldierAnimation(allSoldiers[10]);
+		greenWardogAnimation.setSize(tileSize, tileSize);
+		greenHelicopterAnimation = new soldierAnimation(allSoldiers[11]);
+		greenHelicopterAnimation.setSize(tileSize, tileSize);
+		greenTankAnimation = new soldierAnimation(allSoldiers[12]);
+		greenTankAnimation.setSize(tileSize, tileSize);
+		greenArtilleryAnimation = new soldierAnimation(allSoldiers[13]);
+		greenArtilleryAnimation.setSize(tileSize, tileSize);
+		 */
+
+		isColourChanged = true;
+		blueInfantryAnimation = new soldierAnimation(allSoldiers[7]);
+		blueInfantryAnimation.setSize(tileSize, tileSize);
+		blueGeneralAnimation = new soldierAnimation(allSoldiers[8]);
+		blueGeneralAnimation.setSize(tileSize, tileSize);
+		blueCommandoAnimation = new soldierAnimation(allSoldiers[9]);
+		blueCommandoAnimation.setSize(tileSize, tileSize);
+		blueWardogAnimation = new soldierAnimation(allSoldiers[10]);
+		blueWardogAnimation.setSize(tileSize, tileSize);
+		blueHelicopterAnimation = new soldierAnimation(allSoldiers[11]);
+		blueHelicopterAnimation.setSize(tileSize, tileSize);
+		blueTankAnimation = new soldierAnimation(allSoldiers[12]);
+		blueTankAnimation.setSize(tileSize, tileSize);
+		blueArtilleryAnimation = new soldierAnimation(allSoldiers[13]);
+		blueArtilleryAnimation.setSize(tileSize, tileSize);
+
+		isColourChanged = tmp;
 	}
 
 	public static void createInGameOptionStages() {
@@ -1633,6 +1741,32 @@ public class BoomChess extends ApplicationAdapter {
 		greenZero.dispose();
 		yellowZero.dispose();
 		orangeZero.dispose();
+
+		// animations
+		redInfantryAnimation.dispose();
+		redCommandoAnimation.dispose();
+		redGeneralAnimation.dispose();
+		redWardogAnimation.dispose();
+		redHelicopterAnimation.dispose();
+		redTankAnimation.dispose();
+		redArtilleryAnimation.dispose();
+
+		blueInfantryAnimation.dispose();
+		blueCommandoAnimation.dispose();
+		blueGeneralAnimation.dispose();
+		blueWardogAnimation.dispose();
+		blueHelicopterAnimation.dispose();
+		blueTankAnimation.dispose();
+		blueArtilleryAnimation.dispose();
+
+		greenInfantryAnimation.dispose();
+		greenCommandoAnimation.dispose();
+		greenGeneralAnimation.dispose();
+		greenWardogAnimation.dispose();
+		greenHelicopterAnimation.dispose();
+		greenTankAnimation.dispose();
+		greenArtilleryAnimation.dispose();
+
 	}
 
 	public static void switchToStage(Stage newStage) {
@@ -1728,6 +1862,13 @@ public class BoomChess extends ApplicationAdapter {
 		if(currentState == GameState.NOT_IN_GAME || !(inGame)) {
 			return;
 		}
+
+		// remove all active soldierAnimations
+		GameStage.clearAllActiveSoldierAnimations();
+
+		// disposing all inhabitants of the currentStage
+		currentStage.clear();
+
 		switchToStage(createGameStage(isBotMatch));
 	}
 

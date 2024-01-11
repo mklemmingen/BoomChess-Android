@@ -15,10 +15,12 @@ public abstract class Soldier {
     protected String teamColor;
     protected int health;
     private int standardHealth;
+    private String pieceType;
 
-    public Soldier(String teamColor, int health) {
+    public Soldier(String teamColor, int health, String pieceType) {
         this.teamColor = teamColor;
         this.health = health;
+        this.pieceType = pieceType;
     }
 
     public String getTeamColor() {
@@ -83,4 +85,6 @@ public abstract class Soldier {
     public int getStandardHealth(){
         return standardHealth;
     }
+
+    public abstract String getPieceType();
 }

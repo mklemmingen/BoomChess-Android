@@ -24,7 +24,7 @@ public class Infantry extends Soldier
         /*
          * Constructor for the Infantry object, takes positional arguments and team color
          */
-        super(teamColor, 40);
+        super(teamColor, 40, "infantry");
     }
 
     public int calculateDamage(Soldier soldierDefend) {
@@ -49,6 +49,11 @@ public class Infantry extends Soldier
 
     public int getStandardHealth(){
         return standardHealth;
+    }
+
+    @Override
+    public String getPieceType() {
+        return "infantry";
     }
 
     public int defendAndBleed(int damage, Soldier soldierAttack) {

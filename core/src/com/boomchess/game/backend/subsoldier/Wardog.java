@@ -28,7 +28,7 @@ public class Wardog extends Soldier
         /*
          * Constructor for the Wardog object, takes positional arguments and team color
          */
-        super(teamColor, 40);
+        super(teamColor, 40, "wardog");
     }
 
     public Texture takeSelfie() {
@@ -88,6 +88,11 @@ public class Wardog extends Soldier
 
     public int getStandardHealth(){
         return standardHealth;
+    }
+
+    @Override
+    public String getPieceType() {
+        return "wardog";
     }
 
     @Override

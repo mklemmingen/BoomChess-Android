@@ -17,7 +17,7 @@ public class Hill extends Soldier implements takeSelfieInterface {
         /*
          * Constructor for the Helicopter object, takes positional arguments and team color
          */
-        super(teamColor, -1);
+        super(teamColor, -1, "hill");
         texture = BoomChess.obstacleTextures.getRandomTexture();
     }
 
@@ -26,5 +26,10 @@ public class Hill extends Soldier implements takeSelfieInterface {
          * this method returns a Texture defined out of the randomTexture object obstacleTextures at Constructor
          */
         return texture;
+    }
+
+    @Override
+    public String getPieceType() {
+        return "hill";
     }
 }
