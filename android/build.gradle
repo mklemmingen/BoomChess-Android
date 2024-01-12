@@ -23,8 +23,8 @@ android {
         applicationId "com.boomchess.game"
         minSdkVersion 14
         targetSdkVersion 34
-        versionCode 11
-        versionName "11.0 Music following the Animation"
+        versionCode 12
+        versionName "12.0 green Animation"
     }
     buildTypes {
         release {
