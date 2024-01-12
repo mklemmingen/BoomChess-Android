@@ -1130,7 +1130,8 @@ public class BoomChess extends ApplicationAdapter {
 				"TouhouEuropeanQuartet", "Steek Stook");
 
 
-		/* TODO vibes
+		/*
+			TODO vibes
 		creditsMusic.addSong("music/credits/Hadokowa - Loading.. - 03 囡囡 (NanNan).mp3",
 				"NanNan", "Hadokowa");
 		   TODO elaborate on this Song cause wow
@@ -1362,7 +1363,6 @@ public class BoomChess extends ApplicationAdapter {
 		redArtilleryAnimation = new soldierAnimation(allSoldiers[6]);
 		redArtilleryAnimation.setSize(tileSize, tileSize);
 
-		/* TODO comment out when green spritesheets are done
 		isColourChanged = false;
 		greenInfantryAnimation = new soldierAnimation(allSoldiers[7]);
 		greenInfantryAnimation.setSize(tileSize, tileSize);
@@ -1378,7 +1378,6 @@ public class BoomChess extends ApplicationAdapter {
 		greenTankAnimation.setSize(tileSize, tileSize);
 		greenArtilleryAnimation = new soldierAnimation(allSoldiers[13]);
 		greenArtilleryAnimation.setSize(tileSize, tileSize);
-		 */
 
 		isColourChanged = true;
 		blueInfantryAnimation = new soldierAnimation(allSoldiers[7]);
