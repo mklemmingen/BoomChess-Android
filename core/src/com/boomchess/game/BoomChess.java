@@ -1441,6 +1441,7 @@ public class BoomChess extends ApplicationAdapter {
 			public void changed(ChangeEvent event, Actor actor) {
 				isColourChanged = !isColourChanged;
 				currentStage = GameStage.createGameStage(isBotMatch);
+				addAudioTable();
 				createInGameOptionStages();
 			}
 		});
