@@ -201,7 +201,11 @@ public class Wardog extends Soldier
 
     public void makeASound(){
         if(BoomChess.isMedievalMode){
-            BoomChess.dogSound.play(BoomChess.soundVolume);
+            if(BoomChess.dogIsJeep) {
+                BoomChess.dogSound.play(BoomChess.soundVolume);
+            } else {
+                BoomChess.smallArmsSound.play(BoomChess.soundVolume);
+            }
         } else {
             BoomChess.magicSound.play(BoomChess.soundVolume);
         }
