@@ -1,5 +1,7 @@
 package com.boomchess.game.backend.subsoldier;
 
+import static com.boomchess.game.BoomChess.dogIsJeep;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.boomchess.game.BoomChess;
 import com.boomchess.game.backend.Board;
@@ -43,7 +45,7 @@ public class Wardog extends Soldier
                 return BoomChess.greenFea;
             }
         } else {
-            if(BoomChess.dogIsJeep){
+            if(dogIsJeep){
                 if (teamColor.equals("red")) {
                     return BoomChess.redJeep;
                 } else {
@@ -201,6 +203,11 @@ public class Wardog extends Soldier
 
     public void makeASound(){
         if(BoomChess.isMedievalMode){
+            if(dogIsJeep){
+                BoomChess.smallArmsSound.play(BoomChess.soundVolume);
+            } else {
+                BoomChess.dogSound.play(BoomChess.soundVolume);
+            }
             BoomChess.dogSound.play(BoomChess.soundVolume);
         } else {
             BoomChess.magicSound.play(BoomChess.soundVolume);
