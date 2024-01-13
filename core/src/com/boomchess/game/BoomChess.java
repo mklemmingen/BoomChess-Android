@@ -1129,7 +1129,6 @@ public class BoomChess extends ApplicationAdapter {
 				"Safe Zone", "HZSMITH");
 		menu_music.addSong("music/03 Warm Breeze.mp3",
 				"Warm Breeze", "rachel wang");
-		menu_music.addSong("music/Start.mp3", "Start", "Smody");
 		menu_music.addSong("music/27 Coffee Break.mp3",
 				"Coffee Break", "Garo");
 		menu_music.addSong("music/Breakdown.mp3",
@@ -1138,6 +1137,9 @@ public class BoomChess extends ApplicationAdapter {
 				"Thought Soup", "Garo");
 		menu_music.addSong("music/epic-battle.mp3",
 				"Epic Battle", "Bert Cole");
+		/* TODO too pixelated
+		menu_music.addSong("music/Start.mp3", "Start", "Smody");
+		*/
 
 		creditsMusic = new MusicPlaylist();
 		creditsMusic.addSong("music/TouhouEuropeanQuartet.wav",
