@@ -23,8 +23,8 @@ android {
         applicationId "com.boomchess.game"
         minSdkVersion 14
         targetSdkVersion 34
-        versionCode 12
-        versionName "12.0 green Animation"
+        versionCode 13
+        versionName "13.0 a new Jeep has been added!"
     }
     buildTypes {
         release {
