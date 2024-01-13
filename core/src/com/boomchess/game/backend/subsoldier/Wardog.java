@@ -43,17 +43,29 @@ public class Wardog extends Soldier
                 return BoomChess.greenFea;
             }
         } else {
-            if(BoomChess.isColourChanged){
+            if(BoomChess.dogIsJeep){
                 if (teamColor.equals("red")) {
-                    return BoomChess.redWardog;
+                    return BoomChess.redJeep;
                 } else {
-                    return BoomChess.blueWardog;
+                    if(BoomChess.isColourChanged){
+                        return BoomChess.blueJeep;
+                    } else {
+                        return BoomChess.greenJeep;
+                    }
                 }
-            } else{
-                if (teamColor.equals("red")) {
-                    return BoomChess.redWardog;
+            } else {
+                if (BoomChess.isColourChanged) {
+                    if (teamColor.equals("red")) {
+                        return BoomChess.redWardog;
+                    } else {
+                        return BoomChess.blueWardog;
+                    }
                 } else {
-                    return BoomChess.greenWardog;
+                    if (teamColor.equals("red")) {
+                        return BoomChess.redWardog;
+                    } else {
+                        return BoomChess.greenWardog;
+                    }
                 }
             }
         }

@@ -117,7 +117,9 @@ public class BoomChess extends ApplicationAdapter {
 	public static Texture greenCommando;
 	public static Texture greenInfantry;
 	public static Texture greenArtillery;
+	public static Texture greenJeep;
 	public static Texture redArtillery;
+	public static Texture redJeep;
 	public static Texture blueArtillery;
 	public static Texture blueInfantry;
 	public static Texture blueCommando;
@@ -125,6 +127,7 @@ public class BoomChess extends ApplicationAdapter {
 	public static Texture blueWardog;
 	public static Texture blueHelicopter;
 	public static Texture blueTank;
+	public static Texture blueJeep;
 
 	private static Image redMove;
 	private static Image greenMove;
@@ -448,10 +451,17 @@ public class BoomChess extends ApplicationAdapter {
 	public static soldierAnimation blueHelicopterAnimation;
 	public static soldierAnimation blueTankAnimation;
 	public static soldierAnimation blueArtilleryAnimation;
+	public static soldierAnimation blueJeepAnimation;
+	public static soldierAnimation redJeepAnimation;
+	public static soldierAnimation greenJeepAnimation;
 
 	// ------------------------------------------------------
 
-	public static boolean publisher = true;
+	public static boolean publisher = false;
+
+	// ------------------------------------------------------
+
+	public static boolean dogIsJeep = true;
 
 	@Override
 	public void create() {
@@ -780,6 +790,8 @@ public class BoomChess extends ApplicationAdapter {
 		redTank = new Texture(Gdx.files.internal("redTeam/tank_red_left.png"));
 		greenArtillery = new Texture(Gdx.files.internal("greenTeam/artillery_green_right.png"));
 		redArtillery = new Texture(Gdx.files.internal("redTeam/artillery_red_left.png"));
+		greenJeep = new Texture(Gdx.files.internal("greenTeam/jeep_green_right.png"));
+		redJeep = new Texture(Gdx.files.internal("redTeam/jeep_red_left.png"));
 
 		// bot arm
 		botArm = new Texture(Gdx.files.internal("Misc/botArm.png"));
@@ -792,6 +804,7 @@ public class BoomChess extends ApplicationAdapter {
 		blueWardog = new Texture(Gdx.files.internal("blueTeam/war_dog_blue_right.png"));
 		blueHelicopter = new Texture(Gdx.files.internal("blueTeam/helicopter_blue_right.png"));
 		blueTank = new Texture(Gdx.files.internal("blueTeam/tank_blue_right.png"));
+		blueJeep = new Texture(Gdx.files.internal("blueTeam/jeep_blue_right.png"));
 
 		xMarker = new Texture(Gdx.files.internal("Misc/xMarker.png"));
 
@@ -1356,6 +1369,8 @@ public class BoomChess extends ApplicationAdapter {
 		redGeneralAnimation.setSize(tileSize, tileSize);
 		redWardogAnimation = new soldierAnimation(allSoldiers[3]);
 		redWardogAnimation.setSize(tileSize, tileSize);
+		redJeepAnimation = new soldierAnimation(allSoldiers[3]);
+		redJeepAnimation.setSize(tileSize, tileSize);
 		redHelicopterAnimation = new soldierAnimation(allSoldiers[4]);
 		redHelicopterAnimation.setSize(tileSize, tileSize);
 		redTankAnimation = new soldierAnimation(allSoldiers[5]);
@@ -1372,6 +1387,8 @@ public class BoomChess extends ApplicationAdapter {
 		greenGeneralAnimation.setSize(tileSize, tileSize);
 		greenWardogAnimation = new soldierAnimation(allSoldiers[10]);
 		greenWardogAnimation.setSize(tileSize, tileSize);
+		greenJeepAnimation = new soldierAnimation(allSoldiers[10]);
+		greenJeepAnimation.setSize(tileSize, tileSize);
 		greenHelicopterAnimation = new soldierAnimation(allSoldiers[11]);
 		greenHelicopterAnimation.setSize(tileSize, tileSize);
 		greenTankAnimation = new soldierAnimation(allSoldiers[12]);
@@ -1390,6 +1407,8 @@ public class BoomChess extends ApplicationAdapter {
 
 		blueWardogAnimation = new soldierAnimation(allSoldiers[10]);
 		blueWardogAnimation.setSize(tileSize, tileSize);
+		blueJeepAnimation = new soldierAnimation(allSoldiers[10]);
+		blueJeepAnimation.setSize(tileSize, tileSize);
 		blueHelicopterAnimation = new soldierAnimation(allSoldiers[11]);
 		blueHelicopterAnimation.setSize(tileSize, tileSize);
 		blueTankAnimation = new soldierAnimation(allSoldiers[12]);
@@ -1537,6 +1556,16 @@ public class BoomChess extends ApplicationAdapter {
 			}
 		});
 		table.add(beepModeButton).padBottom(tileSize/8).row();
+
+		// dog is car button
+		TextButton dogIsCarButton = new TextButton("Bishop is a Jeep: " + dogIsJeep, skin);
+		dogIsCarButton.addListener(new ChangeListener() {
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				dogIsJeep = !dogIsJeep;
+				createInGameOptionStages();
+			}
+		});
 
 		// change Map
 		TextButton changeMapButton = new TextButton("Change Map", skin);

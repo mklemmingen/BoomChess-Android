@@ -1,33 +1,5 @@
 package com.boomchess.game.frontend.stage;
 
-import static com.boomchess.game.BoomChess.actionSequence;
-import static com.boomchess.game.BoomChess.batch;
-import static com.boomchess.game.BoomChess.botMovingStage;
-import static com.boomchess.game.BoomChess.calculateTileByPX;
-import static com.boomchess.game.BoomChess.calculateTileByPXNonGDX;
-import static com.boomchess.game.BoomChess.clearAllowedTiles;
-import static com.boomchess.game.BoomChess.createInGameOptionStages;
-import static com.boomchess.game.BoomChess.createMainMenuStage;
-import static com.boomchess.game.BoomChess.crossOfDeathStage;
-import static com.boomchess.game.BoomChess.currentState;
-import static com.boomchess.game.BoomChess.damageNumberStage;
-import static com.boomchess.game.BoomChess.deathExplosionStage;
-import static com.boomchess.game.BoomChess.dottedLineStage;
-import static com.boomchess.game.BoomChess.empty;
-import static com.boomchess.game.BoomChess.gameEndStage;
-import static com.boomchess.game.BoomChess.inGame;
-import static com.boomchess.game.BoomChess.inTutorial;
-import static com.boomchess.game.BoomChess.isColourChanged;
-import static com.boomchess.game.BoomChess.legitTurn;
-import static com.boomchess.game.BoomChess.reRenderGame;
-import static com.boomchess.game.BoomChess.setAllowedTiles;
-import static com.boomchess.game.BoomChess.showHelp;
-import static com.boomchess.game.BoomChess.showInGameOptions;
-import static com.boomchess.game.BoomChess.skin;
-import static com.boomchess.game.BoomChess.speechBubbleStage;
-import static com.boomchess.game.BoomChess.tileSize;
-import static com.boomchess.game.BoomChess.wrongMoveStage;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
@@ -61,6 +33,8 @@ import com.boomchess.game.frontend.interfaces.takeSelfieInterface;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+
+import static com.boomchess.game.BoomChess.*;
 
 public class GameStage {
 
@@ -245,23 +219,44 @@ public class GameStage {
                                     break;
 
                                 case "wardog":
-                                    if (soldier.getTeamColor().equals("green")) {
-                                        if (isColourChanged) {
-                                            soldierAnimation blueWardogAnimation =
-                                                    BoomChess.blueWardogAnimation.clone();
-                                            solPiece.add(blueWardogAnimation);
-                                            allActiveSoldierAnimations.add(blueWardogAnimation);
+                                    if(dogIsJeep) {
+                                        if (soldier.getTeamColor().equals("green")) {
+                                            if (isColourChanged) {
+                                                soldierAnimation blueJeepAnimation =
+                                                        BoomChess.blueJeepAnimation.clone();
+                                                solPiece.add(blueJeepAnimation);
+                                                allActiveSoldierAnimations.add(blueJeepAnimation);
+                                            } else {
+                                                soldierAnimation greenJeepAnimation =
+                                                        BoomChess.greenJeepAnimation.clone();
+                                                solPiece.add(greenJeepAnimation);
+                                                allActiveSoldierAnimations.add(greenJeepAnimation);
+                                            }
                                         } else {
-                                            soldierAnimation greenWardogAnimation =
-                                                    BoomChess.greenWardogAnimation.clone();
-                                            solPiece.add(greenWardogAnimation);
-                                            allActiveSoldierAnimations.add(greenWardogAnimation);
+                                            soldierAnimation redJeepAnimation =
+                                                    BoomChess.redJeepAnimation.clone();
+                                            solPiece.add(redJeepAnimation);
+                                            allActiveSoldierAnimations.add(redJeepAnimation);
                                         }
                                     } else {
-                                        soldierAnimation redWardogAnimation =
-                                                BoomChess.redWardogAnimation.clone();
-                                        solPiece.add(redWardogAnimation);
-                                        allActiveSoldierAnimations.add(redWardogAnimation);
+                                        if (soldier.getTeamColor().equals("green")) {
+                                            if (isColourChanged) {
+                                                soldierAnimation blueWardogAnimation =
+                                                        BoomChess.blueWardogAnimation.clone();
+                                                solPiece.add(blueWardogAnimation);
+                                                allActiveSoldierAnimations.add(blueWardogAnimation);
+                                            } else {
+                                                soldierAnimation greenWardogAnimation =
+                                                        BoomChess.greenWardogAnimation.clone();
+                                                solPiece.add(greenWardogAnimation);
+                                                allActiveSoldierAnimations.add(greenWardogAnimation);
+                                            }
+                                        } else {
+                                            soldierAnimation redWardogAnimation =
+                                                    BoomChess.redWardogAnimation.clone();
+                                            solPiece.add(redWardogAnimation);
+                                            allActiveSoldierAnimations.add(redWardogAnimation);
+                                        }
                                     }
                                     break;
                                 case "commando":
