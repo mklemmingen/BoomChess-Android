@@ -23,8 +23,8 @@ android {
         applicationId "com.boomchess.game"
         minSdkVersion 14
         targetSdkVersion 34
-        versionCode 14
-        versionName "14.0 non-invasive reRendering through gameboard reusing"
+        versionCode 15
+        versionName "15.0 non-invasive reRendering through gameboard reusing"
     }
     buildTypes {
         release {
