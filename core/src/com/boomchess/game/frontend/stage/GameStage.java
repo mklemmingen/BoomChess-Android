@@ -38,6 +38,9 @@ import static com.boomchess.game.BoomChess.*;
 
 public class GameStage {
 
+    // used for nonInvasive reRendering
+    private static Soldier[][] lastGameBoard = new Soldier[9][8];
+
     private static boolean  showHealth = false;
 
     private final Stage gameStage;
@@ -75,7 +78,12 @@ public class GameStage {
         root.setPosition((float) Gdx.graphics.getWidth() / 2 - root.getWidth() / 2,
                 (float) Gdx.graphics.getHeight() / 2 - root.getHeight() / 2);
 
-        Soldier[][] gameBoard = Board.getGameBoard();
+        Soldier[][] gameBoard;
+        if(nonInvasiveReRender){
+             gameBoard = lastGameBoard;
+        } else {
+            gameBoard = Board.getGameBoard();
+        }
 
         for (int j = 0; j < numRows; j++) {
             root.row();
@@ -706,6 +714,9 @@ public class GameStage {
                 createMainMenuStage();
             }
         });
+
+        lastGameBoard = gameBoard;
+        nonInvasiveReRender = false;
 
         return gameStage;
     }

@@ -463,6 +463,7 @@ public class BoomChess extends ApplicationAdapter {
 	// ------------------------------------------------------
 
 	public static boolean dogIsJeep = true;
+	public static boolean nonInvasiveReRender = false;
 
 	@Override
 	public void create() {
@@ -1127,16 +1128,12 @@ public class BoomChess extends ApplicationAdapter {
 		menu_music = new MusicPlaylist();
 		menu_music.addSong("music/(LOOP-READY) Track 1 - Safe Zone No Intro.mp3",
 				"Safe Zone", "HZSMITH");
-
 		menu_music.addSong("music/03 Warm Breeze.mp3",
 				"Warm Breeze", "rachel wang");
-
 		menu_music.addSong("music/27 Coffee Break.mp3",
 				"Coffee Break", "Garo");
-
 		menu_music.addSong("music/Breakdown.mp3",
 				"Breakdown", "Wambutz");
-
 		menu_music.addSong("music/05 Thought Soup.mp3",
 				"Thought Soup", "Garo");
 		menu_music.addSong("music/epic-battle.mp3",
@@ -1482,6 +1479,7 @@ public class BoomChess extends ApplicationAdapter {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				isColourChanged = !isColourChanged;
+				nonInvasiveReRender = true;
 				currentStage = GameStage.createGameStage(isBotMatch);
 				addAudioTable();
 				createInGameOptionStages();
@@ -1543,6 +1541,7 @@ public class BoomChess extends ApplicationAdapter {
 		attackCircleButton.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
+				nonInvasiveReRender = true;
 				showAttackCircle = !showAttackCircle;
 				createInGameOptionStages();
 			}
@@ -1585,6 +1584,7 @@ public class BoomChess extends ApplicationAdapter {
 		dogIsCarButton.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
+				nonInvasiveReRender = true;
 				dogIsJeep = !dogIsJeep;
 				createInGameOptionStages();
 			}
@@ -1608,6 +1608,7 @@ public class BoomChess extends ApplicationAdapter {
 		animationButton.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
+				nonInvasiveReRender = true;
 				isAnimated = !isAnimated;
 				createInGameOptionStages();
 			}
