@@ -457,7 +457,8 @@ public class BoomChess extends ApplicationAdapter {
 
 	// ------------------------------------------------------
 
-	public static boolean publisher = false;
+	// if on desktop, false, android if true, sets the resizing by tileSize and UI size
+	public static boolean publisher = true;
 
 	// ------------------------------------------------------
 
@@ -1360,6 +1361,8 @@ public class BoomChess extends ApplicationAdapter {
 
 		boolean tmp = isColourChanged;
 
+		boolean tmpJeep = dogIsJeep;
+
 		// load all soldierAnimations with the soldier objects
 		redInfantryAnimation = new soldierAnimation(allSoldiers[0]);
 		redInfantryAnimation.setSize(tileSize, tileSize);
@@ -1367,10 +1370,15 @@ public class BoomChess extends ApplicationAdapter {
 		redCommandoAnimation.setSize(tileSize, tileSize);
 		redGeneralAnimation = new soldierAnimation(allSoldiers[2]);
 		redGeneralAnimation.setSize(tileSize, tileSize);
+
+		dogIsJeep = false;
 		redWardogAnimation = new soldierAnimation(allSoldiers[3]);
 		redWardogAnimation.setSize(tileSize, tileSize);
+
+		dogIsJeep = true;
 		redJeepAnimation = new soldierAnimation(allSoldiers[3]);
 		redJeepAnimation.setSize(tileSize, tileSize);
+
 		redHelicopterAnimation = new soldierAnimation(allSoldiers[4]);
 		redHelicopterAnimation.setSize(tileSize, tileSize);
 		redTankAnimation = new soldierAnimation(allSoldiers[5]);
@@ -1385,10 +1393,15 @@ public class BoomChess extends ApplicationAdapter {
 		greenCommandoAnimation.setSize(tileSize, tileSize);
 		greenGeneralAnimation = new soldierAnimation(allSoldiers[9]);
 		greenGeneralAnimation.setSize(tileSize, tileSize);
+
+		dogIsJeep = false;
 		greenWardogAnimation = new soldierAnimation(allSoldiers[10]);
 		greenWardogAnimation.setSize(tileSize, tileSize);
+
+		dogIsJeep = true;
 		greenJeepAnimation = new soldierAnimation(allSoldiers[10]);
 		greenJeepAnimation.setSize(tileSize, tileSize);
+
 		greenHelicopterAnimation = new soldierAnimation(allSoldiers[11]);
 		greenHelicopterAnimation.setSize(tileSize, tileSize);
 		greenTankAnimation = new soldierAnimation(allSoldiers[12]);
@@ -1405,10 +1418,14 @@ public class BoomChess extends ApplicationAdapter {
 		blueCommandoAnimation = new soldierAnimation(allSoldiers[8]);
 		blueCommandoAnimation.setSize(tileSize, tileSize);
 
+		dogIsJeep = false;
 		blueWardogAnimation = new soldierAnimation(allSoldiers[10]);
 		blueWardogAnimation.setSize(tileSize, tileSize);
+
+		dogIsJeep = true;
 		blueJeepAnimation = new soldierAnimation(allSoldiers[10]);
 		blueJeepAnimation.setSize(tileSize, tileSize);
+
 		blueHelicopterAnimation = new soldierAnimation(allSoldiers[11]);
 		blueHelicopterAnimation.setSize(tileSize, tileSize);
 		blueTankAnimation = new soldierAnimation(allSoldiers[12]);

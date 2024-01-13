@@ -10,6 +10,7 @@ import com.boomchess.game.BoomChess;
 import com.boomchess.game.backend.Soldier;
 
 import java.util.LinkedList;
+import java.util.Objects;
 
 public class soldierAnimation extends Actor implements Cloneable{
     /*
@@ -40,13 +41,19 @@ public class soldierAnimation extends Actor implements Cloneable{
          */
 
         String teamColour = soldier.getTeamColor();
-        if(BoomChess.isColourChanged){
+        if (BoomChess.isColourChanged) {
             if (teamColour.equals("green")) {
                 teamColour = "blue";
             }
         }
 
         String pieceType = soldier.getPieceType();
+
+        if (Objects.equals(pieceType, "wardog")){
+            if(BoomChess.dogIsJeep) {
+                pieceType = "jeep";
+            }
+        }
 
         Texture spriteSheet;
 
