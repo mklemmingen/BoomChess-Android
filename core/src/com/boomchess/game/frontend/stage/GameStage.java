@@ -655,6 +655,7 @@ public class GameStage {
         intervalsButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                nonInvasiveReRender = true;
                 BoomChess.showIntervals = !BoomChess.showIntervals;
                 reRenderGame();
             }
@@ -671,6 +672,7 @@ public class GameStage {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 showHealth = !showHealth;
+                nonInvasiveReRender = true;
                 reRenderGame();
             }
         });
