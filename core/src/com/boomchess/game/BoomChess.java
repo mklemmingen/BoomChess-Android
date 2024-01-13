@@ -1128,18 +1128,14 @@ public class BoomChess extends ApplicationAdapter {
 		menu_music.addSong("music/(LOOP-READY) Track 1 - Safe Zone No Intro.mp3",
 				"Safe Zone", "HZSMITH");
 
-		/* TODO repetitive
 		menu_music.addSong("music/03 Warm Breeze.mp3",
 				"Warm Breeze", "rachel wang");
-		*/
 
 		menu_music.addSong("music/27 Coffee Break.mp3",
 				"Coffee Break", "Garo");
 
-		/* TODO REPETITIVE
 		menu_music.addSong("music/Breakdown.mp3",
 				"Breakdown", "Wambutz");
-		 */
 
 		menu_music.addSong("music/05 Thought Soup.mp3",
 				"Thought Soup", "Garo");
