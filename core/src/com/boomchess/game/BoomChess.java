@@ -465,6 +465,8 @@ public class BoomChess extends ApplicationAdapter {
 	public static boolean dogIsJeep = true;
 	public static boolean nonInvasiveReRender = false;
 
+	public static Sound paperRoll;
+
 	@Override
 	public void create() {
 		// creation of the batch for drawing the images
@@ -1021,6 +1023,8 @@ public class BoomChess extends ApplicationAdapter {
 		helicopterSound.addSound("sounds/helicopter/helicopter5.mp3");
 
 		tankSound = bigArmsSound;
+
+		paperRoll = Gdx.audio.newSound(Gdx.files.internal("sounds/paper_roll.wav"));
 
 		smallExplosionSound = new RandomSound();
 		smallExplosionSound.addSound("sounds/small/small1.mp3");
@@ -1684,6 +1688,8 @@ public class BoomChess extends ApplicationAdapter {
 		// add the tables to their stages
 		table.setZIndex(2);
 		inGamOptStage.addActor(table);
+
+		rollPaperSound();
 
 	}
 
@@ -2405,5 +2411,14 @@ public class BoomChess extends ApplicationAdapter {
 		}
 
 		return specialValue;
+	}
+
+	// sound methods ---------------------------
+
+	public static void rollPaperSound(){
+		/*
+		 * method for playing the roll paper sound
+		 */
+		paperRoll.play(soundVolume);
 	}
 }

@@ -208,7 +208,6 @@ public class Wardog extends Soldier
             } else {
                 BoomChess.dogSound.play(BoomChess.soundVolume);
             }
-            BoomChess.dogSound.play(BoomChess.soundVolume);
         } else {
             BoomChess.magicSound.play(BoomChess.soundVolume);
         }

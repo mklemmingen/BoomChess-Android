@@ -11,6 +11,7 @@ import static com.boomchess.game.BoomChess.isBeepMode;
 import static com.boomchess.game.BoomChess.isBotMatch;
 import static com.boomchess.game.BoomChess.isMedievalMode;
 import static com.boomchess.game.BoomChess.menu_music;
+import static com.boomchess.game.BoomChess.rollPaperSound;
 import static com.boomchess.game.BoomChess.showArm;
 import static com.boomchess.game.BoomChess.skin;
 import static com.boomchess.game.BoomChess.switchToStage;
@@ -29,8 +30,7 @@ import com.boomchess.game.backend.Board;
 
 public class MenuStage extends Stage{
 
-    public static Stage initializeUI() {
-        BoomChess.showMove = false;
+    public static Stage initializeUI() {        BoomChess.showMove = false;
 
         // setOverlay to false
         BoomChess.renderOverlay = false;
@@ -124,6 +124,8 @@ public class MenuStage extends Stage{
 
                 inGame = true;
                 switchToStage(GameStage.createGameStage(isBotMatch));
+
+                rollPaperSound();
             }
         });
         root.row();
@@ -160,6 +162,8 @@ public class MenuStage extends Stage{
 
                 inGame = true;
                 switchToStage(GameStage.createGameStage(isBotMatch));
+
+                rollPaperSound();
             }
         });
         root.row();

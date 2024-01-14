@@ -98,205 +98,211 @@ public class GameStage {
 
                 Stack solPiece = new Stack();
 
-                // if BoomChess.isAnimated, make solPiece a soldierAnimation Object and if not, an Image Object
-                if (BoomChess.isAnimated) {
-                    if (soldier instanceof Empty) {
+                if(useEmpty && (i == emptyX && j == emptyY)){
                         Image emptyImage = new Image(empty);
                         emptyImage.setSize(tileSize, tileSize);
                         solPiece.add(emptyImage);
-                    } else if (soldier instanceof Hill){
-                        Image soldierImage = new Image(((takeSelfieInterface) soldier).takeSelfie());
-                        soldierImage.setSize(tileSize, tileSize);
-                        solPiece.add(soldierImage);
-                    }else {
-                        if(BoomChess.isMedievalMode){
-                            // standard image load
+                } else {
+
+                    // if BoomChess.isAnimated, make solPiece a soldierAnimation Object and if not, an Image Object
+                    if (BoomChess.isAnimated) {
+                        if (soldier instanceof Empty) {
+                            Image emptyImage = new Image(empty);
+                            emptyImage.setSize(tileSize, tileSize);
+                            solPiece.add(emptyImage);
+                        } else if (soldier instanceof Hill) {
+                            Image soldierImage = new Image(((takeSelfieInterface) soldier).takeSelfie());
+                            soldierImage.setSize(tileSize, tileSize);
+                            solPiece.add(soldierImage);
+                        } else {
+                            if (BoomChess.isMedievalMode) {
+                                // standard image load
+                                Image soldierImage = new Image(((takeSelfieInterface) soldier).takeSelfie());
+                                soldierImage.setSize(tileSize, tileSize);
+                                solPiece.add(soldierImage);
+                            } else {
+                                // switch statement for deciding which
+                                // soldier animation to take, each case has a green or red and a
+                                // iscolourreversed if statement between green and blue
+                                switch (soldier.getPieceType()) {
+
+                                    case "general":
+                                        if (soldier.getTeamColor().equals("green")) {
+                                            if (isColourChanged) {
+                                                soldierAnimation blueGeneralAnimation =
+                                                        BoomChess.blueGeneralAnimation.clone();
+                                                solPiece.add(blueGeneralAnimation);
+                                                allActiveSoldierAnimations.add(blueGeneralAnimation);
+                                            } else {
+                                                soldierAnimation greenGeneralAnimation =
+                                                        BoomChess.greenGeneralAnimation.clone();
+                                                solPiece.add(greenGeneralAnimation);
+                                                allActiveSoldierAnimations.add(greenGeneralAnimation);
+                                            }
+                                        } else {
+                                            soldierAnimation redGeneralAnimation =
+                                                    BoomChess.redGeneralAnimation.clone();
+                                            solPiece.add(redGeneralAnimation);
+                                            allActiveSoldierAnimations.add(redGeneralAnimation);
+                                        }
+                                        break;
+
+                                    case "tank":
+                                        if (soldier.getTeamColor().equals("green")) {
+                                            if (isColourChanged) {
+                                                soldierAnimation blueTankAnimation =
+                                                        BoomChess.blueTankAnimation.clone();
+                                                solPiece.add(blueTankAnimation);
+                                                allActiveSoldierAnimations.add(blueTankAnimation);
+                                            } else {
+                                                soldierAnimation greenTankAnimation =
+                                                        BoomChess.greenTankAnimation.clone();
+                                                solPiece.add(greenTankAnimation);
+                                                allActiveSoldierAnimations.add(greenTankAnimation);
+                                            }
+                                        } else {
+                                            soldierAnimation redTankAnimation =
+                                                    BoomChess.redTankAnimation.clone();
+                                            solPiece.add(redTankAnimation);
+                                            allActiveSoldierAnimations.add(redTankAnimation);
+                                        }
+                                        break;
+
+                                    case "artillery":
+                                        if (soldier.getTeamColor().equals("green")) {
+                                            if (isColourChanged) {
+                                                soldierAnimation blueArtilleryAnimation =
+                                                        BoomChess.blueArtilleryAnimation.clone();
+                                                solPiece.add(blueArtilleryAnimation);
+                                                allActiveSoldierAnimations.add(blueArtilleryAnimation);
+                                            } else {
+                                                soldierAnimation greenArtilleryAnimation =
+                                                        BoomChess.greenArtilleryAnimation.clone();
+                                                solPiece.add(greenArtilleryAnimation);
+                                                allActiveSoldierAnimations.add(greenArtilleryAnimation);
+                                            }
+                                        } else {
+                                            soldierAnimation redArtilleryAnimation =
+                                                    BoomChess.redArtilleryAnimation.clone();
+                                            solPiece.add(redArtilleryAnimation);
+                                            allActiveSoldierAnimations.add(redArtilleryAnimation);
+                                        }
+                                        break;
+
+                                    case "infantry":
+                                        if (soldier.getTeamColor().equals("green")) {
+                                            if (isColourChanged) {
+                                                soldierAnimation blueInfantryAnimation =
+                                                        BoomChess.blueInfantryAnimation.clone();
+                                                solPiece.add(blueInfantryAnimation);
+                                                allActiveSoldierAnimations.add(blueInfantryAnimation);
+                                            } else {
+                                                soldierAnimation greenInfantryAnimation =
+                                                        BoomChess.greenInfantryAnimation.clone();
+                                                solPiece.add(greenInfantryAnimation);
+                                                allActiveSoldierAnimations.add(greenInfantryAnimation);
+                                            }
+                                        } else {
+                                            soldierAnimation redInfantryAnimation =
+                                                    BoomChess.redInfantryAnimation.clone();
+                                            solPiece.add(redInfantryAnimation);
+                                            allActiveSoldierAnimations.add(redInfantryAnimation);
+                                        }
+                                        break;
+
+                                    case "helicopter":
+                                        if (soldier.getTeamColor().equals("green")) {
+                                            if (isColourChanged) {
+                                                soldierAnimation blueHelicopterAnimation =
+                                                        BoomChess.blueHelicopterAnimation.clone();
+                                                solPiece.add(blueHelicopterAnimation);
+                                                allActiveSoldierAnimations.add(blueHelicopterAnimation);
+                                            } else {
+                                                soldierAnimation greenHelicopterAnimation =
+                                                        BoomChess.greenHelicopterAnimation.clone();
+                                                solPiece.add(greenHelicopterAnimation);
+                                                allActiveSoldierAnimations.add(greenHelicopterAnimation);
+                                            }
+                                        } else {
+                                            soldierAnimation redHelicopterAnimation =
+                                                    BoomChess.redHelicopterAnimation.clone();
+                                            solPiece.add(redHelicopterAnimation);
+                                            allActiveSoldierAnimations.add(redHelicopterAnimation);
+                                        }
+                                        break;
+
+                                    case "wardog":
+                                        if (dogIsJeep) {
+                                            if (soldier.getTeamColor().equals("green")) {
+                                                if (isColourChanged) {
+                                                    soldierAnimation blueJeepAnimation =
+                                                            BoomChess.blueJeepAnimation.clone();
+                                                    solPiece.add(blueJeepAnimation);
+                                                    allActiveSoldierAnimations.add(blueJeepAnimation);
+                                                } else {
+                                                    soldierAnimation greenJeepAnimation =
+                                                            BoomChess.greenJeepAnimation.clone();
+                                                    solPiece.add(greenJeepAnimation);
+                                                    allActiveSoldierAnimations.add(greenJeepAnimation);
+                                                }
+                                            } else {
+                                                soldierAnimation redJeepAnimation =
+                                                        BoomChess.redJeepAnimation.clone();
+                                                solPiece.add(redJeepAnimation);
+                                                allActiveSoldierAnimations.add(redJeepAnimation);
+                                            }
+                                        } else {
+                                            if (soldier.getTeamColor().equals("green")) {
+                                                if (isColourChanged) {
+                                                    soldierAnimation blueWardogAnimation =
+                                                            BoomChess.blueWardogAnimation.clone();
+                                                    solPiece.add(blueWardogAnimation);
+                                                    allActiveSoldierAnimations.add(blueWardogAnimation);
+                                                } else {
+                                                    soldierAnimation greenWardogAnimation =
+                                                            BoomChess.greenWardogAnimation.clone();
+                                                    solPiece.add(greenWardogAnimation);
+                                                    allActiveSoldierAnimations.add(greenWardogAnimation);
+                                                }
+                                            } else {
+                                                soldierAnimation redWardogAnimation =
+                                                        BoomChess.redWardogAnimation.clone();
+                                                solPiece.add(redWardogAnimation);
+                                                allActiveSoldierAnimations.add(redWardogAnimation);
+                                            }
+                                        }
+                                        break;
+                                    case "commando":
+                                        if (soldier.getTeamColor().equals("green")) {
+                                            if (isColourChanged) {
+                                                soldierAnimation blueCommandoAnimation =
+                                                        BoomChess.blueCommandoAnimation.clone();
+                                                solPiece.add(blueCommandoAnimation);
+                                                allActiveSoldierAnimations.add(blueCommandoAnimation);
+                                            } else {
+                                                soldierAnimation greenCommandoAnimation =
+                                                        BoomChess.greenCommandoAnimation.clone();
+                                                solPiece.add(greenCommandoAnimation);
+                                                allActiveSoldierAnimations.add(greenCommandoAnimation);
+                                            }
+                                        } else {
+                                            soldierAnimation redCommandoAnimation =
+                                                    BoomChess.redCommandoAnimation.clone();
+                                            solPiece.add(redCommandoAnimation);
+                                            allActiveSoldierAnimations.add(redCommandoAnimation);
+                                        }
+                                        break;
+
+                                }
+                            }
+                        }
+                    } else {
+                        // load the corresponding image through the Soldier Take Selfie Method
+                        if (soldier instanceof takeSelfieInterface) {
                             Image soldierImage = new Image(((takeSelfieInterface) soldier).takeSelfie());
                             soldierImage.setSize(tileSize, tileSize);
                             solPiece.add(soldierImage);
                         }
-                        else {
-                            // switch statement for deciding which
-                            // soldier animation to take, each case has a green or red and a
-                            // iscolourreversed if statement between green and blue
-                            switch (soldier.getPieceType()) {
-
-                                case "general":
-                                    if (soldier.getTeamColor().equals("green")) {
-                                        if (isColourChanged) {
-                                            soldierAnimation blueGeneralAnimation =
-                                                    BoomChess.blueGeneralAnimation.clone();
-                                            solPiece.add(blueGeneralAnimation);
-                                            allActiveSoldierAnimations.add(blueGeneralAnimation);
-                                        } else {
-                                            soldierAnimation greenGeneralAnimation =
-                                                    BoomChess.greenGeneralAnimation.clone();
-                                            solPiece.add(greenGeneralAnimation);
-                                            allActiveSoldierAnimations.add(greenGeneralAnimation);
-                                        }
-                                    } else {
-                                        soldierAnimation redGeneralAnimation =
-                                                BoomChess.redGeneralAnimation.clone();
-                                        solPiece.add(redGeneralAnimation);
-                                        allActiveSoldierAnimations.add(redGeneralAnimation);
-                                    }
-                                    break;
-
-                                case "tank":
-                                    if (soldier.getTeamColor().equals("green")) {
-                                        if (isColourChanged) {
-                                            soldierAnimation blueTankAnimation =
-                                                    BoomChess.blueTankAnimation.clone();
-                                            solPiece.add(blueTankAnimation);
-                                            allActiveSoldierAnimations.add(blueTankAnimation);
-                                        } else {
-                                            soldierAnimation greenTankAnimation =
-                                                    BoomChess.greenTankAnimation.clone();
-                                            solPiece.add(greenTankAnimation);
-                                            allActiveSoldierAnimations.add(greenTankAnimation);
-                                        }
-                                    } else {
-                                        soldierAnimation redTankAnimation =
-                                                BoomChess.redTankAnimation.clone();
-                                        solPiece.add(redTankAnimation);
-                                        allActiveSoldierAnimations.add(redTankAnimation);
-                                    }
-                                    break;
-
-                                case "artillery":
-                                    if (soldier.getTeamColor().equals("green")) {
-                                        if (isColourChanged) {
-                                            soldierAnimation blueArtilleryAnimation =
-                                                    BoomChess.blueArtilleryAnimation.clone();
-                                            solPiece.add(blueArtilleryAnimation);
-                                            allActiveSoldierAnimations.add(blueArtilleryAnimation);
-                                        } else {
-                                            soldierAnimation greenArtilleryAnimation =
-                                                    BoomChess.greenArtilleryAnimation.clone();
-                                            solPiece.add(greenArtilleryAnimation);
-                                            allActiveSoldierAnimations.add(greenArtilleryAnimation);
-                                        }
-                                    } else {
-                                        soldierAnimation redArtilleryAnimation =
-                                                BoomChess.redArtilleryAnimation.clone();
-                                        solPiece.add(redArtilleryAnimation);
-                                        allActiveSoldierAnimations.add(redArtilleryAnimation);
-                                    }
-                                    break;
-
-                                case "infantry":
-                                    if (soldier.getTeamColor().equals("green")) {
-                                        if (isColourChanged) {
-                                            soldierAnimation blueInfantryAnimation =
-                                                    BoomChess.blueInfantryAnimation.clone();
-                                            solPiece.add(blueInfantryAnimation);
-                                            allActiveSoldierAnimations.add(blueInfantryAnimation);
-                                        } else {
-                                            soldierAnimation greenInfantryAnimation =
-                                                    BoomChess.greenInfantryAnimation.clone();
-                                            solPiece.add(greenInfantryAnimation);
-                                            allActiveSoldierAnimations.add(greenInfantryAnimation);
-                                        }
-                                    } else {
-                                        soldierAnimation redInfantryAnimation =
-                                                BoomChess.redInfantryAnimation.clone();
-                                        solPiece.add(redInfantryAnimation);
-                                        allActiveSoldierAnimations.add(redInfantryAnimation);
-                                    }
-                                    break;
-
-                                case "helicopter":
-                                    if (soldier.getTeamColor().equals("green")) {
-                                        if (isColourChanged) {
-                                            soldierAnimation blueHelicopterAnimation =
-                                                    BoomChess.blueHelicopterAnimation.clone();
-                                            solPiece.add(blueHelicopterAnimation);
-                                            allActiveSoldierAnimations.add(blueHelicopterAnimation);
-                                        } else {
-                                            soldierAnimation greenHelicopterAnimation =
-                                                    BoomChess.greenHelicopterAnimation.clone();
-                                            solPiece.add(greenHelicopterAnimation);
-                                            allActiveSoldierAnimations.add(greenHelicopterAnimation);
-                                        }
-                                    } else {
-                                        soldierAnimation redHelicopterAnimation =
-                                                BoomChess.redHelicopterAnimation.clone();
-                                        solPiece.add(redHelicopterAnimation);
-                                        allActiveSoldierAnimations.add(redHelicopterAnimation);
-                                    }
-                                    break;
-
-                                case "wardog":
-                                    if(dogIsJeep) {
-                                        if (soldier.getTeamColor().equals("green")) {
-                                            if (isColourChanged) {
-                                                soldierAnimation blueJeepAnimation =
-                                                        BoomChess.blueJeepAnimation.clone();
-                                                solPiece.add(blueJeepAnimation);
-                                                allActiveSoldierAnimations.add(blueJeepAnimation);
-                                            } else {
-                                                soldierAnimation greenJeepAnimation =
-                                                        BoomChess.greenJeepAnimation.clone();
-                                                solPiece.add(greenJeepAnimation);
-                                                allActiveSoldierAnimations.add(greenJeepAnimation);
-                                            }
-                                        } else {
-                                            soldierAnimation redJeepAnimation =
-                                                    BoomChess.redJeepAnimation.clone();
-                                            solPiece.add(redJeepAnimation);
-                                            allActiveSoldierAnimations.add(redJeepAnimation);
-                                        }
-                                    } else {
-                                        if (soldier.getTeamColor().equals("green")) {
-                                            if (isColourChanged) {
-                                                soldierAnimation blueWardogAnimation =
-                                                        BoomChess.blueWardogAnimation.clone();
-                                                solPiece.add(blueWardogAnimation);
-                                                allActiveSoldierAnimations.add(blueWardogAnimation);
-                                            } else {
-                                                soldierAnimation greenWardogAnimation =
-                                                        BoomChess.greenWardogAnimation.clone();
-                                                solPiece.add(greenWardogAnimation);
-                                                allActiveSoldierAnimations.add(greenWardogAnimation);
-                                            }
-                                        } else {
-                                            soldierAnimation redWardogAnimation =
-                                                    BoomChess.redWardogAnimation.clone();
-                                            solPiece.add(redWardogAnimation);
-                                            allActiveSoldierAnimations.add(redWardogAnimation);
-                                        }
-                                    }
-                                    break;
-                                case "commando":
-                                    if (soldier.getTeamColor().equals("green")) {
-                                        if (isColourChanged) {
-                                            soldierAnimation blueCommandoAnimation =
-                                                    BoomChess.blueCommandoAnimation.clone();
-                                            solPiece.add(blueCommandoAnimation);
-                                            allActiveSoldierAnimations.add(blueCommandoAnimation);
-                                        } else {
-                                            soldierAnimation greenCommandoAnimation =
-                                                    BoomChess.greenCommandoAnimation.clone();
-                                            solPiece.add(greenCommandoAnimation);
-                                            allActiveSoldierAnimations.add(greenCommandoAnimation);
-                                        }
-                                    } else {
-                                        soldierAnimation redCommandoAnimation =
-                                                BoomChess.redCommandoAnimation.clone();
-                                        solPiece.add(redCommandoAnimation);
-                                        allActiveSoldierAnimations.add(redCommandoAnimation);
-                                    }
-                                    break;
-
-                            }
-                        }
-                    }
-                } else {
-                    // load the corresponding image through the Soldier Take Selfie Method
-                    if (soldier instanceof takeSelfieInterface) {
-                        Image soldierImage = new Image(((takeSelfieInterface) soldier).takeSelfie());
-                        soldierImage.setSize(tileSize, tileSize);
-                        solPiece.add(soldierImage);
                     }
                 }
 
@@ -656,6 +662,7 @@ public class GameStage {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 showHelp = !showHelp;
+                rollPaperSound();
             }
         });
 
