@@ -23,8 +23,8 @@ android {
         applicationId "com.boomchess.game"
         minSdkVersion 14
         targetSdkVersion 34
-        versionCode 16
-        versionName "16.0 non-invasive reRendering through gameboard reusing 2"
+        versionCode 17
+        versionName "17.0 bugfix moving Bot duplication"
     }
     buildTypes {
         release {
