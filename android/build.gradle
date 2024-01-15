@@ -23,8 +23,8 @@ android {
         applicationId "com.boomchess.game"
         minSdkVersion 14
         targetSdkVersion 34
-        versionCode 20
-        versionName "20.0 optimised memory usage"
+        versionCode 21
+        versionName "21.0 general changed"
     }
     buildTypes {
         release {
