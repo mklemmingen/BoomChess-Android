@@ -23,8 +23,8 @@ android {
         applicationId "com.boomchess.game"
         minSdkVersion 14
         targetSdkVersion 34
-        versionCode 17
-        versionName "17.0 bugfix moving Bot duplication"
+        versionCode 20
+        versionName "20.0 optimised memory usage"
     }
     buildTypes {
         release {

@@ -65,7 +65,6 @@ public class BoomChess extends ApplicationAdapter {
 	// size of tiles on the board
 	public static float tileSize;
 	public static Skin skin;
-	public static Skin progressBarSkin;
 	public static int numberObstacle; // number of obstacles in the default game mode
 	public static Stage currentStage;
 
@@ -885,16 +884,16 @@ public class BoomChess extends ApplicationAdapter {
 		modernMaps = new RandomImage();
 
 		medievalMaps.addTexture("map/map2/game_map.png"); // colourful medieval map
-		modernMaps.addTexture("map/map2/game_map2.png"); // city map
-		modernMaps.addTexture("map/map2/game_map3.png"); // city map
 		medievalMaps.addTexture("map/map2/game_map4.png"); // colourful village map
 		medievalMaps.addTexture("map/map2/game_map5.png"); // colourful village map
-		modernMaps.addTexture("map/map2/game_map6.png"); // desert City map
-		modernMaps.addTexture("map/map2/game_map7.png"); // desert City map
 
+		modernMaps.addTexture("map/map2/game_map6.png"); // desert City map
+		modernMaps.addTexture("map/map2/game_map3.png"); // city map
+		modernMaps.addTexture("map/map2/game_map2.png"); // city map
+		modernMaps.addTexture("map/map2/game_map7.png"); // desert City map
+		modernMaps.addTexture("map/map2/game_map3.png"); // city map
 		modernMaps.addTexture("map/map3/map1.png"); // cool black and white map
 		modernMaps.addTexture("map/map3/map2.png"); // cool black and white map
-		modernMaps.addTexture("map/map3/map3.png"); // cool black and white map
 		modernMaps.addTexture("map/map3/map4.png"); // cool black and white map
 		modernMaps.addTexture("map/map3/map5.png"); // cool black and white map
 		modernMaps.addTexture("map/map3/map6.png"); // cool black and white map
@@ -1092,15 +1091,15 @@ public class BoomChess extends ApplicationAdapter {
 		background_music = new MusicPlaylist();
 		background_music.addSong("music/A Little R & R.mp3",
 				"A Little R & R", "Bert Cole");
-		background_music.addSong("music/SeeingDouble.wav", "Seeing Double",
+		background_music.addSong("music/SeeingDouble.mp3", "Seeing Double",
 				"Not Jam");
-		background_music.addSong("music/First.wav", "First",
+		background_music.addSong("music/First.mp3", "First",
 				"Steek Stook");
-		background_music.addSong("music/SnesPenultimateLevel.wav", "SnesPenultimateLevel",
+		background_music.addSong("music/SnesPenultimateLevel.mp3", "SnesPenultimateLevel",
 				"Steek Stook");
 		background_music.addSong("music/03 - Beginnings.mp3",
 				"Beginnings", "Oak Thielbar");
-		background_music.addSong("music/KleptoLindaCavernsB.wav",
+		background_music.addSong("music/KleptoLindaCavernsB.mp3",
 				"CavernsB", "not jam");
 
 		/*
@@ -1147,7 +1146,7 @@ public class BoomChess extends ApplicationAdapter {
 		*/
 
 		creditsMusic = new MusicPlaylist();
-		creditsMusic.addSong("music/TouhouEuropeanQuartet.wav",
+		creditsMusic.addSong("music/TouhouEuropeanQuartet.mp3",
 				"TouhouEuropeanQuartet", "Steek Stook");
 
 
@@ -1295,10 +1294,6 @@ public class BoomChess extends ApplicationAdapter {
 		 * stages will be the way we display all menus and the game itself
 		 */
 
-		// skin (look) of the progress bar via a prearranged json file
-		progressBarSkin = new Skin(Gdx.files.internal("progressBarSkin/neon-ui.json"));
-
-
 		// creation of empty Board.validMoveTiles for null-pointer exception avoidance
 		Board.validMoveTiles = new ArrayList<>();
 
@@ -1367,8 +1362,6 @@ public class BoomChess extends ApplicationAdapter {
 		allSoldiers[13] = new Artillery("green");
 
 		boolean tmp = isColourChanged;
-
-		boolean tmpJeep = dogIsJeep;
 
 		// load all soldierAnimations with the soldier objects
 		redInfantryAnimation = new soldierAnimation(allSoldiers[0]);
