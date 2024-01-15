@@ -456,6 +456,12 @@ public class BoomChess extends ApplicationAdapter {
 
 	// ------------------------------------------------------
 
+	// sound for the general having taken damage
+
+	public static Sound generalHit;
+
+	// ------------------------------------------------------
+
 	// if on desktop, false, android if true, sets the resizing by tileSize and UI size
 	public static boolean publisher = true;
 
@@ -1039,6 +1045,8 @@ public class BoomChess extends ApplicationAdapter {
 		bigExplosionSound.addSound("sounds/big/big3.mp3");
 		bigExplosionSound.addSound("sounds/big/big2.mp3");
 		bigExplosionSound.addSound("sounds/big/big1.mp3");
+
+		generalHit = Gdx.audio.newSound(Gdx.files.internal("sounds/times_up.wav"));
 
 
 		// speech bubble pop up sounds

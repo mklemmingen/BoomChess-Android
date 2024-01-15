@@ -79,9 +79,23 @@ public class General extends Soldier
     }
 
     public int defendAndBleed(int damage, Soldier soldierAttack) {
-        // The General is very resistant and only takes half damage to anything. He likes to chill in a Bunker
+        // The General is a little bitty baby that is just a regular dude with a medal and maybe
+        // a sword. He is not a fighter. He is a lover. He is a lover of peace. He is a lover of
+        // the people. He is a lover of the world. He is a lover of the universe. He is a lover of
+        // the galaxy. He is a lover of the solar system. He is a lover of the planet. He is a
+        // lover of the continent. He is a lover of the country. He is a lover of the state. He is
+        // a lover of the city. He is a lover of the town. He is a lover of the village. He is a
+        // lover of the neighborhood. He is a lover of the street. He is a lover of the house. He
+        // is a lover of the room. He is a lover of the bed. He is a lover of the pillow. He is a
+        // lover of the blanket. He is a lover of the mattress. He is a lover of the floor. He is a
+        // lover of the ceiling. He is a lover of the wall. He is a lover of the window. He is a
+        // lover of the door. He is a lover of the doorknob. He is a lover of the key.
 
-        return damage/2;
+        // takes damage like cheese to the face. He is a lover of the cheese.
+
+        BoomChess.generalHit.play(BoomChess.soundVolume);
+
+        return damage;
     }
 
     public void makeASound(){
