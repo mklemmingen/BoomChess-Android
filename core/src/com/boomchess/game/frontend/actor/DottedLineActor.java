@@ -12,6 +12,7 @@ import com.boomchess.game.BoomChess;
 import com.boomchess.game.backend.Board;
 import com.boomchess.game.backend.Coordinates;
 import com.boomchess.game.backend.Soldier;
+import com.boomchess.game.backend.subsoldier.General;
 import com.boomchess.game.frontend.interfaces.makeASoundInterface;
 import com.boomchess.game.frontend.stage.MenuStage;
 
@@ -75,6 +76,12 @@ public class DottedLineActor extends Actor {
         if (elapsed > MAX_DURATION) {
             if(!isDamage){
                 reRenderGame();
+            } else {
+                // if the target is a General, play GeneralHit sound
+                Soldier[][] board = Board.getGameBoard();
+                if(board[endX][endY] instanceof General){
+                    BoomChess.generalHit.play(BoomChess.soundVolume);
+                }
             }
             remove(); // This will remove the actor from the stage
         }

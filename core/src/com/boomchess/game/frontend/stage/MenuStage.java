@@ -9,6 +9,7 @@ import static com.boomchess.game.BoomChess.inGame;
 import static com.boomchess.game.BoomChess.inTutorial;
 import static com.boomchess.game.BoomChess.isBeepMode;
 import static com.boomchess.game.BoomChess.isBotMatch;
+import static com.boomchess.game.BoomChess.isColourChanged;
 import static com.boomchess.game.BoomChess.isMedievalMode;
 import static com.boomchess.game.BoomChess.menu_music;
 import static com.boomchess.game.BoomChess.rollPaperSound;
@@ -76,6 +77,8 @@ public class MenuStage extends Stage{
                 botDifficulty = "medium";
 
                 inTutorial = true;
+
+                isColourChanged = false;
 
                 switchToStage(GameStage.createGameStage(isBotMatch));
 

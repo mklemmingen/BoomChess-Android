@@ -1097,8 +1097,6 @@ public class BoomChess extends ApplicationAdapter {
 
 		// load the background music into MusicPlaylist object --------------------------------------
 		background_music = new MusicPlaylist();
-		background_music.addSong("music/A Little R & R.mp3",
-				"A Little R & R", "Bert Cole");
 		background_music.addSong("music/SeeingDouble.mp3", "Seeing Double",
 				"Not Jam");
 		background_music.addSong("music/First.mp3", "First",
@@ -1112,6 +1110,8 @@ public class BoomChess extends ApplicationAdapter {
 
 		/*
 	       TODO not vibing with it anywhere
+		background_music.addSong("music/A Little R & R.mp3",
+		"A Little R & R", "Bert Cole");
 		background_music.addSong("music/24 Stray cat.mp3",
 				"Stray cat", "Garo");
 		   TODO not rocking enough

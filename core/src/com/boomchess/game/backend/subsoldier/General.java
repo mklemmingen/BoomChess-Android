@@ -18,14 +18,14 @@ public class General extends Soldier
      * and the initial health. getHealth
      */
 
-    public static int standardHealth = 50;
+    public static int standardHealth = 30;
 
 
     public General(String teamColor) {
         /*
          * Constructor for the General object, takes positional arguments and team color
          */
-        super(teamColor, 50, "general");
+        super(teamColor, 30, "general");
     }
 
     public Texture takeSelfie() {
@@ -92,8 +92,6 @@ public class General extends Soldier
         // lover of the door. He is a lover of the doorknob. He is a lover of the key.
 
         // takes damage like cheese to the face. He is a lover of the cheese.
-
-        BoomChess.generalHit.play(BoomChess.soundVolume);
 
         return damage;
     }
