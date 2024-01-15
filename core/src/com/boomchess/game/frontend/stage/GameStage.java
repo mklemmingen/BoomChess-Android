@@ -737,7 +737,9 @@ public class GameStage {
             }
         });
 
-        lastGameBoard = gameBoard;
+        if(!(nonInvasiveReRender)) {
+            lastGameBoard = gameBoard;
+        }
         nonInvasiveReRender = false;
 
         return gameStage;
@@ -757,4 +759,3 @@ public class GameStage {
         allActiveSoldierAnimations.clear();
     }
 }
-
