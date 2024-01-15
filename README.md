@@ -29,13 +29,13 @@ A Pieces Damage to an enemy is lowered by a fraction of 0.05 per Enemy surroundi
 
 A Piece gets a damage boost by per number of surrounding friend 0.1
 
-General(King) / health: int: 50   / damage: 5-10  
+General(King) / health: int: 30   / damage: 5-10  
 
    The most critical piece on the board. It can move one square in any direction (horizontally, vertically, or diagonally).
    if killed team loses
    takes only half the possible damage
 
-Commando(Queen)n / health: int: 50  / damage: 10-30  / advantages: +10 to attacking tanks 
+Commando(Queen)n / health: int: 50  / damage: 5-30  / advantages: +10 to attacking tanks 
 
    The most powerful piece. It can move horizontally, vertically, diagonally, and in any direction for any number of squares.
    on a randomized 1-5 scale, he takes (<random number>/5)*100 percent less damage
@@ -52,7 +52,7 @@ War Dogs(Bishop) / health: int: 40   / damage: 5-20  / advantages: +5 to attacki
    is the end of faith for all infantry. easy target for helicopters
    the war dogs fear them because they go broom. 
  
-Helicopter(Knight)/ health: int : 50  / damage: 10-20 / advantages: +5 to attacking tanks
+Helicopter(Knight)/ health: int : 50  / damage: 5-20 / advantages: +5 to attacking tanks
 
    Knights move in an L-shape: two squares in one direction (either horizontally or vertically) and then one square in a perpendicular direction. Knights can jump over other pieces.
    High movement. doesn't care about obstacles.
