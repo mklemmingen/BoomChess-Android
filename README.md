@@ -6,7 +6,7 @@ Makes lots of cool boom sounds.
 
 non-deterministic chess.
 
-![Gif of BoomChess Gameplay](https://github.com/mklemmingen/mklemmingen/blob/3556596be154afc9ec85af4a719772fc1042eaa4/boomchessandroid.gif?raw=true)
+![Gif of BoomChess Gameplay](https://github.com/mklemmingen/mklemmingen/blob/4c1408ae2b9eb0528e7c2e30db01d1a6a5f7bd51/BoomChessGIF.gif?raw=true)
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
