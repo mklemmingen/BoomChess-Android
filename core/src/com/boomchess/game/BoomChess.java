@@ -467,10 +467,17 @@ public class BoomChess extends ApplicationAdapter {
 
 	// ------------------------------------------------------
 
+	// changing wardog textures to jeep textures when selected in gameStage
 	public static boolean dogIsJeep = true;
+
+	// making the rendering non-invasive
 	public static boolean nonInvasiveReRender = false;
 
+	// sound for paper being rolled, added when game created or quickHelp taken out
 	public static Sound paperRoll;
+
+	// boolean for if the action-sequence should be done instantly
+	public static boolean quickAction = false;
 
 	@Override
 	public void create() {
@@ -1475,7 +1482,7 @@ public class BoomChess extends ApplicationAdapter {
 				createInGameOptionStages();
 			}
 		});
-		table.add(botDifficultyText).padBottom(tileSize/8).row();
+		table.add(botDifficultyText).padBottom(tileSize/12).row();
 
 		// Button to change 1.Player Colour to blue
 		TextButton changeColourButton = new TextButton("Switch 1P Skin", skin);
@@ -1490,7 +1497,7 @@ public class BoomChess extends ApplicationAdapter {
 				createInGameOptionStages();
 			}
 		});
-		table.add(changeColourButton).padBottom(tileSize/8).row();
+		table.add(changeColourButton).padBottom(tileSize/12).row();
 
 		// button for turning the arm on and off
 		TextButton armButton = new TextButton("BotArm: " + showArm, skin);
@@ -1501,7 +1508,22 @@ public class BoomChess extends ApplicationAdapter {
 				createInGameOptionStages();
 			}
 		});
-		table.add(armButton).padBottom(tileSize/8).row();
+		table.add(armButton).padBottom(tileSize/12).row();
+
+		// button to change the boolean value of QuickAction: ON/OFF
+		final String quickActionText = "Quick Action: " + (BoomChess.quickAction ? "ON" : "OFF");
+		final TextButton quickActionButton = new TextButton(quickActionText, skin);
+		quickActionButton.align(Align.bottomRight);
+		quickActionButton.addListener(new ChangeListener() {
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				BoomChess.quickAction = !BoomChess.quickAction;
+				// no need for rerender, since change doesnt have to be instant, just for the next
+				// action sequence
+				quickActionButton.setText("Quick Action: " + (BoomChess.quickAction ? "ON" : "OFF"));
+			}
+		});
+		table.add(quickActionButton).padBottom(tileSize/12).row();
 
 		// bot moving speed
 		// button for changing the botMovingSpeed
@@ -1538,7 +1560,7 @@ public class BoomChess extends ApplicationAdapter {
 				BoomChess.createInGameOptionStages();
 			}
 		});
-		table.add(speedButton).padBottom(tileSize/8).row();
+		table.add(speedButton).padBottom(tileSize/12).row();
 
 		// attack circle show
 		// button for turning the attack circles on and off
@@ -1551,7 +1573,7 @@ public class BoomChess extends ApplicationAdapter {
 				createInGameOptionStages();
 			}
 		});
-		table.add(attackCircleButton).padBottom(tileSize/8).row();
+		table.add(attackCircleButton).padBottom(tileSize/12).row();
 
 		// button for the show damage specials
 		TextButton showDamageButton = new TextButton("Show Special-DMG: "
@@ -1563,7 +1585,7 @@ public class BoomChess extends ApplicationAdapter {
 				createInGameOptionStages();
 			}
 		});
-		table.add(showDamageButton).padBottom(tileSize/8).row();
+		table.add(showDamageButton).padBottom(tileSize/12).row();
 
 
 		// button to change the beep mode of the speech bubbles isBeepMode true or false
@@ -1582,7 +1604,7 @@ public class BoomChess extends ApplicationAdapter {
 				createInGameOptionStages();
 			}
 		});
-		table.add(beepModeButton).padBottom(tileSize/8).row();
+		table.add(beepModeButton).padBottom(tileSize/12).row();
 
 		// dog is car button
 		TextButton dogIsCarButton = new TextButton("Bishop is a Jeep: " + dogIsJeep, skin);
@@ -1594,7 +1616,7 @@ public class BoomChess extends ApplicationAdapter {
 				createInGameOptionStages();
 			}
 		});
-		table.add(dogIsCarButton).padBottom(tileSize/8).row();
+		table.add(dogIsCarButton).padBottom(tileSize/12).row();
 
 		// change Map
 		TextButton changeMapButton = new TextButton("Change Map", skin);
@@ -1620,13 +1642,13 @@ public class BoomChess extends ApplicationAdapter {
 		});
 
 		table.add(changeMapButton);
-		table.row().padBottom(tileSize/8);
+		table.row().padBottom(tileSize/12);
 
 		table.add(volumeLabel);
-		table.row().padBottom(tileSize/8);
+		table.row().padBottom(tileSize/12);
 
 		table.add(soundVolumeLabel);
-		table.row().padBottom(tileSize/8);
+		table.row().padBottom(tileSize/12);
 
 		// Exit to Main Menu button to return to the main menu
 		TextButton menuButton = new TextButton("Return to Main Menu", skin);
@@ -1655,7 +1677,7 @@ public class BoomChess extends ApplicationAdapter {
 				createMainMenuStage();
 			}
 		});
-		table.add(menuButton).padBottom(tileSize/8).row();
+		table.add(menuButton).padBottom(tileSize/12).row();
 
 		// button to turn off boolean showInGameOptions and to set the input processor to currentStage
 		TextButton closeButton = new TextButton("Close Options", skin);
@@ -1667,7 +1689,7 @@ public class BoomChess extends ApplicationAdapter {
 				Gdx.input.setInputProcessor(currentStage);
 			}
 		});
-		table.add(closeButton).padBottom(tileSize/8).row();
+		table.add(closeButton).padBottom(tileSize/12).row();
 
 
 		// add a clipboard Image centralised on the screen

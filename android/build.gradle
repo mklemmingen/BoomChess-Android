@@ -23,8 +23,8 @@ android {
         applicationId "com.boomchess.game"
         minSdkVersion 14
         targetSdkVersion 34
-        versionCode 21
-        versionName "21.0 general changed"
+        versionCode 22
+        versionName "22.0 no invisible pieces"
     }
     buildTypes {
         release {
