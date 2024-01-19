@@ -96,13 +96,8 @@ public class RelativeResizer {
 
         Texture loading;
 
-        if(publisher){
-            loading = new Texture("loadingScreen/KatLoading.png");
-            BoomChess.katIncluded = Gdx.audio.newSound(Gdx.files.internal("Misc/katIncluded.mp3"));
-        } else {
-            loading = new Texture("loadingScreen/BoomSoftware.png");
-            BoomChess.katIncluded = Gdx.audio.newSound(Gdx.files.internal("Misc/BoomSoftwares.mp3"));
-        }
+        loading = new Texture("loadingScreen/KatLoading.png");
+        BoomChess.katIncluded = Gdx.audio.newSound(Gdx.files.internal("Misc/katIncluded.mp3"));
 
         loadingScreenTextures.addRawTexture(loading);
 
