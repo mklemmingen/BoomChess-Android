@@ -1,24 +1,36 @@
-Idiocracied chess, with health, guns, obstacles, boom and stuff.
+BoomChess: A Modernized Tactical Chess Game
 
-Featuring complex health, damage and movement systems to promote both tactical logic and the inclusion of randomness into decision making.
+Overview:
+BoomChess reimagines the classic game of chess in a modern, warfare-themed setting. Each traditional chess piece is transformed into a unique military unit, complete with health values, damage capabilities, and distinct advantages and disadvantages. The game features a larger 9x8 board, fostering a complex and strategic gameplay experience.
 
-Makes lots of cool boom sounds. 
+Unique Gameplay Mechanics:
 
-non-deterministic chess.
+Health and Damage System: Every piece has randomized health and damage values, introducing a layer of unpredictability. The damage a piece deals is scaled by its current health. A lower health results in reduced damage output.
+Attacking and Defending: At the end of each turn, pieces automatically attack any enemy within their range. Damage dealt is influenced by the number of surrounding enemies and allies.
+Non-Deterministic Strategy: Unlike traditional chess, BoomChess incorporates elements of randomness, requiring players to adapt their tactics continually.
+
+Revamped Chess Pieces:
+
+General (King): The most crucial unit, moves one square in any direction. Its loss results in a game defeat. 
+Commando (Queen): The most powerful unit, with the ability to move freely in any direction. It has random damage reduction capabilities and is particularly effective against tanks.
+Tank (Rook): Represents the traditional rook, moving horizontally or vertically. It has high health and is effective against infantry but vulnerable to helicopters.
+War Dogs (Bishop): Moves diagonally, effective against infantry but weak against helicopters.
+Helicopter (Knight): Moves in an L-shape, capable of jumping over obstacles. It has high effectiveness against tanks.
+Infantry (Pawn): Moves forward, capturing diagonally. It has a unique advantage against helicopters but is vulnerable to war dogs and tanks.
+Artillery: A new piece that moves one tile in any direction and can attack targets two tiles away.
+
+Board and Aesthetics:
+
+Board Size: The game is played on a 9x8 board, allowing for more strategic depth.
+Visual and Audio Effects: BoomChess features immersive sound effects, particularly emphasizing the 'boom' sounds during attacks, enhancing the game's modern warfare theme.
+
+Conclusion:
+
+BoomChess offers a thrilling blend of traditional chess strategy and modern tactical warfare. Its unique health and damage systems, combined with the redesigned pieces and larger board, provide a fresh and challenging experience for both chess enthusiasts and those seeking a new twist on the classic game.
 
 ![Gif of BoomChess Gameplay](https://github.com/mklemmingen/mklemmingen/blob/4c1408ae2b9eb0528e7c2e30db01d1a6a5f7bd51/BoomChessGIF.gif?raw=true)
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-Quick intro:
-
-The game will be modernized using a different approach to chess. Each piece is a new piece resembling it only slightly in the way it can move. The King will be a General. The Towers will be tanks. The Pawns Infantry. The Runners will be Dogs. The Horses will be Helicopters. The Queen will be a Commando. 
-
-The whole board will be 9x8. Each piece has a health-value and a damage-value that is randomised and subject to dis- and advantages  
- 
-At the end of each chess-like turn, the current players pieces will all attack anyone they can. 
-
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 <img src="./assets/Misc/rules.png" alt="rules/help of Boom Chess">
 
