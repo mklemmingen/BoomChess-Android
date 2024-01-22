@@ -1,0 +1,3 @@
+Version 23 is the first f-droid release. It features the full game, with no gamebreaking bugs.
+Compared to earlier versions, it has a selected smaller size of music and textures, as well as
+an improved soldier Animation and action resolving expierence.

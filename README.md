@@ -14,7 +14,7 @@ Quick intro:
 
 The game will be modernized using a different approach to chess. Each piece is a new piece resembling it only slightly in the way it can move. The King will be a General. The Towers will be tanks. The Pawns Infantry. The Runners will be Dogs. The Horses will be Helicopters. The Queen will be a Commando. 
 
-The whole board will be 9x8. Each piece has a healtvalue and a damagevalue that is randomised and subject to dis- and advantages  
+The whole board will be 9x8. Each piece has a health-value and a damage-value that is randomised and subject to dis- and advantages  
  
 At the end of each chess-like turn, the current players pieces will all attack anyone they can. 
 
@@ -33,7 +33,6 @@ General(King) / health: int: 30   / damage: 5-10
 
    The most critical piece on the board. It can move one square in any direction (horizontally, vertically, or diagonally).
    if killed team loses
-   takes only half the possible damage
 
 Commando(Queen)n / health: int: 50  / damage: 5-30  / advantages: +10 to attacking tanks 
 
