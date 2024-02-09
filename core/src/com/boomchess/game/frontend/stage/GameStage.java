@@ -413,8 +413,16 @@ public class GameStage {
                             String tileTeamColor = gameBoard[finalI][finalJ].getTeamColor();
 
                             // If it's not the current team's turn, cancel the drag and return
-                            if ((currentState == BoomChess.GameState.RED_TURN && tileTeamColor.equals("green")) ||
-                                    (currentState == BoomChess.GameState.GREEN_TURN && tileTeamColor.equals("red"))) {
+                            if (actionSequence.getDamageSequenceRunning()) {
+
+                                event.cancel();
+
+                                nonInvasiveReRender = true;
+                                BoomChess.reRenderGame();
+                                return;
+                            } else if (((currentState == GameState.RED_TURN) && tileTeamColor.equals("green")) ||
+                                    ((currentState == GameState.GREEN_TURN) && tileTeamColor.equals("red"))) {
+
                                 event.cancel();
 
                                 // adds a logo on screen that says that the movement was not allowed yet
@@ -426,18 +434,20 @@ public class GameStage {
                                 nonInvasiveReRender = true;
                                 BoomChess.reRenderGame();
                                 return;
-                            } else if (currentState == BoomChess.GameState.RED_TURN && !tileTeamColor.equals("red") ||
-                                    currentState == BoomChess.GameState.GREEN_TURN && !tileTeamColor.equals("green")) {
-                                // player tried moving a piece that is of an empty soldier,
-                                // cancel event, do not add indicator, do not make a sound and non invasive rerender
+                            } else {
+                                if (currentState == GameState.RED_TURN && !tileTeamColor.equals("red") ||
+                                        currentState == GameState.GREEN_TURN && !tileTeamColor.equals("green")) {
+                                    // player tried moving a piece that is of an empty soldier,
+                                    // cancel event, do not add indicator, do not make a sound and non invasive rerender
 
-                                // explanation: there is red, green and EMPTY
+                                    // explanation: there is red, green and EMPTY
 
-                                event.cancel();
+                                    event.cancel();
 
-                                nonInvasiveReRender = true;
-                                BoomChess.reRenderGame();
-                                return;
+                                    nonInvasiveReRender = true;
+                                    BoomChess.reRenderGame();
+                                    return;
+                                }
                             }
 
                             if(BoomChess.showAttackCircle){
